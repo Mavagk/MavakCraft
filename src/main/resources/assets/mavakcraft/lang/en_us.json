@@ -1,4 +1,7 @@
 {
   "block.mavakcraft.glowing_obsidian": "Glowing Obsidian",
-  "item.mavakcraft.salt": "Salt"
+  "block.mavakcraft.rose": "Rose",
+  "block.mavakcraft.blue_rose": "Blue Rose",
+  "item.mavakcraft.salt": "Salt",
+  "itemGroup.mavakcraft": "MavakCraft"
 }
