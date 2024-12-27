@@ -13,11 +13,9 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FlowerBlock;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
@@ -38,7 +36,7 @@ public class MavakCraft
 	private static final Logger LOGGER = LogUtils.getLogger();
 
 	// Deferred registers containing game elements that will be registered when the mod entrypoint is executed
-	public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
+	public static final MavakCraftBlocksDeferredRegister BLOCKS = new MavakCraftBlocksDeferredRegister(MODID);
 	public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
 	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
@@ -50,20 +48,14 @@ public class MavakCraft
 		.strength(35.0F, 1200.0F)
 		.lightLevel(state -> 12)
 	);
-	public static final DeferredBlock<Block> ROSE = BLOCKS.register("rose", () -> new FlowerBlock(MobEffects.NIGHT_VISION, 5, BlockBehaviour
-		.Properties.of()
-		.mapColor(MapColor.PLANT)
-		.noCollission()
-		.instabreak()
-		.sound(SoundType.GRASS)
-		.offsetType(BlockBehaviour.OffsetType.XZ)
-		.pushReaction(PushReaction.DESTROY)
-	));
+	public static final DeferredBlock<FlowerBlock> ROSE = BLOCKS.registerSimpleFlower("rose", MobEffects.NIGHT_VISION, 5);
+	public static final DeferredBlock<FlowerBlock> BLUE_ROSE = BLOCKS.registerSimpleFlower("blue_rose", MobEffects.NIGHT_VISION, 5);
 
 	// Mod items
 	public static final DeferredItem<Item> SALT = ITEMS.registerSimpleItem("salt");
 	public static final DeferredItem<BlockItem> GLOWING_OBSIDIAN_ITEM = ITEMS.registerSimpleBlockItem(GLOWING_OBSIDIAN);
 	public static final DeferredItem<BlockItem> ROSE_ITEM = ITEMS.registerSimpleBlockItem(ROSE);
+	public static final DeferredItem<BlockItem> BLUE_ROSE_ITEM = ITEMS.registerSimpleBlockItem(BLUE_ROSE);
 
 	// Mod creative mode tabs
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("mavakcraft",
@@ -74,6 +66,8 @@ public class MavakCraft
 		.displayItems((parameters, output) -> {
 			output.accept(GLOWING_OBSIDIAN_ITEM.get());
 			output.accept(SALT.get());
+			output.accept(ROSE_ITEM.get());
+			output.accept(BLUE_ROSE_ITEM.get());
 		})
 		.build()
 	);

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "mavakcraft:block/rose"
+  },
+  "render_type": "cutout"
+}
