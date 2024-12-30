@@ -6,7 +6,7 @@
             "type": "cppvsdbg",
             "request": "launch",
             "program": "cmd",
-            "args": ["/c", "gradlew", "runClient"],
+            "args": ["/c", "gradlew", "runData", "&", "gradlew", "runClient"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
