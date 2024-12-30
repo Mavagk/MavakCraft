@@ -12,8 +12,8 @@ import net.minecraft.world.level.block.Block;
 /**
  * Generates loot tables for blocks.
  */
-public class BlockLootProvider extends BlockLootSubProvider {
-	public BlockLootProvider(HolderLookup.Provider registries) {
+public class ModBlockLootProvider extends BlockLootSubProvider {
+	public ModBlockLootProvider(HolderLookup.Provider registries) {
 		super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
 	}
 

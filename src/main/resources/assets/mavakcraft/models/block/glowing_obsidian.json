@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "mavakcraft:block/glowing_obsidian"
-  }
-}
