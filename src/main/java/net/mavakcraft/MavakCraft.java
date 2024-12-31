@@ -6,6 +6,7 @@ import com.mojang.logging.LogUtils;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -42,7 +43,7 @@ public class MavakCraft
 	private static final Logger LOGGER = LogUtils.getLogger();
 
 	// Deferred registers containing game elements that will be registered when the mod entrypoint is executed
-	public static final MavakCraftBlocksDeferredRegister BLOCKS = new MavakCraftBlocksDeferredRegister(MODID);
+	public static final ModBlocksDeferredRegister BLOCKS = new ModBlocksDeferredRegister(MODID);
 	public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
 	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
@@ -103,15 +104,16 @@ public class MavakCraft
 	@SubscribeEvent
 	public static void buildContents(BuildCreativeModeTabContentsEvent event) {
 		if (!Config.MOD_ITEMS_IN_VANILLA_TABS.get()) return;
-		if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
+		ResourceKey<CreativeModeTab> tab = event.getTabKey();
+		if (tab == CreativeModeTabs.NATURAL_BLOCKS) {
 			event.accept(ROSE_ITEM);
 			event.accept(BLUE_ROSE_ITEM);
 		}
-		if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+		if (tab == CreativeModeTabs.BUILDING_BLOCKS) {
 			event.accept(GLOWING_OBSIDIAN_ITEM);
 			event.accept(CHARCOAL_BLOCK_ITEM);
 		}
-		if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+		if (tab == CreativeModeTabs.INGREDIENTS) {
 			event.accept(SALT);
 		}
 	}

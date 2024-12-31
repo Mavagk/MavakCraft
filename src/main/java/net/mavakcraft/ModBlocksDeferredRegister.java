@@ -1,7 +1,12 @@
 package net.mavakcraft;
 
+import java.util.function.Supplier;
+
+import javax.annotation.Nonnull;
+
 import net.minecraft.core.Holder;
 import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -13,8 +18,8 @@ import net.neoforged.neoforge.registries.DeferredRegister.Blocks;
 /**
  * A DeferredRegister subclass with extra methods.
  */
-public class MavakCraftBlocksDeferredRegister extends Blocks {
-	protected MavakCraftBlocksDeferredRegister(String namespace) {
+public class ModBlocksDeferredRegister extends Blocks {
+	protected ModBlocksDeferredRegister(String namespace) {
 		super(namespace);
 	}
 
@@ -27,5 +32,10 @@ public class MavakCraftBlocksDeferredRegister extends Blocks {
 			.offsetType(BlockBehaviour.OffsetType.XZ)
 			.pushReaction(PushReaction.DESTROY)
 		));
+	}
+
+	@Override
+	public <B extends Block> DeferredBlock<B> register(@Nonnull String name, @Nonnull Supplier<? extends B> sup) {
+		return super.register(name, sup);
 	}
 }
