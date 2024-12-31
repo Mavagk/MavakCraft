@@ -10,6 +10,9 @@ import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister.Blocks;
 
+/**
+ * A DeferredRegister subclass with extra methods.
+ */
 public class MavakCraftBlocksDeferredRegister extends Blocks {
 	protected MavakCraftBlocksDeferredRegister(String namespace) {
 		super(namespace);

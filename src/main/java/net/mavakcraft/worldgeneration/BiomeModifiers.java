@@ -14,6 +14,9 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
+/**
+ * Sets the biome that features should be placed in.
+ */
 public class BiomeModifiers {
 	public static final ResourceKey<BiomeModifier> ADD_ROSES = registerKey("add_roses");
 

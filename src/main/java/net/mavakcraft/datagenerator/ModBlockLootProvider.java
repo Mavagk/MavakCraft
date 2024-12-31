@@ -20,6 +20,7 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
 	@Override
 	protected void generate() {
 		dropSelf(MavakCraft.GLOWING_OBSIDIAN.get());
+		dropSelf(MavakCraft.CHARCOAL_BLOCK.get());
 		dropSelf(MavakCraft.ROSE.get());
 		dropSelf(MavakCraft.BLUE_ROSE.get());
 	}

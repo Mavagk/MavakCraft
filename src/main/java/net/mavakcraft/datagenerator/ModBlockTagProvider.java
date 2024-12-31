@@ -2,6 +2,8 @@ package net.mavakcraft.datagenerator;
 
 import java.util.concurrent.CompletableFuture;
 
+import javax.annotation.Nonnull;
+
 import org.jetbrains.annotations.Nullable;
 
 import net.mavakcraft.MavakCraft;
@@ -11,15 +13,19 @@ import net.minecraft.tags.BlockTags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
+/**
+ * Generates tags for blocks, such as what tool is needed to mine them.
+ */
 public class ModBlockTagProvider extends BlockTagsProvider {
 	public ModBlockTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
 		super(output, lookupProvider, MavakCraft.MODID, existingFileHelper);
 	}
 
 	@Override
-	protected void addTags(HolderLookup.Provider provider) {
+	protected void addTags(@Nonnull HolderLookup.Provider provider) {
 		tag(BlockTags.MINEABLE_WITH_PICKAXE)
-			.add(MavakCraft.GLOWING_OBSIDIAN.get());
+			.add(MavakCraft.GLOWING_OBSIDIAN.get())
+			.add(MavakCraft.CHARCOAL_BLOCK.get());
 		tag(BlockTags.NEEDS_DIAMOND_TOOL)
 			.add(MavakCraft.GLOWING_OBSIDIAN.get());
 		tag(BlockTags.SMALL_FLOWERS)

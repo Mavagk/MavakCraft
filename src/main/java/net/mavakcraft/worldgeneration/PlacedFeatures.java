@@ -17,6 +17,9 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.placement.PlacementModifier;
 import net.minecraft.world.level.levelgen.placement.RarityFilter;
 
+/**
+ * Sets where features should be placed in the biomes it can generate in.
+ */
 public class PlacedFeatures {
 	public static final ResourceKey<PlacedFeature> ROSES_PLACED = registerKey("roses_placed");
 

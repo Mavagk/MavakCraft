@@ -48,12 +48,20 @@ public class MavakCraft
 		.strength(35.0F, 1200.0F)
 		.lightLevel(state -> 12)
 	);
+	public static final DeferredBlock<Block> CHARCOAL_BLOCK = BLOCKS.registerSimpleBlock("charcoal_block", BlockBehaviour.Properties.of()
+		.mapColor(MapColor.COLOR_BLACK)
+		.instrument(NoteBlockInstrument.BASEDRUM)
+		.requiresCorrectToolForDrops()
+		.strength(5.0F, 6.0F)
+	);
 	public static final DeferredBlock<FlowerBlock> ROSE = BLOCKS.registerSimpleFlower("rose", MobEffects.NIGHT_VISION, 5);
 	public static final DeferredBlock<FlowerBlock> BLUE_ROSE = BLOCKS.registerSimpleFlower("blue_rose", MobEffects.NIGHT_VISION, 5);
 
 	// Mod items
 	public static final DeferredItem<Item> SALT = ITEMS.registerSimpleItem("salt");
+
 	public static final DeferredItem<BlockItem> GLOWING_OBSIDIAN_ITEM = ITEMS.registerSimpleBlockItem(GLOWING_OBSIDIAN);
+	public static final DeferredItem<BlockItem> CHARCOAL_BLOCK_ITEM = ITEMS.registerSimpleBlockItem(CHARCOAL_BLOCK);
 	public static final DeferredItem<BlockItem> ROSE_ITEM = ITEMS.registerSimpleBlockItem(ROSE);
 	public static final DeferredItem<BlockItem> BLUE_ROSE_ITEM = ITEMS.registerSimpleBlockItem(BLUE_ROSE);
 
@@ -65,6 +73,7 @@ public class MavakCraft
 		.icon(() -> GLOWING_OBSIDIAN_ITEM.get().getDefaultInstance())
 		.displayItems((parameters, output) -> {
 			output.accept(GLOWING_OBSIDIAN_ITEM.get());
+			output.accept(CHARCOAL_BLOCK_ITEM.get());
 			output.accept(SALT.get());
 			output.accept(ROSE_ITEM.get());
 			output.accept(BLUE_ROSE_ITEM.get());
