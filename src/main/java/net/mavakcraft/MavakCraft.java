@@ -19,6 +19,7 @@ import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
@@ -30,6 +31,7 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 @Mod(MavakCraft.MODID)
+@EventBusSubscriber(modid = MavakCraft.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class MavakCraft
 {
 	// Define mod id in a common place for everything to reference
@@ -95,13 +97,12 @@ public class MavakCraft
 		// Register the deferred registers
 		BLOCKS.register(modEventBus);
 		ITEMS.register(modEventBus);
-		if (Config.MOD_ITEMS_IN_MOD_CREATIVE_TAB.get()) {
-			CREATIVE_MODE_TABS.register(modEventBus);
-		}
+		if (Config.MOD_ITEMS_IN_MOD_CREATIVE_TAB.get()) CREATIVE_MODE_TABS.register(modEventBus);
 	}
 
 	@SubscribeEvent
 	public static void buildContents(BuildCreativeModeTabContentsEvent event) {
+		if (!Config.MOD_ITEMS_IN_VANILLA_TABS.get()) return;
 		if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
 			event.accept(ROSE_ITEM);
 			event.accept(BLUE_ROSE_ITEM);
