@@ -17,9 +17,13 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
+import net.neoforged.neoforge.client.gui.ConfigurationScreen;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -86,10 +90,28 @@ public class MavakCraft
 	public MavakCraft(IEventBus modEventBus, ModContainer modContainer) {
 		LOGGER.info("Loading MavakCraft");
 		// Register our mod's ModConfigSpec so that FML can create and load the config file for us
-		modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+		modContainer.registerConfig(ModConfig.Type.STARTUP, Config.SPEC);
+		modContainer.registerExtensionPoint(IConfigScreenFactory.class, (mc, parent) -> new ConfigurationScreen(modContainer, parent));
 		// Register the deferred registers
 		BLOCKS.register(modEventBus);
 		ITEMS.register(modEventBus);
-		CREATIVE_MODE_TABS.register(modEventBus);
+		if (Config.MOD_ITEMS_IN_MOD_CREATIVE_TAB.get()) {
+			CREATIVE_MODE_TABS.register(modEventBus);
+		}
+	}
+
+	@SubscribeEvent
+	public static void buildContents(BuildCreativeModeTabContentsEvent event) {
+		if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
+			event.accept(ROSE_ITEM);
+			event.accept(BLUE_ROSE_ITEM);
+		}
+		if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+			event.accept(GLOWING_OBSIDIAN_ITEM);
+			event.accept(CHARCOAL_BLOCK_ITEM);
+		}
+		if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+			event.accept(SALT);
+		}
 	}
 }

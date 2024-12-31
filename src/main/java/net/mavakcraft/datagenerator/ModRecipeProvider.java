@@ -28,16 +28,16 @@ public class ModRecipeProvider extends RecipeProvider {
 	@Override
 	protected void buildRecipes(@Nonnull RecipeOutput recipeOutput) {
 		this.recipeOutput = recipeOutput;
-		buildRecipesForItemToItem(MavakCraft.ROSE_ITEM.get(), Items.RED_DYE, RecipeCategory.MISC);
-		buildRecipesForItemToItem(MavakCraft.BLUE_ROSE_ITEM.get(), Items.BLUE_DYE, RecipeCategory.MISC);
-		buildRecipesForItemBlock(Items.CHARCOAL, MavakCraft.CHARCOAL_BLOCK_ITEM.get());
+		shapelessRecipeForItemToItem(MavakCraft.ROSE_ITEM.get(), Items.RED_DYE, RecipeCategory.MISC);
+		shapelessRecipeForItemToItem(MavakCraft.BLUE_ROSE_ITEM.get(), Items.BLUE_DYE, RecipeCategory.MISC);
+		recipesForItemStorageBlock(Items.CHARCOAL, MavakCraft.CHARCOAL_BLOCK_ITEM.get());
 	}
 
 	/**
 	 * Build a shapeless crafting recipe that crafts an amount of an item into an amount of another item.
 	 * @param category The tab the recipe should be placed into in the recipe book.
 	 */
-	void buildRecipesForItemToItem(Item from, int fromCount, Item to, int toCount, RecipeCategory category) {
+	void shapelessRecipeForItemToItem(Item from, int fromCount, Item to, int toCount, RecipeCategory category) {
 		ShapelessRecipeBuilder.shapeless(category, to, toCount)
 			.requires(from, fromCount)
 			.group(BuiltInRegistries.ITEM.getKey(to).getPath())
@@ -49,24 +49,24 @@ public class ModRecipeProvider extends RecipeProvider {
 	 * Build a shapeless crafting recipe that crafts an amount of an item into another single item.
 	 * @param category The tab the recipe should be placed into in the recipe book.
 	 */
-	void buildRecipesForItemToItem(Item from, int fromCount, Item to, RecipeCategory category) {
-		buildRecipesForItemToItem(from, fromCount, to, 1, category);
+	void shapelessRecipeForItemToItem(Item from, int fromCount, Item to, RecipeCategory category) {
+		shapelessRecipeForItemToItem(from, fromCount, to, 1, category);
 	}
 
 	/**
 	 * Build a shapeless crafting recipe that crafts a single item into an amount of another item.
 	 * @param category The tab the recipe should be placed into in the recipe book.
 	 */
-	void buildRecipesForItemToItem(Item from, Item to, int toCount, RecipeCategory category) {
-		buildRecipesForItemToItem(from, 1, to, toCount, category);
+	void shapelessRecipeForItemToItem(Item from, Item to, int toCount, RecipeCategory category) {
+		shapelessRecipeForItemToItem(from, 1, to, toCount, category);
 	}
 
 	/**
 	 * Build a shapeless crafting recipe that crafts a single item into another single item.
 	 * @param category The tab the recipe should be placed into in the recipe book.
 	 */
-	void buildRecipesForItemToItem(Item from, Item to, RecipeCategory category) {
-		buildRecipesForItemToItem(from, 1, to, 1, category);
+	void shapelessRecipeForItemToItem(Item from, Item to, RecipeCategory category) {
+		shapelessRecipeForItemToItem(from, 1, to, 1, category);
 	}
 
 	/**
@@ -74,8 +74,8 @@ public class ModRecipeProvider extends RecipeProvider {
 	 * @param storage_of The item we craft 9 of into the block and that the block can be crafted back into.
 	 * @param storage_block The block we craft and can uncraft.
 	 */
-	void buildRecipesForItemBlock(Item storage_of, Item storage_block) {
-		buildRecipesForItemToItem(storage_of, 9, storage_block, RecipeCategory.BUILDING_BLOCKS);
-		buildRecipesForItemToItem(storage_block, storage_of, 9, RecipeCategory.MISC);
+	void recipesForItemStorageBlock(Item storage_of, Item storage_block) {
+		shapelessRecipeForItemToItem(storage_of, 9, storage_block, RecipeCategory.BUILDING_BLOCKS);
+		shapelessRecipeForItemToItem(storage_block, storage_of, 9, RecipeCategory.MISC);
 	}
 }
