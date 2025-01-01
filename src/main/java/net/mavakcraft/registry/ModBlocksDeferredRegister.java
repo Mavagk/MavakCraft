@@ -1,4 +1,4 @@
-package net.mavakcraft;
+package net.mavakcraft.registry;
 
 import java.util.HashMap;
 import java.util.Vector;
@@ -34,7 +34,7 @@ public class ModBlocksDeferredRegister extends Blocks {
 	 */
 	@Nonnull HashMap<DeferredBlock<?>, ResourceKey<CreativeModeTab>> vanillaCreativeTabsForEachBlock;
 
-	protected ModBlocksDeferredRegister(String namespace) {
+	public ModBlocksDeferredRegister(String namespace) {
 		super(namespace);
 		registerBlockItemsFor = new Vector<>();
 		vanillaCreativeTabsForEachBlock = new HashMap<>();

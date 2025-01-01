@@ -17,6 +17,6 @@ public class ModDataMapProvider extends DataMapProvider {
 	@Override
 	protected void gather() {
 		this.builder(NeoForgeDataMaps.FURNACE_FUELS)
-			.add(MavakCraft.CHARCOAL_BLOCK_ITEM, new FurnaceFuel(16000), false);
+			.add(MavakCraft.ITEMS.getBlockItem(MavakCraft.CHARCOAL_BLOCK), new FurnaceFuel(16000), false);
 	}
 }

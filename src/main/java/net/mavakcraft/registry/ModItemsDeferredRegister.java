@@ -1,4 +1,4 @@
-package net.mavakcraft;
+package net.mavakcraft.registry;
 
 import java.util.HashMap;
 import java.util.Vector;
@@ -25,11 +25,13 @@ public class ModItemsDeferredRegister extends Items {
 	 * Maps vanilla creative mode tabs to list of mod items that should be added to them.
 	 */
 	@Nonnull HashMap<ResourceKey<CreativeModeTab>, Vector<DeferredItem<?>>> itemsToPutInVanillaCreativeTabs;
+	@Nonnull HashMap<Holder<Block>, DeferredItem<BlockItem>> blockItems;
 
-	protected ModItemsDeferredRegister(String namespace) {
+	public ModItemsDeferredRegister(String namespace) {
 		super(namespace);
 		itemsToPutInModCreativeTab = new Vector<>();
 		itemsToPutInVanillaCreativeTabs = new HashMap<>();
+		blockItems = new HashMap<>();
 	}
 
 	/**
@@ -40,6 +42,7 @@ public class ModItemsDeferredRegister extends Items {
 	public DeferredItem<BlockItem> registerSimpleBlockItem(Holder<Block> block, @Nullable ResourceKey<CreativeModeTab> vanillaCreativeTabToPutIn) {
 		DeferredItem<BlockItem> item = super.registerSimpleBlockItem(block);
 		setCreativeTab(item, vanillaCreativeTabToPutIn);
+		blockItems.put(block, item);
 		return item;
 	}
 	
@@ -85,5 +88,9 @@ public class ModItemsDeferredRegister extends Items {
 		Vector<DeferredItem<?>> itemsForTab = itemsToPutInVanillaCreativeTabs.get(tab);
 		if (itemsForTab == null) return;
 		itemsForTab.forEach(item -> event.accept(item));
+	}
+
+	public DeferredItem<BlockItem> getBlockItem(Holder<Block> block) {
+		return blockItems.get(block);
 	}
 }

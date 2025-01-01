@@ -7,7 +7,6 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
@@ -29,6 +28,8 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.mavakcraft.registry.ModBlocksDeferredRegister;
+import net.mavakcraft.registry.ModItemsDeferredRegister;
 
 @Mod(MavakCraft.MODID)
 @EventBusSubscriber(modid = MavakCraft.MODID, bus = EventBusSubscriber.Bus.MOD)
@@ -59,7 +60,7 @@ public class MavakCraft
 		.instrument(NoteBlockInstrument.BASEDRUM)
 		.requiresCorrectToolForDrops()
 		.strength(5.0F, 6.0F),
-	false, null);
+	true, CreativeModeTabs.BUILDING_BLOCKS);
 	public static final DeferredBlock<FlowerBlock> ROSE = BLOCKS
 		.registerSimpleFlower("rose", MobEffects.NIGHT_VISION, 5, true, CreativeModeTabs.NATURAL_BLOCKS);
 	public static final DeferredBlock<FlowerBlock> BLUE_ROSE = BLOCKS
@@ -67,7 +68,6 @@ public class MavakCraft
 
 	// Mod items
 	public static final DeferredItem<Item> SALT = ITEMS.registerSimpleItem("salt", CreativeModeTabs.INGREDIENTS);
-	public static final DeferredItem<BlockItem> CHARCOAL_BLOCK_ITEM = ITEMS.registerSimpleBlockItem(CHARCOAL_BLOCK, CreativeModeTabs.BUILDING_BLOCKS);
 	// Register block items for all blocks that are set to have block items generated for them.
 	{
 		BLOCKS.registerBlockItems(ITEMS);
