@@ -6,9 +6,7 @@ import com.mojang.logging.LogUtils;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
@@ -44,7 +42,7 @@ public class MavakCraft
 
 	// Deferred registers containing game elements that will be registered when the mod entrypoint is executed
 	public static final ModBlocksDeferredRegister BLOCKS = new ModBlocksDeferredRegister(MODID);
-	public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
+	public static final ModItemsDeferredRegister ITEMS = new ModItemsDeferredRegister(MODID);
 	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
 	// Mod blocks
@@ -53,37 +51,34 @@ public class MavakCraft
 		.instrument(NoteBlockInstrument.BASEDRUM)
 		.requiresCorrectToolForDrops()
 		.strength(35.0F, 1200.0F)
-		.lightLevel(state -> 12)
-	);
+		.lightLevel(state -> 12),
+	true, CreativeModeTabs.BUILDING_BLOCKS);
 	public static final DeferredBlock<Block> CHARCOAL_BLOCK = BLOCKS.registerSimpleBlock("charcoal_block", BlockBehaviour.Properties.of()
 		.mapColor(MapColor.COLOR_BLACK)
 		.instrument(NoteBlockInstrument.BASEDRUM)
 		.requiresCorrectToolForDrops()
-		.strength(5.0F, 6.0F)
-	);
-	public static final DeferredBlock<FlowerBlock> ROSE = BLOCKS.registerSimpleFlower("rose", MobEffects.NIGHT_VISION, 5);
-	public static final DeferredBlock<FlowerBlock> BLUE_ROSE = BLOCKS.registerSimpleFlower("blue_rose", MobEffects.NIGHT_VISION, 5);
+		.strength(5.0F, 6.0F),
+	true, CreativeModeTabs.BUILDING_BLOCKS);
+	public static final DeferredBlock<FlowerBlock> ROSE = BLOCKS
+		.registerSimpleFlower("rose", MobEffects.NIGHT_VISION, 5, true, CreativeModeTabs.NATURAL_BLOCKS);
+	public static final DeferredBlock<FlowerBlock> BLUE_ROSE = BLOCKS
+		.registerSimpleFlower("blue_rose", MobEffects.NIGHT_VISION, 5, true, CreativeModeTabs.NATURAL_BLOCKS);
 
 	// Mod items
-	public static final DeferredItem<Item> SALT = ITEMS.registerSimpleItem("salt");
+	public static final DeferredItem<Item> SALT = ITEMS.registerSimpleItem("salt", CreativeModeTabs.INGREDIENTS);
 
-	public static final DeferredItem<BlockItem> GLOWING_OBSIDIAN_ITEM = ITEMS.registerSimpleBlockItem(GLOWING_OBSIDIAN);
-	public static final DeferredItem<BlockItem> CHARCOAL_BLOCK_ITEM = ITEMS.registerSimpleBlockItem(CHARCOAL_BLOCK);
-	public static final DeferredItem<BlockItem> ROSE_ITEM = ITEMS.registerSimpleBlockItem(ROSE);
-	public static final DeferredItem<BlockItem> BLUE_ROSE_ITEM = ITEMS.registerSimpleBlockItem(BLUE_ROSE);
+	{
+		BLOCKS.registerBlockItems(ITEMS);
+	}
 
 	// Mod creative mode tabs
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("mavakcraft",
 		() -> CreativeModeTab.builder()
 		.title(Component.translatable("itemGroup.mavakcraft"))
 		.withTabsBefore(CreativeModeTabs.COMBAT)
-		.icon(() -> GLOWING_OBSIDIAN_ITEM.get().getDefaultInstance())
+		.icon(() -> GLOWING_OBSIDIAN.get().asItem().getDefaultInstance())
 		.displayItems((parameters, output) -> {
-			output.accept(GLOWING_OBSIDIAN_ITEM.get());
-			output.accept(CHARCOAL_BLOCK_ITEM.get());
-			output.accept(SALT.get());
-			output.accept(ROSE_ITEM.get());
-			output.accept(BLUE_ROSE_ITEM.get());
+			ITEMS.putItemsInModCreativeTab(output);
 		})
 		.build()
 	);
@@ -104,17 +99,6 @@ public class MavakCraft
 	@SubscribeEvent
 	public static void buildContents(BuildCreativeModeTabContentsEvent event) {
 		if (!Config.MOD_ITEMS_IN_VANILLA_TABS.get()) return;
-		ResourceKey<CreativeModeTab> tab = event.getTabKey();
-		if (tab == CreativeModeTabs.NATURAL_BLOCKS) {
-			event.accept(ROSE_ITEM);
-			event.accept(BLUE_ROSE_ITEM);
-		}
-		if (tab == CreativeModeTabs.BUILDING_BLOCKS) {
-			event.accept(GLOWING_OBSIDIAN_ITEM);
-			event.accept(CHARCOAL_BLOCK_ITEM);
-		}
-		if (tab == CreativeModeTabs.INGREDIENTS) {
-			event.accept(SALT);
-		}
+		ITEMS.putItemsInVanillaTab(event);
 	}
 }

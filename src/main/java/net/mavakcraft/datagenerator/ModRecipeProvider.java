@@ -28,9 +28,9 @@ public class ModRecipeProvider extends RecipeProvider {
 	@Override
 	protected void buildRecipes(@Nonnull RecipeOutput recipeOutput) {
 		this.recipeOutput = recipeOutput;
-		shapelessRecipeForItemToItem(MavakCraft.ROSE_ITEM.get(), Items.RED_DYE, RecipeCategory.MISC);
-		shapelessRecipeForItemToItem(MavakCraft.BLUE_ROSE_ITEM.get(), Items.BLUE_DYE, RecipeCategory.MISC);
-		recipesForItemStorageBlock(Items.CHARCOAL, MavakCraft.CHARCOAL_BLOCK_ITEM.get());
+		shapelessRecipeForItemToItem(MavakCraft.ROSE.get().asItem(), Items.RED_DYE, RecipeCategory.MISC);
+		shapelessRecipeForItemToItem(MavakCraft.BLUE_ROSE.get().asItem(), Items.BLUE_DYE, RecipeCategory.MISC);
+		recipesForItemStorageBlock(Items.CHARCOAL, MavakCraft.CHARCOAL_BLOCK.get().asItem());
 	}
 
 	/**
