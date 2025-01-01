@@ -3,6 +3,7 @@ package net.mavakcraft;
 import net.mavakcraft.datagenerator.ModBlockLootProvider;
 import net.mavakcraft.datagenerator.ModBlockStateProvider;
 import net.mavakcraft.datagenerator.ModBlockTagProvider;
+import net.mavakcraft.datagenerator.ModDataMapProvider;
 import net.mavakcraft.datagenerator.ModDatapackProvider;
 import net.mavakcraft.datagenerator.ModItemModelProvider;
 import net.mavakcraft.datagenerator.ModRecipeProvider;
@@ -40,5 +41,6 @@ public class DataGenerators {
 		generator.addProvider(event.includeServer(), new ModBlockTagProvider(packOutput, lookupProvider, existingFileHelper));
 		generator.addProvider(event.includeServer(), new ModRecipeProvider(packOutput, lookupProvider));
 		generator.addProvider(event.includeServer(), new ModDatapackProvider(packOutput, lookupProvider));
+		generator.addProvider(event.includeServer(), new ModDataMapProvider(packOutput, lookupProvider));
 	}
 }

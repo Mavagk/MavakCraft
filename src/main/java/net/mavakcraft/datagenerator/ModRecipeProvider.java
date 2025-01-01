@@ -43,6 +43,7 @@ public class ModRecipeProvider extends RecipeProvider {
 			.group(BuiltInRegistries.ITEM.getKey(to).getPath())
 			.unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(from).getPath(), has(from))
 			.save(recipeOutput);
+		//new FurnaceFuel(16000);
 	}
 
 	/**
