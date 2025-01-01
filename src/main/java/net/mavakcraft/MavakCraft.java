@@ -41,7 +41,6 @@ public class MavakCraft
 
 	// The logger to log debug messages to
 	private static final Logger LOGGER = LogUtils.getLogger();
-
 	// Deferred registers containing game elements that will be registered when the mod entrypoint is executed
 	public static final ModBlocksDeferredRegister BLOCKS = new ModBlocksDeferredRegister(MODID);
 	public static final ModItemsDeferredRegister ITEMS = new ModItemsDeferredRegister(MODID);
@@ -56,6 +55,12 @@ public class MavakCraft
 		.lightLevel(state -> 12),
 	true, CreativeModeTabs.BUILDING_BLOCKS);
 	public static final DeferredBlock<Block> CHARCOAL_BLOCK = BLOCKS.registerSimpleBlock("charcoal_block", BlockBehaviour.Properties.of()
+		.mapColor(MapColor.COLOR_BLACK)
+		.instrument(NoteBlockInstrument.BASEDRUM)
+		.requiresCorrectToolForDrops()
+		.strength(5.0F, 6.0F),
+		true, CreativeModeTabs.BUILDING_BLOCKS);
+	public static final DeferredBlock<Block> GLOWSTONE_DUST_BLOCK = BLOCKS.registerSimpleBlock("charcoal_block", BlockBehaviour.Properties.of()
 		.mapColor(MapColor.COLOR_BLACK)
 		.instrument(NoteBlockInstrument.BASEDRUM)
 		.requiresCorrectToolForDrops()
