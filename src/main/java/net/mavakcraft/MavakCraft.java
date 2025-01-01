@@ -66,7 +66,7 @@ public class MavakCraft
 
 	// Mod items
 	public static final DeferredItem<Item> SALT = ITEMS.registerSimpleItem("salt", CreativeModeTabs.INGREDIENTS);
-
+	// Register block items for all blocks that are set to have block items generated for them.
 	{
 		BLOCKS.registerBlockItems(ITEMS);
 	}
@@ -77,9 +77,7 @@ public class MavakCraft
 		.title(Component.translatable("itemGroup.mavakcraft"))
 		.withTabsBefore(CreativeModeTabs.COMBAT)
 		.icon(() -> GLOWING_OBSIDIAN.get().asItem().getDefaultInstance())
-		.displayItems((parameters, output) -> {
-			ITEMS.putItemsInModCreativeTab(output);
-		})
+		.displayItems((parameters, output) -> ITEMS.putItemsInModCreativeTab(output))
 		.build()
 	);
 
@@ -89,6 +87,7 @@ public class MavakCraft
 		LOGGER.info("Loading MavakCraft");
 		// Register our mod's ModConfigSpec so that FML can create and load the config file for us
 		modContainer.registerConfig(ModConfig.Type.STARTUP, Config.SPEC);
+		// The mod should have an auto generated config menu
 		modContainer.registerExtensionPoint(IConfigScreenFactory.class, (mc, parent) -> new ConfigurationScreen(modContainer, parent));
 		// Register the deferred registers
 		BLOCKS.register(modEventBus);
@@ -97,6 +96,7 @@ public class MavakCraft
 	}
 
 	@SubscribeEvent
+	// For adding items to vanilla creative mode tabs.
 	public static void buildContents(BuildCreativeModeTabContentsEvent event) {
 		if (!Config.MOD_ITEMS_IN_VANILLA_TABS.get()) return;
 		ITEMS.putItemsInVanillaTab(event);
