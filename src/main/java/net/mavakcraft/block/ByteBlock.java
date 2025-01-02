@@ -23,7 +23,7 @@ public class ByteBlock extends AbstractByteBlock {
 	}
 
 	@Override
-	public @Nullable Integer getByteValue(BlockState state) {
+	public @Nullable Integer getStoredByteValue(BlockState state) {
 		return state.getValue(BYTE_VALUE);
 	}
 }
