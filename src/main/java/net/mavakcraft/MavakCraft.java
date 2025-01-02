@@ -64,6 +64,18 @@ public class MavakCraft
 		"glowstone_dust_block", 0xB7966E,
 		(props) -> props.mapColor(MapColor.SAND).lightLevel(state -> 15), true, CreativeModeTabs.BUILDING_BLOCKS
 	);
+	public static final DeferredBlock<ColoredFallingBlock> GUNPOWDER_BLOCK = BLOCKS.registerSimpleFallingBlock(
+		"gunpowder_block", 0x545454,
+		(props) -> props.mapColor(MapColor.STONE), true, CreativeModeTabs.BUILDING_BLOCKS
+	);
+	public static final DeferredBlock<ColoredFallingBlock> SUGAR_BLOCK = BLOCKS.registerSimpleFallingBlock(
+		"sugar_block", 0xEAEAEA,
+		(props) -> props.mapColor(MapColor.SAND), true, CreativeModeTabs.BUILDING_BLOCKS
+	);
+	public static final DeferredBlock<ColoredFallingBlock> SALT_BLOCK = BLOCKS.registerSimpleFallingBlock(
+		"salt_block", 0xEAEAEA,
+		(props) -> props.mapColor(MapColor.SAND), true, CreativeModeTabs.BUILDING_BLOCKS
+	);
 	public static final DeferredBlock<FlowerBlock> ROSE = BLOCKS
 		.registerSimpleFlower("rose", MobEffects.NIGHT_VISION, 5, true, CreativeModeTabs.NATURAL_BLOCKS);
 	public static final DeferredBlock<FlowerBlock> BLUE_ROSE = BLOCKS

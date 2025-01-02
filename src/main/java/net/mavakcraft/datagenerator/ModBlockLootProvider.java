@@ -24,6 +24,9 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
 		dropSelf(MavakCraft.ROSE.get());
 		dropSelf(MavakCraft.BLUE_ROSE.get());
 		dropSelf(MavakCraft.GLOWSTONE_DUST_BLOCK.get());
+		dropSelf(MavakCraft.GUNPOWDER_BLOCK.get());
+		dropSelf(MavakCraft.SUGAR_BLOCK.get());
+		dropSelf(MavakCraft.SALT_BLOCK.get());
 	}
 
 	@Override

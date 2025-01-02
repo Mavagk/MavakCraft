@@ -27,7 +27,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 			.add(MavakCraft.GLOWING_OBSIDIAN.get())
 			.add(MavakCraft.CHARCOAL_BLOCK.get());
 		tag(BlockTags.MINEABLE_WITH_SHOVEL)
-			.add(MavakCraft.GLOWSTONE_DUST_BLOCK.get());
+			.add(MavakCraft.GLOWSTONE_DUST_BLOCK.get())
+			.add(MavakCraft.GUNPOWDER_BLOCK.get())
+			.add(MavakCraft.SUGAR_BLOCK.get())
+			.add(MavakCraft.SALT_BLOCK.get());
 		tag(BlockTags.NEEDS_DIAMOND_TOOL)
 			.add(MavakCraft.GLOWING_OBSIDIAN.get());
 		tag(BlockTags.SMALL_FLOWERS)

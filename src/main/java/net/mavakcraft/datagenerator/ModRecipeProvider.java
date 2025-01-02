@@ -32,6 +32,9 @@ public class ModRecipeProvider extends RecipeProvider {
 		shapelessRecipeForItemToItem(MavakCraft.BLUE_ROSE.get().asItem(), Items.BLUE_DYE, RecipeCategory.MISC);
 		recipesForItemStorageBlock(Items.CHARCOAL, MavakCraft.CHARCOAL_BLOCK.get().asItem());
 		recipesForItemStorageBlock(Items.GLOWSTONE_DUST, MavakCraft.GLOWSTONE_DUST_BLOCK.get().asItem());
+		recipesForItemStorageBlock(Items.GUNPOWDER, MavakCraft.GUNPOWDER_BLOCK.get().asItem());
+		recipesForItemStorageBlock(Items.SUGAR, MavakCraft.SUGAR_BLOCK.get().asItem());
+		recipesForItemStorageBlock(MavakCraft.SALT.get(), MavakCraft.SALT_BLOCK.get().asItem());
 	}
 
 	/**
