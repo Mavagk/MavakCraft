@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 
 public abstract class AbstractByteBlock extends Block {
 	public AbstractByteBlock(BlockBehaviour.Properties properties) {
@@ -33,4 +34,13 @@ public abstract class AbstractByteBlock extends Block {
 		if (!(connectionBlock instanceof AbstractByteBlock)) return null;
 		return ((AbstractByteBlock)connectionBlock).getByteValue(connectionBlockState);
 	}
+	
+	public void directByteValue(ServerLevel level, BlockPos pos, int value, int pushes) {
+
+	}
+
+	//@Override
+	//protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+	//	level.scheduleTick(pos, null, UPDATE_ALL);
+	//}
 }
