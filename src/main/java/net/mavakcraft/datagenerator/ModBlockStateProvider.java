@@ -19,6 +19,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	protected void registerStatesAndModels() {
 		simpleBlockWithItem(MavakCraft.GLOWING_OBSIDIAN.get());
 		simpleBlockWithItem(MavakCraft.CHARCOAL_BLOCK.get());
+		simpleBlockWithItem(MavakCraft.GLOWSTONE_DUST_BLOCK.get());
 		simplePlant(MavakCraft.ROSE.get());
 		simplePlant(MavakCraft.BLUE_ROSE.get());
 	}

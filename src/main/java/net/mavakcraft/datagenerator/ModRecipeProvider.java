@@ -31,6 +31,7 @@ public class ModRecipeProvider extends RecipeProvider {
 		shapelessRecipeForItemToItem(MavakCraft.ROSE.get().asItem(), Items.RED_DYE, RecipeCategory.MISC);
 		shapelessRecipeForItemToItem(MavakCraft.BLUE_ROSE.get().asItem(), Items.BLUE_DYE, RecipeCategory.MISC);
 		recipesForItemStorageBlock(Items.CHARCOAL, MavakCraft.CHARCOAL_BLOCK.get().asItem());
+		recipesForItemStorageBlock(Items.GLOWSTONE_DUST, MavakCraft.GLOWSTONE_DUST_BLOCK.get().asItem());
 	}
 
 	/**
@@ -43,7 +44,6 @@ public class ModRecipeProvider extends RecipeProvider {
 			.group(BuiltInRegistries.ITEM.getKey(to).getPath())
 			.unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(from).getPath(), has(from))
 			.save(recipeOutput);
-		//new FurnaceFuel(16000);
 	}
 
 	/**

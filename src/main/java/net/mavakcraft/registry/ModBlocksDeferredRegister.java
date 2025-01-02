@@ -9,9 +9,11 @@ import javax.annotation.Nullable;
 
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.util.ColorRGBA;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ColoredFallingBlock;
 import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -52,6 +54,21 @@ public class ModBlocksDeferredRegister extends Blocks {
 		DeferredBlock<Block> block = super.registerSimpleBlock(name, props);
 		setItemAndCreativeTab(block, doRegisterItem, vanillaCreativeTabToPutIn);
 		return block;
+	}
+
+	/**
+	 * Register a simple block.
+	 * @param doRegisterItem should a block item be registered for this block.
+	 * @param vanillaCreativeTabToPutIn If non-null, is the vanilla tab to put the block item into, the block item is also put into the mod creative mode tab.
+	 * If null, the block item is not put into any creative mode tabs.
+	 */
+	public DeferredBlock<ColoredFallingBlock> registerSimpleFallingBlock(
+		@Nonnull String name, int color, @Nonnull BlockBehaviour.Properties props,
+		boolean doRegisterItem, @Nullable ResourceKey<CreativeModeTab> vanillaCreativeTabToPutIn
+	) {
+		return register(
+			name, () -> new ColoredFallingBlock(new ColorRGBA(color), props), true, vanillaCreativeTabToPutIn
+		);
 	}
 
 	/**

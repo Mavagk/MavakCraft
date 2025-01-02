@@ -11,7 +11,9 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ColoredFallingBlock;
 import net.minecraft.world.level.block.FlowerBlock;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
@@ -60,11 +62,13 @@ public class MavakCraft
 		.requiresCorrectToolForDrops()
 		.strength(5.0F, 6.0F),
 		true, CreativeModeTabs.BUILDING_BLOCKS);
-	public static final DeferredBlock<Block> GLOWSTONE_DUST_BLOCK = BLOCKS.registerSimpleBlock("charcoal_block", BlockBehaviour.Properties.of()
-		.mapColor(MapColor.COLOR_BLACK)
-		.instrument(NoteBlockInstrument.BASEDRUM)
-		.requiresCorrectToolForDrops()
-		.strength(5.0F, 6.0F),
+	public static final DeferredBlock<ColoredFallingBlock> GLOWSTONE_DUST_BLOCK = BLOCKS.registerSimpleFallingBlock("glowstone_dust_block", 0xB7966E, 
+		BlockBehaviour.Properties.of()
+			.mapColor(MapColor.SAND)
+			.instrument(NoteBlockInstrument.SNARE)
+			.strength(0.5F)
+			.sound(SoundType.SAND)
+			.lightLevel(state -> 15),
 	true, CreativeModeTabs.BUILDING_BLOCKS);
 	public static final DeferredBlock<FlowerBlock> ROSE = BLOCKS
 		.registerSimpleFlower("rose", MobEffects.NIGHT_VISION, 5, true, CreativeModeTabs.NATURAL_BLOCKS);
