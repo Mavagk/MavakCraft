@@ -3,6 +3,7 @@ package net.mavakcraft.block;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -22,8 +23,8 @@ public class ByteBlock extends AbstractByteBlock {
 		this.registerDefaultState(this.stateDefinition.any().setValue(BYTE_VALUE, Integer.valueOf(0)));
 	}
 
-	//@Override
-	//public @Nullable Integer getStoredByteValue(BlockState state) {
-	//	return state.getValue(BYTE_VALUE);
-	//}
+	@Override
+	public @Nullable Integer getByteValue(BlockState state, Direction directionFrom) {
+		return state.getValue(BYTE_VALUE);
+	}
 }
