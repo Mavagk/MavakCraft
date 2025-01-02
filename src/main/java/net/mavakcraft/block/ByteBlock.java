@@ -22,8 +22,8 @@ public class ByteBlock extends AbstractByteBlock {
 		this.registerDefaultState(this.stateDefinition.any().setValue(BYTE_VALUE, Integer.valueOf(0)));
 	}
 
-	@Override
-	public @Nullable Integer getStoredByteValue(BlockState state) {
-		return state.getValue(BYTE_VALUE);
-	}
+	//@Override
+	//public @Nullable Integer getStoredByteValue(BlockState state) {
+	//	return state.getValue(BYTE_VALUE);
+	//}
 }
