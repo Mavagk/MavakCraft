@@ -7,6 +7,7 @@
   "block.mavakcraft.gunpowder_block": "Block of Gunpowder",
   "block.mavakcraft.sugar_block": "Block of Sugar",
   "block.mavakcraft.salt_block": "Block of Salt",
+  "block.mavakcraft.byte_block": "Byte Block",
   "item.mavakcraft.salt": "Salt",
   "itemGroup.mavakcraft": "MavakCraft",
   "mavakcraft.configuration.modItemsInVanillaTabs": "Mod Items in Vanilla Tabs",

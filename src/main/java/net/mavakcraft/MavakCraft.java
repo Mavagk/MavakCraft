@@ -13,6 +13,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ColoredFallingBlock;
 import net.minecraft.world.level.block.FlowerBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
@@ -28,6 +29,7 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.mavakcraft.block.ByteBlock;
 import net.mavakcraft.registry.ModBlocksDeferredRegister;
 import net.mavakcraft.registry.ModItemsDeferredRegister;
 
@@ -75,6 +77,12 @@ public class MavakCraft
 	public static final DeferredBlock<ColoredFallingBlock> SALT_BLOCK = BLOCKS.registerSimpleFallingBlock(
 		"salt_block", 0xEAEAEA,
 		(props) -> props.mapColor(MapColor.SAND), true, CreativeModeTabs.BUILDING_BLOCKS
+	);
+	public static final DeferredBlock<ByteBlock> BYTE_BLOCK = BLOCKS.register("byte_block", () -> new ByteBlock(Properties.of()
+		.mapColor(MapColor.COLOR_BLACK)
+		.instrument(NoteBlockInstrument.BASEDRUM)
+		.strength(5.0F, 6.0F)),
+		true, CreativeModeTabs.BUILDING_BLOCKS
 	);
 	public static final DeferredBlock<FlowerBlock> ROSE = BLOCKS
 		.registerSimpleFlower("rose", MobEffects.NIGHT_VISION, 5, true, CreativeModeTabs.NATURAL_BLOCKS);

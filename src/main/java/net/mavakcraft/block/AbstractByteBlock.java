@@ -36,8 +36,8 @@ public abstract class AbstractByteBlock extends Block {
 	 * @param directionFrom The direction towards the block we want to get the provided byte value from.
 	 * @return The byte value or {@link null} if the block doesn't provide a byte value or does not extend {@link AbstractByteBlock}.
 	 */
-	public @Nullable Integer getByteValueOfConnectingBlock(LevelReader level, BlockPos pos, Direction directionFrom) {
-		BlockState connectionBlockState = level.getBlockState(pos.offset(directionFrom.getNormal()));
+	protected @Nullable Integer getByteValueOfConnectingBlock(LevelReader level, BlockPos pos, Direction directionFrom) {
+		BlockState connectionBlockState = getConnectingBlockState(level, pos, directionFrom);
 		Block connectionBlock = connectionBlockState.getBlock();
 		if (!(connectionBlock instanceof AbstractByteBlock)) return null;
 		return ((AbstractByteBlock)connectionBlock).getByteValue(connectionBlockState, directionFrom);
@@ -49,11 +49,14 @@ public abstract class AbstractByteBlock extends Block {
 	 * @param directionFrom The direction towards the block we want to get the input type of.
 	 * @return 0 for a primary input, 1 from a secondary input, {@link null} for a non-input or one that does not extend {@link AbstractByteBlock}.
 	 */
-	public @Nullable Integer getByteValueInputNumberOfConnectingBlock(LevelReader level, BlockPos pos, Direction directionFrom) {
-		BlockState connectionBlockState = level.getBlockState(pos.offset(directionFrom.getNormal()));
-		Block connectionBlock = connectionBlockState.getBlock();
+	protected @Nullable Integer getByteValueInputNumberOfConnectingBlock(LevelReader level, BlockPos pos, Direction directionFrom) {
+		Block connectionBlock = getConnectingBlockState(level, pos, directionFrom).getBlock();
 		if (!(connectionBlock instanceof AbstractByteBlock)) return null;
 		return ((AbstractByteBlock)connectionBlock).getByteValueInputNumber();
+	}
+
+	protected BlockState getConnectingBlockState(LevelReader level, BlockPos pos, Direction direction) {
+		return level.getBlockState(pos.offset(direction.getNormal()));
 	}
 
 	//@Override
