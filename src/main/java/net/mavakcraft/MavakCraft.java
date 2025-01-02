@@ -13,8 +13,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ColoredFallingBlock;
 import net.minecraft.world.level.block.FlowerBlock;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
@@ -49,27 +47,23 @@ public class MavakCraft
 	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
 	// Mod blocks
-	public static final DeferredBlock<Block> GLOWING_OBSIDIAN = BLOCKS.registerSimpleBlock("glowing_obsidian", BlockBehaviour.Properties.of()
+	public static final DeferredBlock<Block> GLOWING_OBSIDIAN = BLOCKS.registerSimpleBlock("glowing_obsidian", (props) -> props
 		.mapColor(MapColor.COLOR_BLACK)
 		.instrument(NoteBlockInstrument.BASEDRUM)
 		.requiresCorrectToolForDrops()
 		.strength(35.0F, 1200.0F)
 		.lightLevel(state -> 12),
 	true, CreativeModeTabs.BUILDING_BLOCKS);
-	public static final DeferredBlock<Block> CHARCOAL_BLOCK = BLOCKS.registerSimpleBlock("charcoal_block", BlockBehaviour.Properties.of()
+	public static final DeferredBlock<Block> CHARCOAL_BLOCK = BLOCKS.registerSimpleBlock("charcoal_block", (props) -> props
 		.mapColor(MapColor.COLOR_BLACK)
 		.instrument(NoteBlockInstrument.BASEDRUM)
 		.requiresCorrectToolForDrops()
 		.strength(5.0F, 6.0F),
 		true, CreativeModeTabs.BUILDING_BLOCKS);
-	public static final DeferredBlock<ColoredFallingBlock> GLOWSTONE_DUST_BLOCK = BLOCKS.registerSimpleFallingBlock("glowstone_dust_block", 0xB7966E, 
-		BlockBehaviour.Properties.of()
-			.mapColor(MapColor.SAND)
-			.instrument(NoteBlockInstrument.SNARE)
-			.strength(0.5F)
-			.sound(SoundType.SAND)
-			.lightLevel(state -> 15),
-	true, CreativeModeTabs.BUILDING_BLOCKS);
+	public static final DeferredBlock<ColoredFallingBlock> GLOWSTONE_DUST_BLOCK = BLOCKS.registerSimpleFallingBlock(
+		"glowstone_dust_block", 0xB7966E,
+		(props) -> props.mapColor(MapColor.SAND).lightLevel(state -> 15), true, CreativeModeTabs.BUILDING_BLOCKS
+	);
 	public static final DeferredBlock<FlowerBlock> ROSE = BLOCKS
 		.registerSimpleFlower("rose", MobEffects.NIGHT_VISION, 5, true, CreativeModeTabs.NATURAL_BLOCKS);
 	public static final DeferredBlock<FlowerBlock> BLUE_ROSE = BLOCKS

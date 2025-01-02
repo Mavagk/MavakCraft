@@ -2,6 +2,7 @@ package net.mavakcraft.registry;
 
 import java.util.HashMap;
 import java.util.Vector;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 import javax.annotation.Nonnull;
@@ -17,6 +18,7 @@ import net.minecraft.world.level.block.ColoredFallingBlock;
 import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -49,9 +51,10 @@ public class ModBlocksDeferredRegister extends Blocks {
 	 * If null, the block item is not put into any creative mode tabs.
 	 */
 	public DeferredBlock<Block> registerSimpleBlock(
-		@Nonnull String name, @Nonnull BlockBehaviour.Properties props, boolean doRegisterItem, @Nullable ResourceKey<CreativeModeTab> vanillaCreativeTabToPutIn
+		@Nonnull String name, @Nonnull Function<BlockBehaviour.Properties, BlockBehaviour.Properties> props,
+		boolean doRegisterItem, @Nullable ResourceKey<CreativeModeTab> vanillaCreativeTabToPutIn
 	) {
-		DeferredBlock<Block> block = super.registerSimpleBlock(name, props);
+		DeferredBlock<Block> block = super.registerSimpleBlock(name, props.apply(BlockBehaviour.Properties.of()));
 		setItemAndCreativeTab(block, doRegisterItem, vanillaCreativeTabToPutIn);
 		return block;
 	}
@@ -63,11 +66,15 @@ public class ModBlocksDeferredRegister extends Blocks {
 	 * If null, the block item is not put into any creative mode tabs.
 	 */
 	public DeferredBlock<ColoredFallingBlock> registerSimpleFallingBlock(
-		@Nonnull String name, int color, @Nonnull BlockBehaviour.Properties props,
+		@Nonnull String name, int color, @Nonnull Function<BlockBehaviour.Properties, BlockBehaviour.Properties> props,
 		boolean doRegisterItem, @Nullable ResourceKey<CreativeModeTab> vanillaCreativeTabToPutIn
 	) {
 		return register(
-			name, () -> new ColoredFallingBlock(new ColorRGBA(color), props), true, vanillaCreativeTabToPutIn
+			name, () -> new ColoredFallingBlock(new ColorRGBA(color), props.apply(BlockBehaviour.Properties.of()
+				.instrument(NoteBlockInstrument.SNARE)
+				.strength(0.5F)
+				.sound(SoundType.SAND)
+			)), true, vanillaCreativeTabToPutIn
 		);
 	}
 
