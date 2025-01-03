@@ -1,4 +1,4 @@
-package net.mavakcraft.block;
+package net.mavakcraft.block.byteblock;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -54,5 +54,10 @@ public abstract class AbstractStorageByteBlock extends AbstractByteBlock {
 			BlockState connectingBlockState = getConnectingBlockState(level, pos, direction);
 			level.scheduleTick(pos.offset(direction.getNormal()), connectingBlockState.getBlock(), 1);
 		}
+	}
+
+	@Override
+	public @Nullable Integer getByteValueInputNumber() {
+		return null;
 	}
 }

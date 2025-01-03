@@ -28,9 +28,10 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.mavakcraft.block.ByteBlock;
-import net.mavakcraft.block.PrimaryInputByteBlock;
-import net.mavakcraft.block.WrappingSumByteBlock;
+import net.mavakcraft.block.byteblock.ByteBlock;
+import net.mavakcraft.block.byteblock.PrimaryInputByteBlock;
+import net.mavakcraft.block.byteblock.SecondaryInputByteBlock;
+import net.mavakcraft.block.byteblock.WrappingSumByteBlock;
 import net.mavakcraft.registry.ModBlocksDeferredRegister;
 import net.mavakcraft.registry.ModItemsDeferredRegister;
 
@@ -87,6 +88,9 @@ public class MavakCraft
 	);
 	public static final DeferredBlock<PrimaryInputByteBlock> PRIMARY_INPUT_BYTE_BLOCK = BLOCKS.registerSimpleByteBlock(
 		"primary_input_byte_block", PrimaryInputByteBlock::new, true, CreativeModeTabs.FUNCTIONAL_BLOCKS
+	);
+	public static final DeferredBlock<SecondaryInputByteBlock> SECONDARY_INPUT_BYTE_BLOCK = BLOCKS.registerSimpleByteBlock(
+		"secondary_input_byte_block", SecondaryInputByteBlock::new, true, CreativeModeTabs.FUNCTIONAL_BLOCKS
 	);
 	public static final DeferredBlock<FlowerBlock> ROSE = BLOCKS
 		.registerSimpleFlower("rose", MobEffects.NIGHT_VISION, 5, true, CreativeModeTabs.NATURAL_BLOCKS);

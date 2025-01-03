@@ -29,6 +29,7 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
 		dropSelf(MavakCraft.SALT_BLOCK.get());
 		dropSelf(MavakCraft.BYTE_BLOCK.get());
 		dropSelf(MavakCraft.PRIMARY_INPUT_BYTE_BLOCK.get());
+		dropSelf(MavakCraft.SECONDARY_INPUT_BYTE_BLOCK.get());
 		dropSelf(MavakCraft.WRAPPING_SUM_BYTE_BLOCK.get());
 	}
 

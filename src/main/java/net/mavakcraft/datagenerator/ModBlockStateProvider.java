@@ -27,6 +27,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		simpleBlockWithItem(MavakCraft.SALT_BLOCK.get());
 		simpleBlockWithItem(MavakCraft.BYTE_BLOCK.get());
 		simpleFacingWithItem(MavakCraft.PRIMARY_INPUT_BYTE_BLOCK.get());
+		simpleFacingWithItem(MavakCraft.SECONDARY_INPUT_BYTE_BLOCK.get());
 		simpleBlockWithItem(MavakCraft.WRAPPING_SUM_BYTE_BLOCK.get());
 		simplePlant(MavakCraft.ROSE.get());
 		simplePlant(MavakCraft.BLUE_ROSE.get());

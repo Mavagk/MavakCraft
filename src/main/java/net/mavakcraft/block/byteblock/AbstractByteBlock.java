@@ -1,4 +1,4 @@
-package net.mavakcraft.block;
+package net.mavakcraft.block.byteblock;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -21,17 +21,18 @@ public abstract class AbstractByteBlock extends Block {
 	 * Get the byte value this block provides.
 	 * @return The value the block provides from a direction or {@link null} if it doesn't provide a value from the direction.
 	 */
-	public @Nullable Integer getByteValue(LevelReader level, BlockState state, BlockPos pos, Direction directionFrom, int recursiveCount) {
-		return null;
-	}
+	public abstract @Nullable Integer getByteValue(LevelReader level, BlockState state, BlockPos pos, Direction directionFrom, int recursiveCount);
 
 	/**
 	 * The type of byte value input this block provides.
 	 * @return 0 for a primary input, 1 from a secondary input, {@link null} for a non-input.
 	 */
-	public @Nullable Integer getByteValueInputNumber() {
-		return null;
-	}
+	public abstract @Nullable Integer getByteValueInputNumber();
+
+	/**
+	 * Tell a byte block that a block that may be providing it with a byte value has changed.
+	 */
+	protected abstract void byteValueChanged(ServerLevel level, BlockPos pos, Direction direction, int recursiveCount);
 
 	/**
 	 * Returns the byte value being provided from a connecting block.
@@ -80,11 +81,6 @@ public abstract class AbstractByteBlock extends Block {
 		if (!(connectingBlock instanceof AbstractByteBlock)) return;
 		((AbstractByteBlock)connectingBlock).byteValueChanged(level, connectingPos, direction, recursiveCount + 1);
 	}
-
-	/**
-	 * Tell a byte block that a block that may be providing it with a byte value has changed.
-	 */
-	protected abstract void byteValueChanged(ServerLevel level, BlockPos pos, Direction direction, int recursiveCount);
 
 	@Override
 	protected void onPlace(@Nonnull BlockState state, @Nonnull Level level, @Nonnull BlockPos pos, @Nonnull BlockState oldState, boolean movedByPiston) {

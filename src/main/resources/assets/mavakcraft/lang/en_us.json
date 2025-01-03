@@ -9,6 +9,7 @@
   "block.mavakcraft.salt_block": "Block of Salt",
   "block.mavakcraft.byte_block": "Byte Block",
   "block.mavakcraft.primary_input_byte_block": "Primary Input Byte Block",
+  "block.mavakcraft.secondary_input_byte_block": "Secondary Input Byte Block",
   "block.mavakcraft.wrapping_sum_byte_block": "Wrapping Sum Byte Block",
   "item.mavakcraft.salt": "Salt",
   "itemGroup.mavakcraft": "MavakCraft",

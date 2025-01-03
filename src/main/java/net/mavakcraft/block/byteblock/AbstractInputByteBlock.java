@@ -1,4 +1,4 @@
-package net.mavakcraft.block;
+package net.mavakcraft.block.byteblock;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -51,11 +51,6 @@ public abstract class AbstractInputByteBlock extends AbstractByteBlock {
 		if (!directionFrom.equals(getDirectionPointing(state).getOpposite())) return null;
 		@Nullable Integer result = getByteValueOfConnectingBlock(level, pos, directionFrom, recursiveCount);
 		return result;
-	}
-
-	@Override
-	public @Nullable Integer getByteValueInputNumber() {
-		return 0;
 	}
 
 	@Override
