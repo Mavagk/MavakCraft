@@ -84,7 +84,7 @@ public class MavakCraft
 		"byte_block", ByteBlock::new, true, CreativeModeTabs.FUNCTIONAL_BLOCKS
 	);
 	public static final DeferredBlock<WrappingSumByteBlock> WRAPPING_SUM_BYTE_BLOCK = BLOCKS.registerSimpleByteBlock(
-		"wrapping_sum_byte_block", WrappingSumByteBlock::new, true, CreativeModeTabs.FUNCTIONAL_BLOCKS
+		"wrapping_add_sub_byte_block", WrappingSumByteBlock::new, true, CreativeModeTabs.FUNCTIONAL_BLOCKS
 	);
 	public static final DeferredBlock<PrimaryInputByteBlock> PRIMARY_INPUT_BYTE_BLOCK = BLOCKS.registerSimpleByteBlock(
 		"primary_input_byte_block", PrimaryInputByteBlock::new, true, CreativeModeTabs.FUNCTIONAL_BLOCKS
