@@ -43,7 +43,7 @@ public class MavakCraft
 	public static final String MODID = "mavakcraft";
 
 	// The logger to log debug messages to
-	private static final Logger LOGGER = LogUtils.getLogger();
+	public static final Logger LOGGER = LogUtils.getLogger();
 	// Deferred registers containing game elements that will be registered when the mod entrypoint is executed
 	public static final ModBlocksDeferredRegister BLOCKS = new ModBlocksDeferredRegister(MODID);
 	public static final ModItemsDeferredRegister ITEMS = new ModItemsDeferredRegister(MODID);

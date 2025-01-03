@@ -20,7 +20,7 @@ public class ByteBlock extends AbstractStorageByteBlock {
 		super.tick(state, level, pos, random);
 		@Nullable Integer newValue = null;
 		for (Direction direction : Direction.values()) {
-			@Nullable Integer connectingValue = getByteValueOfConnectingBlock(level, pos, direction);
+			@Nullable Integer connectingValue = getByteValueOfConnectingBlock(level, pos, direction, 0);
 			@Nullable Integer connectingValueInputType = getByteValueInputNumberOfConnectingBlock(level, pos, direction);
 			if (connectingValueInputType == null || connectingValue == null) continue;
 			int connectingValueNonNull = connectingValue;

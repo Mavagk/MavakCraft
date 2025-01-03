@@ -1,13 +1,16 @@
 package net.mavakcraft.block;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 
 public abstract class AbstractByteBlock extends Block {
 	public AbstractByteBlock(BlockBehaviour.Properties properties) {
@@ -18,7 +21,7 @@ public abstract class AbstractByteBlock extends Block {
 	 * Get the byte value this block provides.
 	 * @return The value the block provides from a direction of {@link null} if it doesn't provide a value from the direction.
 	 */
-	public @Nullable Integer getByteValue(BlockState state, Direction directionFrom) {
+	public @Nullable Integer getByteValue(LevelReader level, BlockState state, BlockPos pos, Direction directionFrom, int recursiveCount) {
 		return null;
 	}
 
@@ -36,11 +39,12 @@ public abstract class AbstractByteBlock extends Block {
 	 * @param directionFrom The direction towards the block we want to get the provided byte value from.
 	 * @return The byte value or {@link null} if the block doesn't provide a byte value or does not extend {@link AbstractByteBlock}.
 	 */
-	protected @Nullable Integer getByteValueOfConnectingBlock(LevelReader level, BlockPos pos, Direction directionFrom) {
+	protected @Nullable Integer getByteValueOfConnectingBlock(LevelReader level, BlockPos pos, Direction directionFrom, int recursiveCount) {
+		if (recursiveCount >= 50) return null;
 		BlockState connectionBlockState = getConnectingBlockState(level, pos, directionFrom);
 		Block connectionBlock = connectionBlockState.getBlock();
 		if (!(connectionBlock instanceof AbstractByteBlock)) return null;
-		return ((AbstractByteBlock)connectionBlock).getByteValue(connectionBlockState, directionFrom);
+		return ((AbstractByteBlock)connectionBlock).getByteValue(level, connectionBlockState, pos.offset(directionFrom.getNormal()), directionFrom, recursiveCount + 1);
 	}
 
 	/**
@@ -59,8 +63,19 @@ public abstract class AbstractByteBlock extends Block {
 		return level.getBlockState(pos.offset(direction.getNormal()));
 	}
 
-	//@Override
-	//protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-	//	level.scheduleTick(pos, null, UPDATE_ALL);
-	//}
+	public void connectingByteValueChanged(ServerLevel level, BlockPos pos, Direction direction, int recursiveCount) {
+		if (recursiveCount >= 60) return;
+		BlockPos connecting_pos = pos.offset(direction.getNormal());
+		Block connecting_block = level.getBlockState(connecting_pos).getBlock();
+		if (!(connecting_block instanceof AbstractByteBlock)) return;
+		((AbstractByteBlock)connecting_block).byteValueChanged(level, connecting_pos, direction, recursiveCount + 1);
+	}
+
+	protected abstract void byteValueChanged(ServerLevel level, BlockPos pos, Direction direction, int recursive_count);
+
+	@Override
+	protected void onPlace(@Nonnull BlockState state, @Nonnull Level level, @Nonnull BlockPos pos, @Nonnull BlockState oldState, boolean movedByPiston) {
+		super.onPlace(state, level, pos, oldState, movedByPiston);
+		level.scheduleTick(pos, state.getBlock(), 1);
+	}
 }
