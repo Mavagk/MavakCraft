@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 
 public abstract class AbstractStorageByteBlock extends AbstractByteBlock {
-	protected static final IntegerProperty BYTE_VALUE = IntegerProperty.create("value", 0, 255);
+	protected static final IntegerProperty BYTE_VALUE = IntegerProperty.create("byte_value", 0, 255);
 
 	public AbstractStorageByteBlock(BlockBehaviour.Properties properties) {
 		super(properties);
