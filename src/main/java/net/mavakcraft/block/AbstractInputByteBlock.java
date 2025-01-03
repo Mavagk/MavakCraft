@@ -50,7 +50,6 @@ public abstract class AbstractInputByteBlock extends AbstractByteBlock {
 	public @Nullable Integer getByteValue(LevelReader level, BlockState state, BlockPos pos, Direction directionFrom, int recursiveCount) {
 		if (!directionFrom.equals(getDirectionPointing(state).getOpposite())) return null;
 		@Nullable Integer result = getByteValueOfConnectingBlock(level, pos, directionFrom, recursiveCount);
-		//MavakCraft.LOGGER.info("Value of " + result.toString() + " at " + pos.toString());
 		return result;
 	}
 

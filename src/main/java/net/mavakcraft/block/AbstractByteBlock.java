@@ -19,7 +19,7 @@ public abstract class AbstractByteBlock extends Block {
 
 	/**
 	 * Get the byte value this block provides.
-	 * @return The value the block provides from a direction of {@link null} if it doesn't provide a value from the direction.
+	 * @return The value the block provides from a direction or {@link null} if it doesn't provide a value from the direction.
 	 */
 	public @Nullable Integer getByteValue(LevelReader level, BlockState state, BlockPos pos, Direction directionFrom, int recursiveCount) {
 		return null;
@@ -59,19 +59,32 @@ public abstract class AbstractByteBlock extends Block {
 		return ((AbstractByteBlock)connectionBlock).getByteValueInputNumber();
 	}
 
+	/**
+	 * Returns the block state of a connecting block.
+	 * @param pos The pos of this block, NOT the connecting block.
+	 * @param direction The direction towards the block we want to get the block state of.
+	 */
 	protected BlockState getConnectingBlockState(LevelReader level, BlockPos pos, Direction direction) {
 		return level.getBlockState(pos.offset(direction.getNormal()));
 	}
 
+	/**
+	 * Tell a connecting block that a block that may be providing it with a byte value has changed.
+	 * @param pos The pos of this block, NOT the connecting block.
+	 * @param direction The direction towards the connecting block.
+	 */
 	public void connectingByteValueChanged(ServerLevel level, BlockPos pos, Direction direction, int recursiveCount) {
 		if (recursiveCount >= 60) return;
-		BlockPos connecting_pos = pos.offset(direction.getNormal());
-		Block connecting_block = level.getBlockState(connecting_pos).getBlock();
-		if (!(connecting_block instanceof AbstractByteBlock)) return;
-		((AbstractByteBlock)connecting_block).byteValueChanged(level, connecting_pos, direction, recursiveCount + 1);
+		BlockPos connectingPos = pos.offset(direction.getNormal());
+		Block connectingBlock = level.getBlockState(connectingPos).getBlock();
+		if (!(connectingBlock instanceof AbstractByteBlock)) return;
+		((AbstractByteBlock)connectingBlock).byteValueChanged(level, connectingPos, direction, recursiveCount + 1);
 	}
 
-	protected abstract void byteValueChanged(ServerLevel level, BlockPos pos, Direction direction, int recursive_count);
+	/**
+	 * Tell a byte block that a block that may be providing it with a byte value has changed.
+	 */
+	protected abstract void byteValueChanged(ServerLevel level, BlockPos pos, Direction direction, int recursiveCount);
 
 	@Override
 	protected void onPlace(@Nonnull BlockState state, @Nonnull Level level, @Nonnull BlockPos pos, @Nonnull BlockState oldState, boolean movedByPiston) {

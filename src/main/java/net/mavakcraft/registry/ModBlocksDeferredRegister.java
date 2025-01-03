@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.ColoredFallingBlock;
 import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
@@ -107,6 +108,24 @@ public class ModBlocksDeferredRegister extends Blocks {
 		@Nonnull String name, @Nonnull Supplier<? extends B> sup, boolean doRegisterItem, @Nullable ResourceKey<CreativeModeTab> vanillaCreativeTabToPutIn
 	) {
 		DeferredBlock<B> block = super.register(name, sup);
+		setItemAndCreativeTab(block, doRegisterItem, vanillaCreativeTabToPutIn);
+		return block;
+	}
+
+	/**
+	 * Register a block.
+	 * @param doRegisterItem should a block item be registered for this block.
+	 * @param vanillaCreativeTabToPutIn If non-null, is the vanilla tab to put the block item into, the block item is also put into the mod creative mode tab.
+	 * If null, the block item is not put into any creative mode tabs.
+	 */
+	public <B extends Block> DeferredBlock<B> registerSimpleByteBlock(
+		@Nonnull String name, @Nonnull Function<BlockBehaviour.Properties, B> sup, boolean doRegisterItem, @Nullable ResourceKey<CreativeModeTab> vanillaCreativeTabToPutIn
+	) {
+		DeferredBlock<B> block = super.register(name, () -> sup.apply(Properties.of()
+			.mapColor(MapColor.COLOR_GRAY)
+			.instrument(NoteBlockInstrument.BASEDRUM)
+			.strength(5.0F, 6.0F)
+		));
 		setItemAndCreativeTab(block, doRegisterItem, vanillaCreativeTabToPutIn);
 		return block;
 	}

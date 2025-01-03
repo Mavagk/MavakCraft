@@ -27,8 +27,11 @@ public abstract class AbstractStorageByteBlock extends AbstractByteBlock {
 		builder.add(BYTE_VALUE);
 	}
 
-	void setByteValue(ServerLevel level, BlockState state, BlockPos pos, int byte_value) {
-		level.setBlock(pos, state.setValue(BYTE_VALUE, Integer.valueOf(byte_value)), 1 | 2);
+	/**
+	 * Set the byte value of this block.
+	 */
+	void setByteValue(ServerLevel level, BlockState state, BlockPos pos, int byteValue) {
+		level.setBlock(pos, state.setValue(BYTE_VALUE, Integer.valueOf(byteValue)), 1 | 2);
 		for (Direction direction : Direction.values()) {
 			connectingByteValueChanged(level, pos, direction, 0);
 		}
@@ -40,7 +43,7 @@ public abstract class AbstractStorageByteBlock extends AbstractByteBlock {
 	}
 
 	@Override
-	protected void byteValueChanged(ServerLevel level, BlockPos pos, Direction direction, int recursive_count) {
+	protected void byteValueChanged(ServerLevel level, BlockPos pos, Direction direction, int recursiveCount) {
 		level.scheduleTick(pos, this, 1);
 	}
 

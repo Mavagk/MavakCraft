@@ -13,7 +13,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ColoredFallingBlock;
 import net.minecraft.world.level.block.FlowerBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
@@ -31,6 +30,7 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.mavakcraft.block.ByteBlock;
 import net.mavakcraft.block.PrimaryInputByteBlock;
+import net.mavakcraft.block.WrappingSumByteBlock;
 import net.mavakcraft.registry.ModBlocksDeferredRegister;
 import net.mavakcraft.registry.ModItemsDeferredRegister;
 
@@ -79,18 +79,14 @@ public class MavakCraft
 		"salt_block", 0xEAEAEA,
 		(props) -> props.mapColor(MapColor.SAND), true, CreativeModeTabs.BUILDING_BLOCKS
 	);
-	public static final DeferredBlock<ByteBlock> BYTE_BLOCK = BLOCKS.register("byte_block", () -> new ByteBlock(Properties.of()
-		.mapColor(MapColor.COLOR_BLACK)
-		.instrument(NoteBlockInstrument.BASEDRUM)
-		.strength(5.0F, 6.0F)),
-		true, CreativeModeTabs.BUILDING_BLOCKS
+	public static final DeferredBlock<ByteBlock> BYTE_BLOCK = BLOCKS.registerSimpleByteBlock(
+		"byte_block", ByteBlock::new, true, CreativeModeTabs.FUNCTIONAL_BLOCKS
 	);
-	public static final DeferredBlock<PrimaryInputByteBlock> PRIMARY_INPUT_BYTE_BLOCK = BLOCKS.register("primary_input_byte_block", 
-		() -> new PrimaryInputByteBlock(Properties.of()
-			.mapColor(MapColor.COLOR_BLACK)
-			.instrument(NoteBlockInstrument.BASEDRUM)
-			.strength(5.0F, 6.0F)),
-		true, CreativeModeTabs.BUILDING_BLOCKS
+	public static final DeferredBlock<WrappingSumByteBlock> WRAPPING_SUM_BYTE_BLOCK = BLOCKS.registerSimpleByteBlock(
+		"wrapping_sum_byte_block", WrappingSumByteBlock::new, true, CreativeModeTabs.FUNCTIONAL_BLOCKS
+	);
+	public static final DeferredBlock<PrimaryInputByteBlock> PRIMARY_INPUT_BYTE_BLOCK = BLOCKS.registerSimpleByteBlock(
+		"primary_input_byte_block", PrimaryInputByteBlock::new, true, CreativeModeTabs.FUNCTIONAL_BLOCKS
 	);
 	public static final DeferredBlock<FlowerBlock> ROSE = BLOCKS
 		.registerSimpleFlower("rose", MobEffects.NIGHT_VISION, 5, true, CreativeModeTabs.NATURAL_BLOCKS);
