@@ -30,6 +30,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.mavakcraft.block.ByteBlock;
+import net.mavakcraft.block.PrimaryInputByteBlock;
 import net.mavakcraft.registry.ModBlocksDeferredRegister;
 import net.mavakcraft.registry.ModItemsDeferredRegister;
 
@@ -82,6 +83,13 @@ public class MavakCraft
 		.mapColor(MapColor.COLOR_BLACK)
 		.instrument(NoteBlockInstrument.BASEDRUM)
 		.strength(5.0F, 6.0F)),
+		true, CreativeModeTabs.BUILDING_BLOCKS
+	);
+	public static final DeferredBlock<PrimaryInputByteBlock> PRIMARY_INPUT_BYTE_BLOCK = BLOCKS.register("primary_input_byte_block", 
+		() -> new PrimaryInputByteBlock(Properties.of()
+			.mapColor(MapColor.COLOR_BLACK)
+			.instrument(NoteBlockInstrument.BASEDRUM)
+			.strength(5.0F, 6.0F)),
 		true, CreativeModeTabs.BUILDING_BLOCKS
 	);
 	public static final DeferredBlock<FlowerBlock> ROSE = BLOCKS
