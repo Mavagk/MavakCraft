@@ -21,9 +21,18 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
 	protected void generate() {
 		dropSelf(MavakCraft.GLOWING_OBSIDIAN.get());
 		dropSelf(MavakCraft.CHARCOAL_BLOCK.get());
+		dropSelf(MavakCraft.FLINT_BLOCK.get());
+		dropSelf(MavakCraft.TURTLE_SCUTE_BLOCK.get());
+		dropSelf(MavakCraft.NETHERITE_SCRAP_BLOCK.get());
+		dropSelf(MavakCraft.NETHER_STAR_BLOCK.get());
+		dropSelf(MavakCraft.LEATHER_BLOCK.get());
+		dropSelf(MavakCraft.RABBIT_HIDE_BLOCK.get());
+		dropSelf(MavakCraft.NETHER_WART_BLOCK.get());
+		dropSelf(MavakCraft.FEATHER_BLOCK.get());
 		dropSelf(MavakCraft.ROSE.get());
 		dropSelf(MavakCraft.BLUE_ROSE.get());
 		dropSelf(MavakCraft.GLOWSTONE_DUST_BLOCK.get());
+		dropSelf(MavakCraft.BLAZE_POWDER_BLOCK.get());
 		dropSelf(MavakCraft.GUNPOWDER_BLOCK.get());
 		dropSelf(MavakCraft.SUGAR_BLOCK.get());
 		dropSelf(MavakCraft.SALT_BLOCK.get());
