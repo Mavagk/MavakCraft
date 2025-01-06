@@ -21,8 +21,17 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	protected void registerStatesAndModels() {
 		simpleBlockWithItem(MavakCraft.GLOWING_OBSIDIAN.get());
 		simpleBlockWithItem(MavakCraft.CHARCOAL_BLOCK.get());
+		simpleBlockWithItem(MavakCraft.FLINT_BLOCK.get());
+		simpleBlockWithItem(MavakCraft.TURTLE_SCUTE_BLOCK.get());
+		simpleBlockWithItem(MavakCraft.NETHERITE_SCRAP_BLOCK.get());
+		simpleBlockWithItem(MavakCraft.NETHER_STAR_BLOCK.get());
+		simpleBlockWithItem(MavakCraft.LEATHER_BLOCK.get());
+		simpleBlockWithItem(MavakCraft.RABBIT_HIDE_BLOCK.get());
+		simpleBlockWithItem(MavakCraft.NETHER_WART_BLOCK.get());
+		simpleBlockWithItem(MavakCraft.FEATHER_BLOCK.get());
 		simpleBlockWithItem(MavakCraft.GLOWSTONE_DUST_BLOCK.get());
 		simpleBlockWithItem(MavakCraft.GUNPOWDER_BLOCK.get());
+		simpleBlockWithItem(MavakCraft.BLAZE_POWDER_BLOCK.get());
 		simpleBlockWithItem(MavakCraft.SUGAR_BLOCK.get());
 		simpleBlockWithItem(MavakCraft.SALT_BLOCK.get());
 		simpleBlockWithItem(MavakCraft.BYTE_BLOCK.get());

@@ -31,8 +31,17 @@ public class ModRecipeProvider extends RecipeProvider {
 		shapelessRecipeForItemToItem(MavakCraft.ROSE.get().asItem(), Items.RED_DYE, RecipeCategory.MISC);
 		shapelessRecipeForItemToItem(MavakCraft.BLUE_ROSE.get().asItem(), Items.BLUE_DYE, RecipeCategory.MISC);
 		recipesForItemStorageBlock(Items.CHARCOAL, MavakCraft.CHARCOAL_BLOCK.get().asItem());
+		recipesForItemStorageBlock(Items.FLINT, MavakCraft.FLINT_BLOCK.get().asItem());
+		recipesForItemStorageBlock(Items.TURTLE_SCUTE, MavakCraft.TURTLE_SCUTE_BLOCK.get().asItem());
+		recipesForItemStorageBlock(Items.NETHERITE_SCRAP, MavakCraft.NETHERITE_SCRAP_BLOCK.get().asItem());
+		recipesForItemStorageBlock(Items.NETHER_STAR, MavakCraft.NETHER_STAR_BLOCK.get().asItem());
+		recipesForItemStorageBlock(Items.LEATHER, MavakCraft.LEATHER_BLOCK.get().asItem());
+		recipesForItemStorageBlock(Items.RABBIT_HIDE, MavakCraft.RABBIT_HIDE_BLOCK.get().asItem());
+		recipesForItemStorageBlock(Items.FEATHER, MavakCraft.FEATHER_BLOCK.get().asItem());
+		recipesForItemStorageBlock(Items.NETHER_WART, MavakCraft.NETHER_WART_BLOCK.get().asItem());
 		recipesForItemStorageBlock(Items.GLOWSTONE_DUST, MavakCraft.GLOWSTONE_DUST_BLOCK.get().asItem());
 		recipesForItemStorageBlock(Items.GUNPOWDER, MavakCraft.GUNPOWDER_BLOCK.get().asItem());
+		recipesForItemStorageBlock(Items.BLAZE_POWDER, MavakCraft.BLAZE_POWDER_BLOCK.get().asItem());
 		recipesForItemStorageBlock(Items.SUGAR, MavakCraft.SUGAR_BLOCK.get().asItem());
 		recipesForItemStorageBlock(MavakCraft.SALT.get(), MavakCraft.SALT_BLOCK.get().asItem());
 	}
