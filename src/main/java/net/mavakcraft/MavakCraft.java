@@ -31,7 +31,8 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.mavakcraft.block.byteblock.ByteBlock;
 import net.mavakcraft.block.byteblock.PrimaryInputByteBlock;
 import net.mavakcraft.block.byteblock.SecondaryInputByteBlock;
-import net.mavakcraft.block.byteblock.WrappingSumByteBlock;
+import net.mavakcraft.block.byteblock.WrappingAddSubByteBlock;
+import net.mavakcraft.block.byteblock.WrappingMultDivByteBlock;
 import net.mavakcraft.registry.ModBlocksDeferredRegister;
 import net.mavakcraft.registry.ModItemsDeferredRegister;
 
@@ -83,8 +84,11 @@ public class MavakCraft
 	public static final DeferredBlock<ByteBlock> BYTE_BLOCK = BLOCKS.registerSimpleByteBlock(
 		"byte_block", ByteBlock::new, true, CreativeModeTabs.FUNCTIONAL_BLOCKS
 	);
-	public static final DeferredBlock<WrappingSumByteBlock> WRAPPING_SUM_BYTE_BLOCK = BLOCKS.registerSimpleByteBlock(
-		"wrapping_add_sub_byte_block", WrappingSumByteBlock::new, true, CreativeModeTabs.FUNCTIONAL_BLOCKS
+	public static final DeferredBlock<WrappingAddSubByteBlock> WRAPPING_ADD_SUB_BYTE_BLOCK = BLOCKS.registerSimpleByteBlock(
+		"wrapping_add_sub_byte_block", WrappingAddSubByteBlock::new, true, CreativeModeTabs.FUNCTIONAL_BLOCKS
+	);
+	public static final DeferredBlock<WrappingMultDivByteBlock> WRAPPING_MULT_DIV_BYTE_BLOCK = BLOCKS.registerSimpleByteBlock(
+		"wrapping_mult_div_byte_block", WrappingMultDivByteBlock::new, true, CreativeModeTabs.FUNCTIONAL_BLOCKS
 	);
 	public static final DeferredBlock<PrimaryInputByteBlock> PRIMARY_INPUT_BYTE_BLOCK = BLOCKS.registerSimpleByteBlock(
 		"primary_input_byte_block", PrimaryInputByteBlock::new, true, CreativeModeTabs.FUNCTIONAL_BLOCKS
