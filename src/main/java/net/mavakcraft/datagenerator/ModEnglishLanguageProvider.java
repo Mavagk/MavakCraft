@@ -4,6 +4,7 @@ import javax.annotation.Nonnull;
 
 import net.mavakcraft.MavakCraft;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.item.DyeColor;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
 public class ModEnglishLanguageProvider extends LanguageProvider {
@@ -42,27 +43,48 @@ public class ModEnglishLanguageProvider extends LanguageProvider {
 		addBlock(MavakCraft.SECONDARY_INPUT_BYTE_BLOCK, "Secondary Input Byte Block");
 		addBlock(MavakCraft.WRAPPING_ADD_SUB_BYTE_BLOCK, "Wrapping Add/Subtract Byte Block");
 		addBlock(MavakCraft.WRAPPING_MULT_DIV_BYTE_BLOCK, "Wrapping Multiply/Divide Byte Block");
+		for (int dyeColorId = 0; dyeColorId < 16; dyeColorId++) {
+			addBlock(MavakCraft.DYE_BLOCKS[dyeColorId], getDyeColorName(DyeColor.byId(dyeColorId), dialect) + " Dye Block");
+		}
 
 		add("itemGroup.mavakcraft", "MavakCraft");
-		
+
 		add("mavakcraft.configuration.modItemsInVanillaTabs", "Mod Items in Vanilla Tabs");
 		add("mavakcraft.configuration.modItemsInCreativeModeTab", "Mod Items in Creative Mode Tab");
 	}
 
 	protected enum EnglishDialect {
 		American,
-		Commonwealth,
-		Canadian;
+		Commonwealth;
 
 		public static EnglishDialect fromLocale(String locale) {
 			switch (locale) {
 				case "en_us":
 					return American;
-				case "en_ca":
-					return Canadian;
 				default:
 					return Commonwealth;
 			}
+		}
+	}
+
+	String[] AMERICAN_DYE_COLOR_NAMES = {
+		"White", "Orange", "Magenta", "Light Blue", "Yellow", "Lime", "Pink", "Gray",
+		"Light Gray", "Cyan", "Purple", "Blue", "Brown", "Green", "Red", "Black"
+	};
+	String[] COMMONWEALTH_DYE_COLOR_NAMES = {
+		"White", "Orange", "Magenta", "Light Blue", "Yellow", "Lime", "Pink", "Grey",
+		"Light Grey", "Cyan", "Purple", "Blue", "Brown", "Green", "Red", "Black"
+	};
+
+	String getDyeColorName(DyeColor dyeColor, EnglishDialect dialect) {
+		int colorId = dyeColor.getId();
+		switch (dialect) {
+			case American:
+				return AMERICAN_DYE_COLOR_NAMES[colorId];
+			case Commonwealth:
+				return COMMONWEALTH_DYE_COLOR_NAMES[colorId];
+			default:
+				return null;
 		}
 	}
 }
