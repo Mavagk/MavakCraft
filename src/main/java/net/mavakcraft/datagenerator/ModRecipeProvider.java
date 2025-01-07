@@ -12,6 +12,8 @@ import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 
@@ -44,6 +46,9 @@ public class ModRecipeProvider extends RecipeProvider {
 		recipesForItemStorageBlock(Items.BLAZE_POWDER, MavakCraft.BLAZE_POWDER_BLOCK.get().asItem());
 		recipesForItemStorageBlock(Items.SUGAR, MavakCraft.SUGAR_BLOCK.get().asItem());
 		recipesForItemStorageBlock(MavakCraft.SALT.get(), MavakCraft.SALT_BLOCK.get().asItem());
+		for (int dyeColorId = 0; dyeColorId < 16; dyeColorId++) {
+			recipesForItemStorageBlock(DyeItem.byColor(DyeColor.byId(dyeColorId)), MavakCraft.DYE_BLOCKS[dyeColorId].get().asItem());
+		}
 	}
 
 	/**
@@ -55,7 +60,7 @@ public class ModRecipeProvider extends RecipeProvider {
 			.requires(from, fromCount)
 			.group(BuiltInRegistries.ITEM.getKey(to).getPath())
 			.unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(from).getPath(), has(from))
-			.save(recipeOutput);
+			.save(recipeOutput, BuiltInRegistries.ITEM.getKey(to).getPath() + "_from_" + BuiltInRegistries.ITEM.getKey(from).getPath());
 	}
 
 	/**

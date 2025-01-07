@@ -41,6 +41,9 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
 		dropSelf(MavakCraft.SECONDARY_INPUT_BYTE_BLOCK.get());
 		dropSelf(MavakCraft.WRAPPING_ADD_SUB_BYTE_BLOCK.get());
 		dropSelf(MavakCraft.WRAPPING_MULT_DIV_BYTE_BLOCK.get());
+		for (int dyeColorId = 0; dyeColorId < 16; dyeColorId++) {
+			dropSelf(MavakCraft.DYE_BLOCKS[dyeColorId].get());
+		}
 	}
 
 	@Override

@@ -9,6 +9,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ColoredFallingBlock;
@@ -153,6 +154,20 @@ public class MavakCraft
 		.registerSimpleFlower("rose", MobEffects.NIGHT_VISION, 5, true, CreativeModeTabs.NATURAL_BLOCKS);
 	public static final DeferredBlock<FlowerBlock> BLUE_ROSE = BLOCKS
 		.registerSimpleFlower("blue_rose", MobEffects.NIGHT_VISION, 5, true, CreativeModeTabs.NATURAL_BLOCKS);
+	
+	@SuppressWarnings("unchecked")
+	public static DeferredBlock<Block>[] DYE_BLOCKS = new DeferredBlock[16];
+	{
+		for (int dyeColorId = 0; dyeColorId < 16; dyeColorId++) {
+			DyeColor color = DyeColor.byId(dyeColorId);
+			DYE_BLOCKS[dyeColorId] = BLOCKS.registerSimpleBlock(color.getName() + "_dye_block", (props) -> props
+				.mapColor(color.getMapColor())
+				.instrument(NoteBlockInstrument.BASS)
+				.strength(2.0F, 3.0F),
+				true, CreativeModeTabs.BUILDING_BLOCKS
+			);
+		}
+	}
 
 	// Mod items
 	public static final DeferredItem<Item> SALT = ITEMS.registerSimpleItem("salt", CreativeModeTabs.INGREDIENTS);

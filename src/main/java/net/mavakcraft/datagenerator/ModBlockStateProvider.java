@@ -41,6 +41,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		simpleBlockWithItem(MavakCraft.WRAPPING_MULT_DIV_BYTE_BLOCK.get());
 		simplePlant(MavakCraft.ROSE.get());
 		simplePlant(MavakCraft.BLUE_ROSE.get());
+		for (int dyeColorId = 0; dyeColorId < 16; dyeColorId++) {
+			simpleBlockWithItem(MavakCraft.DYE_BLOCKS[dyeColorId].get());
+		}
 	}
 
 	/**
