@@ -6,6 +6,7 @@ import net.mavakcraft.datagenerator.ModBlockTagProvider;
 import net.mavakcraft.datagenerator.ModDataMapProvider;
 import net.mavakcraft.datagenerator.ModDatapackProvider;
 import net.mavakcraft.datagenerator.ModItemModelProvider;
+import net.mavakcraft.datagenerator.ModEnglishLanguageProvider;
 import net.mavakcraft.datagenerator.ModRecipeProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -42,5 +43,10 @@ public class DataGenerators {
 		generator.addProvider(event.includeServer(), new ModRecipeProvider(packOutput, lookupProvider));
 		generator.addProvider(event.includeServer(), new ModDatapackProvider(packOutput, lookupProvider));
 		generator.addProvider(event.includeServer(), new ModDataMapProvider(packOutput, lookupProvider));
+		generator.addProvider(event.includeServer(), new ModEnglishLanguageProvider(packOutput, "en_us"));
+		generator.addProvider(event.includeServer(), new ModEnglishLanguageProvider(packOutput, "en_gb"));
+		generator.addProvider(event.includeServer(), new ModEnglishLanguageProvider(packOutput, "en_au"));
+		generator.addProvider(event.includeServer(), new ModEnglishLanguageProvider(packOutput, "en_ca"));
+		generator.addProvider(event.includeServer(), new ModEnglishLanguageProvider(packOutput, "en_nz"));
 	}
 }
