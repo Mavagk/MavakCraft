@@ -4,6 +4,7 @@ import java.util.concurrent.CompletableFuture;
 
 import javax.annotation.Nonnull;
 
+import net.mavakcraft.Blocks;
 import net.mavakcraft.MavakCraft;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -30,24 +31,24 @@ public class ModRecipeProvider extends RecipeProvider {
 	@Override
 	protected void buildRecipes(@Nonnull RecipeOutput recipeOutput) {
 		this.recipeOutput = recipeOutput;
-		shapelessRecipeForItemToItem(MavakCraft.ROSE.get().asItem(), Items.RED_DYE, RecipeCategory.MISC);
-		shapelessRecipeForItemToItem(MavakCraft.BLUE_ROSE.get().asItem(), Items.BLUE_DYE, RecipeCategory.MISC);
-		recipesForItemStorageBlock(Items.CHARCOAL, MavakCraft.CHARCOAL_BLOCK.get().asItem());
-		recipesForItemStorageBlock(Items.FLINT, MavakCraft.FLINT_BLOCK.get().asItem());
-		recipesForItemStorageBlock(Items.TURTLE_SCUTE, MavakCraft.TURTLE_SCUTE_BLOCK.get().asItem());
-		recipesForItemStorageBlock(Items.NETHERITE_SCRAP, MavakCraft.NETHERITE_SCRAP_BLOCK.get().asItem());
-		recipesForItemStorageBlock(Items.NETHER_STAR, MavakCraft.NETHER_STAR_BLOCK.get().asItem());
-		recipesForItemStorageBlock(Items.LEATHER, MavakCraft.LEATHER_BLOCK.get().asItem());
-		recipesForItemStorageBlock(Items.RABBIT_HIDE, MavakCraft.RABBIT_HIDE_BLOCK.get().asItem());
-		recipesForItemStorageBlock(Items.FEATHER, MavakCraft.FEATHER_BLOCK.get().asItem());
-		recipesForItemStorageBlock(Items.NETHER_WART, MavakCraft.NETHER_WART_BLOCK.get().asItem());
-		recipesForItemStorageBlock(Items.GLOWSTONE_DUST, MavakCraft.GLOWSTONE_DUST_BLOCK.get().asItem());
-		recipesForItemStorageBlock(Items.GUNPOWDER, MavakCraft.GUNPOWDER_BLOCK.get().asItem());
-		recipesForItemStorageBlock(Items.BLAZE_POWDER, MavakCraft.BLAZE_POWDER_BLOCK.get().asItem());
-		recipesForItemStorageBlock(Items.SUGAR, MavakCraft.SUGAR_BLOCK.get().asItem());
-		recipesForItemStorageBlock(MavakCraft.SALT.get(), MavakCraft.SALT_BLOCK.get().asItem());
+		shapelessRecipeForItemToItem(Blocks.ROSE.get().asItem(), Items.RED_DYE, RecipeCategory.MISC);
+		shapelessRecipeForItemToItem(Blocks.BLUE_ROSE.get().asItem(), Items.BLUE_DYE, RecipeCategory.MISC);
+		recipesForItemStorageBlock(Items.CHARCOAL, Blocks.CHARCOAL_BLOCK.get().asItem());
+		recipesForItemStorageBlock(Items.FLINT, Blocks.FLINT_BLOCK.get().asItem());
+		recipesForItemStorageBlock(Items.TURTLE_SCUTE, Blocks.TURTLE_SCUTE_BLOCK.get().asItem());
+		recipesForItemStorageBlock(Items.NETHERITE_SCRAP, Blocks.NETHERITE_SCRAP_BLOCK.get().asItem());
+		recipesForItemStorageBlock(Items.NETHER_STAR, Blocks.NETHER_STAR_BLOCK.get().asItem());
+		recipesForItemStorageBlock(Items.LEATHER, Blocks.LEATHER_BLOCK.get().asItem());
+		recipesForItemStorageBlock(Items.RABBIT_HIDE, Blocks.RABBIT_HIDE_BLOCK.get().asItem());
+		recipesForItemStorageBlock(Items.FEATHER, Blocks.FEATHER_BLOCK.get().asItem());
+		recipesForItemStorageBlock(Items.NETHER_WART, Blocks.NETHER_WART_BLOCK.get().asItem());
+		recipesForItemStorageBlock(Items.GLOWSTONE_DUST, Blocks.GLOWSTONE_DUST_BLOCK.get().asItem());
+		recipesForItemStorageBlock(Items.GUNPOWDER, Blocks.GUNPOWDER_BLOCK.get().asItem());
+		recipesForItemStorageBlock(Items.BLAZE_POWDER, Blocks.BLAZE_POWDER_BLOCK.get().asItem());
+		recipesForItemStorageBlock(Items.SUGAR, Blocks.SUGAR_BLOCK.get().asItem());
+		recipesForItemStorageBlock(MavakCraft.SALT.get(), Blocks.SALT_BLOCK.get().asItem());
 		for (int dyeColorId = 0; dyeColorId < 16; dyeColorId++) {
-			recipesForItemStorageBlock(DyeItem.byColor(DyeColor.byId(dyeColorId)), MavakCraft.DYE_BLOCKS[dyeColorId].get().asItem());
+			recipesForItemStorageBlock(DyeItem.byColor(DyeColor.byId(dyeColorId)), Blocks.DYE_BLOCKS[dyeColorId].get().asItem());
 		}
 	}
 

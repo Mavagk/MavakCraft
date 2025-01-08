@@ -1,5 +1,6 @@
 package net.mavakcraft.worldgeneration;
 
+import net.mavakcraft.Blocks;
 import net.mavakcraft.MavakCraft;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -25,8 +26,8 @@ public class ConfiguredFeatures {
 		register(context, ROSES_PLACED, Feature.FLOWER, FeatureUtils.simpleRandomPatchConfiguration(
 		64, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(
 			SimpleWeightedRandomList.<BlockState>builder()
-				.add(MavakCraft.ROSE.get().defaultBlockState(), 2)
-				.add(MavakCraft.BLUE_ROSE.get().defaultBlockState(), 2)
+				.add(Blocks.ROSE.get().defaultBlockState(), 2)
+				.add(Blocks.BLUE_ROSE.get().defaultBlockState(), 2)
 			)))
 		));
 	}

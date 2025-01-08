@@ -11,10 +11,13 @@ import javax.annotation.Nullable;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.ColorRGBA;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ColoredFallingBlock;
+import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -77,6 +80,52 @@ public class ModBlocksDeferredRegister extends Blocks {
 				.sound(SoundType.SAND)
 			)), true, vanillaCreativeTabToPutIn
 		);
+	}
+
+	/**
+	 * Register a ore simple block.
+	 * @param doRegisterItem should a block item be registered for this block.
+	 * @param vanillaCreativeTabToPutIn If non-null, is the vanilla tab to put the block item into, the block item is also put into the mod creative mode tab.
+	 * If null, the block item is not put into any creative mode tabs.
+	 */
+	public @Nonnull DeferredBlock<DropExperienceBlock> registerSimpleOre(@Nonnull String name, int xpMin, int xpMax) {
+		return register(name + "_ore", () -> new DropExperienceBlock(UniformInt.of(xpMin, xpMax), BlockBehaviour.Properties.of()
+			.mapColor(MapColor.STONE)
+			.instrument(NoteBlockInstrument.BASEDRUM)
+			.requiresCorrectToolForDrops()
+			.strength(3.0F, 3.0F)
+		), true, CreativeModeTabs.NATURAL_BLOCKS);
+	}
+
+	/**
+	 * Register a ore simple block.
+	 * @param doRegisterItem should a block item be registered for this block.
+	 * @param vanillaCreativeTabToPutIn If non-null, is the vanilla tab to put the block item into, the block item is also put into the mod creative mode tab.
+	 * If null, the block item is not put into any creative mode tabs.
+	 */
+	public @Nonnull DeferredBlock<DropExperienceBlock> registerSimpleDeepslateOre(@Nonnull String name, int xpMin, int xpMax) {
+		return register("deepslate_" + name + "_ore", () -> new DropExperienceBlock(UniformInt.of(xpMin, xpMax), BlockBehaviour.Properties.of()
+			.mapColor(MapColor.DEEPSLATE)
+			.instrument(NoteBlockInstrument.BASEDRUM)
+			.requiresCorrectToolForDrops()
+			.strength(4.5F, 3.0F)
+			.sound(SoundType.DEEPSLATE)
+		), true, CreativeModeTabs.NATURAL_BLOCKS);
+	}
+
+	/**
+	 * Register a ore simple block.
+	 * @param doRegisterItem should a block item be registered for this block.
+	 * @param vanillaCreativeTabToPutIn If non-null, is the vanilla tab to put the block item into, the block item is also put into the mod creative mode tab.
+	 * If null, the block item is not put into any creative mode tabs.
+	 */
+	public @Nonnull DeferredBlock<Block> registerSimpleMaterialBlock(@Nonnull String name, MapColor mapColor) {
+		return register(name + "_block", () -> new Block(BlockBehaviour.Properties.of()
+			.mapColor(mapColor)
+			.requiresCorrectToolForDrops()
+			.strength(5.0F, 6.0F)
+			.sound(SoundType.METAL)
+		), true, CreativeModeTabs.BUILDING_BLOCKS);
 	}
 
 	/**

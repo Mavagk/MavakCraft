@@ -1,5 +1,6 @@
 package net.mavakcraft.datagenerator;
 
+import net.mavakcraft.Blocks;
 import net.mavakcraft.MavakCraft;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -20,8 +21,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 	@Override
 	protected void registerModels() {
 		basicItem(MavakCraft.SALT.get());
-		basicFlatBlockItem(MavakCraft.ROSE.get());
-		basicFlatBlockItem(MavakCraft.BLUE_ROSE.get());
+		basicFlatBlockItem(Blocks.ROSE.get());
+		basicFlatBlockItem(Blocks.BLUE_ROSE.get());
 	}
 
 	/**

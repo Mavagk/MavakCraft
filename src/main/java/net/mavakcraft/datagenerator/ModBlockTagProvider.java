@@ -6,6 +6,7 @@ import javax.annotation.Nonnull;
 
 import org.jetbrains.annotations.Nullable;
 
+import net.mavakcraft.Blocks;
 import net.mavakcraft.MavakCraft;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -24,29 +25,29 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 	@Override
 	protected void addTags(@Nonnull HolderLookup.Provider provider) {
 		tag(BlockTags.MINEABLE_WITH_PICKAXE)
-			.add(MavakCraft.GLOWING_OBSIDIAN.get())
-			.add(MavakCraft.CHARCOAL_BLOCK.get())
-			.add(MavakCraft.FLINT_BLOCK.get())
-			.add(MavakCraft.TURTLE_SCUTE_BLOCK.get())
-			.add(MavakCraft.NETHERITE_SCRAP_BLOCK.get())
-			.add(MavakCraft.NETHER_STAR_BLOCK.get());
+			.add(Blocks.GLOWING_OBSIDIAN.get())
+			.add(Blocks.CHARCOAL_BLOCK.get())
+			.add(Blocks.FLINT_BLOCK.get())
+			.add(Blocks.TURTLE_SCUTE_BLOCK.get())
+			.add(Blocks.NETHERITE_SCRAP_BLOCK.get())
+			.add(Blocks.NETHER_STAR_BLOCK.get());
 		tag(BlockTags.MINEABLE_WITH_SHOVEL)
-			.add(MavakCraft.GLOWSTONE_DUST_BLOCK.get())
-			.add(MavakCraft.GUNPOWDER_BLOCK.get())
-			.add(MavakCraft.SUGAR_BLOCK.get())
-			.add(MavakCraft.SALT_BLOCK.get())
-			.add(MavakCraft.BLAZE_POWDER_BLOCK.get());
+			.add(Blocks.GLOWSTONE_DUST_BLOCK.get())
+			.add(Blocks.GUNPOWDER_BLOCK.get())
+			.add(Blocks.SUGAR_BLOCK.get())
+			.add(Blocks.SALT_BLOCK.get())
+			.add(Blocks.BLAZE_POWDER_BLOCK.get());
 		tag(BlockTags.MINEABLE_WITH_AXE)
-			.add(MavakCraft.LEATHER_BLOCK.get())
-			.add(MavakCraft.RABBIT_HIDE_BLOCK.get());
+			.add(Blocks.LEATHER_BLOCK.get())
+			.add(Blocks.RABBIT_HIDE_BLOCK.get());
 		tag(BlockTags.MINEABLE_WITH_HOE)
-			.add(MavakCraft.NETHER_WART_BLOCK.get());
+			.add(Blocks.NETHER_WART_BLOCK.get());
 		tag(BlockTags.WOOL)
-			.add(MavakCraft.FEATHER_BLOCK.get());
+			.add(Blocks.FEATHER_BLOCK.get());
 		tag(BlockTags.NEEDS_DIAMOND_TOOL)
-			.add(MavakCraft.GLOWING_OBSIDIAN.get());
+			.add(Blocks.GLOWING_OBSIDIAN.get());
 		tag(BlockTags.SMALL_FLOWERS)
-			.add(MavakCraft.ROSE.get())
-			.add(MavakCraft.BLUE_ROSE.get());
+			.add(Blocks.ROSE.get())
+			.add(Blocks.BLUE_ROSE.get());
 	}
 }

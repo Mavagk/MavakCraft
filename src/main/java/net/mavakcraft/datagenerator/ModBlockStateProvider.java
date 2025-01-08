@@ -1,5 +1,6 @@
 package net.mavakcraft.datagenerator;
 
+import net.mavakcraft.Blocks;
 import net.mavakcraft.MavakCraft;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -19,30 +20,30 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 	@Override
 	protected void registerStatesAndModels() {
-		simpleBlockWithItem(MavakCraft.GLOWING_OBSIDIAN.get());
-		simpleBlockWithItem(MavakCraft.CHARCOAL_BLOCK.get());
-		simpleBlockWithItem(MavakCraft.FLINT_BLOCK.get());
-		simpleBlockWithItem(MavakCraft.TURTLE_SCUTE_BLOCK.get());
-		simpleBlockWithItem(MavakCraft.NETHERITE_SCRAP_BLOCK.get());
-		simpleBlockWithItem(MavakCraft.NETHER_STAR_BLOCK.get());
-		simpleBlockWithItem(MavakCraft.LEATHER_BLOCK.get());
-		simpleBlockWithItem(MavakCraft.RABBIT_HIDE_BLOCK.get());
-		simpleBlockWithItem(MavakCraft.NETHER_WART_BLOCK.get());
-		simpleBlockWithItem(MavakCraft.FEATHER_BLOCK.get());
-		simpleBlockWithItem(MavakCraft.GLOWSTONE_DUST_BLOCK.get());
-		simpleBlockWithItem(MavakCraft.GUNPOWDER_BLOCK.get());
-		simpleBlockWithItem(MavakCraft.BLAZE_POWDER_BLOCK.get());
-		simpleBlockWithItem(MavakCraft.SUGAR_BLOCK.get());
-		simpleBlockWithItem(MavakCraft.SALT_BLOCK.get());
-		simpleBlockWithItem(MavakCraft.BYTE_BLOCK.get());
-		simpleFacingWithItem(MavakCraft.PRIMARY_INPUT_BYTE_BLOCK.get());
-		simpleFacingWithItem(MavakCraft.SECONDARY_INPUT_BYTE_BLOCK.get());
-		simpleBlockWithItem(MavakCraft.WRAPPING_ADD_SUB_BYTE_BLOCK.get());
-		simpleBlockWithItem(MavakCraft.WRAPPING_MULT_DIV_BYTE_BLOCK.get());
-		simplePlant(MavakCraft.ROSE.get());
-		simplePlant(MavakCraft.BLUE_ROSE.get());
+		simpleBlockWithItem(Blocks.GLOWING_OBSIDIAN.get());
+		simpleBlockWithItem(Blocks.CHARCOAL_BLOCK.get());
+		simpleBlockWithItem(Blocks.FLINT_BLOCK.get());
+		simpleBlockWithItem(Blocks.TURTLE_SCUTE_BLOCK.get());
+		simpleBlockWithItem(Blocks.NETHERITE_SCRAP_BLOCK.get());
+		simpleBlockWithItem(Blocks.NETHER_STAR_BLOCK.get());
+		simpleBlockWithItem(Blocks.LEATHER_BLOCK.get());
+		simpleBlockWithItem(Blocks.RABBIT_HIDE_BLOCK.get());
+		simpleBlockWithItem(Blocks.NETHER_WART_BLOCK.get());
+		simpleBlockWithItem(Blocks.FEATHER_BLOCK.get());
+		simpleBlockWithItem(Blocks.GLOWSTONE_DUST_BLOCK.get());
+		simpleBlockWithItem(Blocks.GUNPOWDER_BLOCK.get());
+		simpleBlockWithItem(Blocks.BLAZE_POWDER_BLOCK.get());
+		simpleBlockWithItem(Blocks.SUGAR_BLOCK.get());
+		simpleBlockWithItem(Blocks.SALT_BLOCK.get());
+		simpleBlockWithItem(Blocks.BYTE_BLOCK.get());
+		simpleFacingWithItem(Blocks.PRIMARY_INPUT_BYTE_BLOCK.get());
+		simpleFacingWithItem(Blocks.SECONDARY_INPUT_BYTE_BLOCK.get());
+		simpleBlockWithItem(Blocks.WRAPPING_ADD_SUB_BYTE_BLOCK.get());
+		simpleBlockWithItem(Blocks.WRAPPING_MULT_DIV_BYTE_BLOCK.get());
+		simplePlant(Blocks.ROSE.get());
+		simplePlant(Blocks.BLUE_ROSE.get());
 		for (int dyeColorId = 0; dyeColorId < 16; dyeColorId++) {
-			simpleBlockWithItem(MavakCraft.DYE_BLOCKS[dyeColorId].get());
+			simpleBlockWithItem(Blocks.DYE_BLOCKS[dyeColorId].get());
 		}
 	}
 

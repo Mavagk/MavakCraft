@@ -2,6 +2,7 @@ package net.mavakcraft.datagenerator;
 
 import javax.annotation.Nonnull;
 
+import net.mavakcraft.Blocks;
 import net.mavakcraft.MavakCraft;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.DyeColor;
@@ -21,30 +22,30 @@ public class ModEnglishLanguageProvider extends LanguageProvider {
 	protected void addTranslations() {
 		addItem(MavakCraft.SALT, "Salt");
 
-		addBlock(MavakCraft.GLOWING_OBSIDIAN, "Glowing Obsidian");
-		addBlock(MavakCraft.ROSE, "Rose");
-		addBlock(MavakCraft.BLUE_ROSE, "Blue Rose");
-		addBlock(MavakCraft.CHARCOAL_BLOCK, "Block of Charcoal");
-		addBlock(MavakCraft.GLOWSTONE_DUST_BLOCK, "Block of Glowstone Dust");
-		addBlock(MavakCraft.GUNPOWDER_BLOCK, "Block of Gunpowder");
-		addBlock(MavakCraft.SUGAR_BLOCK, "Block of Sugar");
-		addBlock(MavakCraft.BLAZE_POWDER_BLOCK, "Block of Blaze Powder");
-		addBlock(MavakCraft.FEATHER_BLOCK, "Feather Feathers");
-		addBlock(MavakCraft.FLINT_BLOCK, "Block of Flint");
-		addBlock(MavakCraft.LEATHER_BLOCK, "Block of Leather");
-		addBlock(MavakCraft.NETHER_STAR_BLOCK, "Nether Star Block");
-		addBlock(MavakCraft.NETHER_WART_BLOCK, "Block of Nether Wart");
-		addBlock(MavakCraft.NETHERITE_SCRAP_BLOCK, "Block of Netherite Scrap");
-		addBlock(MavakCraft.RABBIT_HIDE_BLOCK, "Block of Rabbit Hide");
-		addBlock(MavakCraft.TURTLE_SCUTE_BLOCK, "Block of Turtle Scutes");
-		addBlock(MavakCraft.SALT_BLOCK, "Block of Salt");
-		addBlock(MavakCraft.BYTE_BLOCK, "Byte Block");
-		addBlock(MavakCraft.PRIMARY_INPUT_BYTE_BLOCK, "Primary Input Byte Block");
-		addBlock(MavakCraft.SECONDARY_INPUT_BYTE_BLOCK, "Secondary Input Byte Block");
-		addBlock(MavakCraft.WRAPPING_ADD_SUB_BYTE_BLOCK, "Wrapping Add/Subtract Byte Block");
-		addBlock(MavakCraft.WRAPPING_MULT_DIV_BYTE_BLOCK, "Wrapping Multiply/Divide Byte Block");
+		addBlock(Blocks.GLOWING_OBSIDIAN, "Glowing Obsidian");
+		addBlock(Blocks.ROSE, "Rose");
+		addBlock(Blocks.BLUE_ROSE, "Blue Rose");
+		addBlock(Blocks.CHARCOAL_BLOCK, "Block of Charcoal");
+		addBlock(Blocks.GLOWSTONE_DUST_BLOCK, "Block of Glowstone Dust");
+		addBlock(Blocks.GUNPOWDER_BLOCK, "Block of Gunpowder");
+		addBlock(Blocks.SUGAR_BLOCK, "Block of Sugar");
+		addBlock(Blocks.BLAZE_POWDER_BLOCK, "Block of Blaze Powder");
+		addBlock(Blocks.FEATHER_BLOCK, "Feather Feathers");
+		addBlock(Blocks.FLINT_BLOCK, "Block of Flint");
+		addBlock(Blocks.LEATHER_BLOCK, "Block of Leather");
+		addBlock(Blocks.NETHER_STAR_BLOCK, "Nether Star Block");
+		addBlock(Blocks.NETHER_WART_BLOCK, "Block of Nether Wart");
+		addBlock(Blocks.NETHERITE_SCRAP_BLOCK, "Block of Netherite Scrap");
+		addBlock(Blocks.RABBIT_HIDE_BLOCK, "Block of Rabbit Hide");
+		addBlock(Blocks.TURTLE_SCUTE_BLOCK, "Block of Turtle Scutes");
+		addBlock(Blocks.SALT_BLOCK, "Block of Salt");
+		addBlock(Blocks.BYTE_BLOCK, "Byte Block");
+		addBlock(Blocks.PRIMARY_INPUT_BYTE_BLOCK, "Primary Input Byte Block");
+		addBlock(Blocks.SECONDARY_INPUT_BYTE_BLOCK, "Secondary Input Byte Block");
+		addBlock(Blocks.WRAPPING_ADD_SUB_BYTE_BLOCK, "Wrapping Add/Subtract Byte Block");
+		addBlock(Blocks.WRAPPING_MULT_DIV_BYTE_BLOCK, "Wrapping Multiply/Divide Byte Block");
 		for (int dyeColorId = 0; dyeColorId < 16; dyeColorId++) {
-			addBlock(MavakCraft.DYE_BLOCKS[dyeColorId], getDyeColorName(DyeColor.byId(dyeColorId), dialect) + " Dye Block");
+			addBlock(Blocks.DYE_BLOCKS[dyeColorId], getDyeColorName(DyeColor.byId(dyeColorId), dialect) + " Dye Block");
 		}
 
 		add("itemGroup.mavakcraft", "MavakCraft");

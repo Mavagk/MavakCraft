@@ -2,6 +2,7 @@ package net.mavakcraft.datagenerator;
 
 import java.util.concurrent.CompletableFuture;
 
+import net.mavakcraft.Blocks;
 import net.mavakcraft.MavakCraft;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -17,6 +18,6 @@ public class ModDataMapProvider extends DataMapProvider {
 	@Override
 	protected void gather() {
 		this.builder(NeoForgeDataMaps.FURNACE_FUELS)
-			.add(MavakCraft.ITEMS.getBlockItem(MavakCraft.CHARCOAL_BLOCK), new FurnaceFuel(16000), false);
+			.add(MavakCraft.ITEMS.getBlockItem(Blocks.CHARCOAL_BLOCK), new FurnaceFuel(16000), false);
 	}
 }

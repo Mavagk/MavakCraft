@@ -2,11 +2,15 @@ package net.mavakcraft.datagenerator;
 
 import java.util.Set;
 
-import net.mavakcraft.MavakCraft;
+import javax.annotation.Nonnull;
+
+import net.mavakcraft.Blocks;
+import net.mavakcraft.Materials;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
 /**
@@ -19,35 +23,45 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
 
 	@Override
 	protected void generate() {
-		dropSelf(MavakCraft.GLOWING_OBSIDIAN.get());
-		dropSelf(MavakCraft.CHARCOAL_BLOCK.get());
-		dropSelf(MavakCraft.FLINT_BLOCK.get());
-		dropSelf(MavakCraft.TURTLE_SCUTE_BLOCK.get());
-		dropSelf(MavakCraft.NETHERITE_SCRAP_BLOCK.get());
-		dropSelf(MavakCraft.NETHER_STAR_BLOCK.get());
-		dropSelf(MavakCraft.LEATHER_BLOCK.get());
-		dropSelf(MavakCraft.RABBIT_HIDE_BLOCK.get());
-		dropSelf(MavakCraft.NETHER_WART_BLOCK.get());
-		dropSelf(MavakCraft.FEATHER_BLOCK.get());
-		dropSelf(MavakCraft.ROSE.get());
-		dropSelf(MavakCraft.BLUE_ROSE.get());
-		dropSelf(MavakCraft.GLOWSTONE_DUST_BLOCK.get());
-		dropSelf(MavakCraft.BLAZE_POWDER_BLOCK.get());
-		dropSelf(MavakCraft.GUNPOWDER_BLOCK.get());
-		dropSelf(MavakCraft.SUGAR_BLOCK.get());
-		dropSelf(MavakCraft.SALT_BLOCK.get());
-		dropSelf(MavakCraft.BYTE_BLOCK.get());
-		dropSelf(MavakCraft.PRIMARY_INPUT_BYTE_BLOCK.get());
-		dropSelf(MavakCraft.SECONDARY_INPUT_BYTE_BLOCK.get());
-		dropSelf(MavakCraft.WRAPPING_ADD_SUB_BYTE_BLOCK.get());
-		dropSelf(MavakCraft.WRAPPING_MULT_DIV_BYTE_BLOCK.get());
+		dropSelf(Blocks.GLOWING_OBSIDIAN.get());
+		dropSelf(Blocks.CHARCOAL_BLOCK.get());
+		dropSelf(Blocks.FLINT_BLOCK.get());
+		dropSelf(Blocks.TURTLE_SCUTE_BLOCK.get());
+		dropSelf(Blocks.NETHERITE_SCRAP_BLOCK.get());
+		dropSelf(Blocks.NETHER_STAR_BLOCK.get());
+		dropSelf(Blocks.LEATHER_BLOCK.get());
+		dropSelf(Blocks.RABBIT_HIDE_BLOCK.get());
+		dropSelf(Blocks.NETHER_WART_BLOCK.get());
+		dropSelf(Blocks.FEATHER_BLOCK.get());
+		dropSelf(Blocks.ROSE.get());
+		dropSelf(Blocks.BLUE_ROSE.get());
+		dropSelf(Blocks.GLOWSTONE_DUST_BLOCK.get());
+		dropSelf(Blocks.BLAZE_POWDER_BLOCK.get());
+		dropSelf(Blocks.GUNPOWDER_BLOCK.get());
+		dropSelf(Blocks.SUGAR_BLOCK.get());
+		dropSelf(Blocks.SALT_BLOCK.get());
+		dropSelf(Blocks.BYTE_BLOCK.get());
+		dropSelf(Blocks.PRIMARY_INPUT_BYTE_BLOCK.get());
+		dropSelf(Blocks.SECONDARY_INPUT_BYTE_BLOCK.get());
+		dropSelf(Blocks.WRAPPING_ADD_SUB_BYTE_BLOCK.get());
+		dropSelf(Blocks.WRAPPING_MULT_DIV_BYTE_BLOCK.get());
 		for (int dyeColorId = 0; dyeColorId < 16; dyeColorId++) {
-			dropSelf(MavakCraft.DYE_BLOCKS[dyeColorId].get());
+			dropSelf(Blocks.DYE_BLOCKS[dyeColorId].get());
 		}
+		Materials.generateDrops(this);
 	}
 
 	@Override
-	protected Iterable<Block> getKnownBlocks() {
-		return MavakCraft.BLOCKS.getEntries().stream().map(Holder::value)::iterator;
+	public void dropSelf(@Nonnull Block block) {
+		super.dropSelf(block);
+	}
+
+	public void dropOreDrops(@Nonnull Block block, @Nonnull Item item) {
+		this.add(block, super.createOreDrop(block, item));
+	}
+
+	@Override
+	public Iterable<Block> getKnownBlocks() {
+		return Blocks.BLOCKS.getEntries().stream().map(Holder::value)::iterator;
 	}
 }
