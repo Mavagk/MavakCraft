@@ -1,6 +1,7 @@
 package net.mavakcraft.datagenerator;
 
 import net.mavakcraft.Blocks;
+import net.mavakcraft.Materials;
 import net.mavakcraft.MavakCraft;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -23,13 +24,14 @@ public class ModItemModelProvider extends ItemModelProvider {
 		basicItem(MavakCraft.SALT.get());
 		basicFlatBlockItem(Blocks.ROSE.get());
 		basicFlatBlockItem(Blocks.BLUE_ROSE.get());
+		Materials.generateItemModels(this);
 	}
 
 	/**
 	 * Generate a model for a block item that uses the block texture as if it where a normal item texture, a flower is an example of a use for this.
 	 * @param block A block that should have a model generated for it's block item.
 	 */
-	void basicFlatBlockItem(Block block) {
+	public void basicFlatBlockItem(Block block) {
 		getBuilder(BuiltInRegistries.BLOCK.getKey(block).getPath())
 			.parent(new ModelFile.UncheckedModelFile("item/generated"))
 			.texture("layer0", ResourceLocation.fromNamespaceAndPath(MavakCraft.MODID, "block/" + BuiltInRegistries.BLOCK.getKey(block).getPath()));

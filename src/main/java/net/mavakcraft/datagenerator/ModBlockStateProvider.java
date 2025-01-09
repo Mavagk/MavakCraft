@@ -1,6 +1,7 @@
 package net.mavakcraft.datagenerator;
 
 import net.mavakcraft.Blocks;
+import net.mavakcraft.Materials;
 import net.mavakcraft.MavakCraft;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -45,23 +46,24 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		for (int dyeColorId = 0; dyeColorId < 16; dyeColorId++) {
 			simpleBlockWithItem(Blocks.DYE_BLOCKS[dyeColorId].get());
 		}
+		Materials.generateBlockStates(this);
 	}
 
 	/**
 	 * Generates a block state and model for a simple full cube block, also generates the model for the block's block item.
 	 */
-	void simpleBlockWithItem(Block block) {
+	public void simpleBlockWithItem(Block block) {
 		simpleBlockWithItem(block, cubeAll(block));
 	}
 
 	/**
 	 * Generates a block state and model for a simple 1 block high plant such as a flower, this does NOT generate a item model.
 	 */
-	void simplePlant(Block block) {
+	public void simplePlant(Block block) {
 		simpleBlock(block, models().cross(BuiltInRegistries.BLOCK.getKey(block).getPath(), blockTexture(block)).renderType("cutout"));
 	}
 
-	void simpleFacingWithItem(Block block) {
+	public void simpleFacingWithItem(Block block) {
 		ResourceLocation name = BuiltInRegistries.BLOCK.getKey(block);
 		ResourceLocation side = ResourceLocation.fromNamespaceAndPath(name.getNamespace(), ModelProvider.BLOCK_FOLDER + "/" + name.getPath() + "_side");
 		ResourceLocation top = ResourceLocation.fromNamespaceAndPath(name.getNamespace(), ModelProvider.BLOCK_FOLDER + "/" + name.getPath() + "_top");

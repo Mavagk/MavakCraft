@@ -48,7 +48,7 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
 		for (int dyeColorId = 0; dyeColorId < 16; dyeColorId++) {
 			dropSelf(Blocks.DYE_BLOCKS[dyeColorId].get());
 		}
-		Materials.generateDrops(this);
+		Materials.generateLoot(this);
 	}
 
 	@Override

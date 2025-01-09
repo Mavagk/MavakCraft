@@ -3,6 +3,7 @@ package net.mavakcraft.datagenerator;
 import javax.annotation.Nonnull;
 
 import net.mavakcraft.Blocks;
+import net.mavakcraft.Materials;
 import net.mavakcraft.MavakCraft;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.DyeColor;
@@ -47,6 +48,7 @@ public class ModEnglishLanguageProvider extends LanguageProvider {
 		for (int dyeColorId = 0; dyeColorId < 16; dyeColorId++) {
 			addBlock(Blocks.DYE_BLOCKS[dyeColorId], getDyeColorName(DyeColor.byId(dyeColorId), dialect) + " Dye Block");
 		}
+		Materials.generateEnglishName(this);
 
 		add("itemGroup.mavakcraft", "MavakCraft");
 

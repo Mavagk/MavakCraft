@@ -7,10 +7,14 @@ import javax.annotation.Nonnull;
 import org.jetbrains.annotations.Nullable;
 
 import net.mavakcraft.Blocks;
+import net.mavakcraft.Materials;
 import net.mavakcraft.MavakCraft;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
@@ -49,5 +53,11 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 		tag(BlockTags.SMALL_FLOWERS)
 			.add(Blocks.ROSE.get())
 			.add(Blocks.BLUE_ROSE.get());
+		Materials.generateBlockTags(this);
 	}
+
+	@Override
+	public IntrinsicHolderTagsProvider.IntrinsicTagAppender<Block> tag(@Nonnull TagKey<Block> tag) {
+		return super.tag(tag);
+    }
 }
