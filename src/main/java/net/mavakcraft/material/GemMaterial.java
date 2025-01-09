@@ -12,6 +12,7 @@ import net.mavakcraft.datagenerator.ModItemModelProvider;
 import net.mavakcraft.datagenerator.ModRecipeProvider;
 import net.mavakcraft.registry.ModBlocksDeferredRegister;
 import net.mavakcraft.registry.ModItemsDeferredRegister;
+import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
@@ -76,7 +77,8 @@ public class GemMaterial extends Material {
 	@Override
 	public void generateRecipes(ModRecipeProvider provider) {
 		provider.recipesForItemStorageBlock(gem.get(), materialBlock.asItem());
-		// TODO: Furnace
+		provider.oreSmeltingRecipe(ore.asItem(), gem.get(), 1, 200, RecipeCategory.MISC);
+		provider.oreSmeltingRecipe(deepslateOre.asItem(), gem.get(), 1, 200, RecipeCategory.MISC);
 	}
 
 	@Override

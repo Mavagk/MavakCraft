@@ -1,7 +1,6 @@
 package net.mavakcraft.datagenerator;
 
 import java.util.concurrent.CompletableFuture;
-
 import javax.annotation.Nonnull;
 
 import net.mavakcraft.Blocks;
@@ -14,10 +13,12 @@ import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 
 /**
  * Generates recipes such as crafting recipes.
@@ -52,6 +53,19 @@ public class ModRecipeProvider extends RecipeProvider {
 			recipesForItemStorageBlock(DyeItem.byColor(DyeColor.byId(dyeColorId)), Blocks.DYE_BLOCKS[dyeColorId].get().asItem());
 		}
 		Materials.generateRecipes(this);
+	}
+	
+	public void oreSmeltingRecipe(Item from, Item to, float experience, int cookingTime, RecipeCategory category) {
+		String fromName = BuiltInRegistries.ITEM.getKey(from).getPath();
+		String toName = BuiltInRegistries.ITEM.getKey(to).getPath();
+		SimpleCookingRecipeBuilder.smelting(Ingredient.of(from), category, to, experience, cookingTime)
+			.group(toName)
+			.unlockedBy(getHasName(from), has(from))
+			.save(recipeOutput, toName + "_smelted_from_" + fromName);
+		SimpleCookingRecipeBuilder.blasting(Ingredient.of(from), category, to, experience, cookingTime / 2)
+			.group(toName)
+			.unlockedBy(getHasName(from), has(from))
+			.save(recipeOutput, toName + "_blasted_from_" + fromName);
 	}
 
 	/**
