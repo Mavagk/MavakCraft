@@ -17,7 +17,7 @@ import net.minecraft.world.level.material.MapColor;
 public class Materials {
 	public static Vector<Material> MATERIALS = new Vector<>();
 
-	public static Material register(Material material) {
+	public static <T extends Material> T register(T material) {
 		MATERIALS.add(material);
 		return material;
 	}
@@ -54,5 +54,5 @@ public class Materials {
 		MATERIALS.forEach(material -> material.generateEnglishName(provider));
 	}
 
-	public static Material RUBY = register(new GemMaterial("ruby", 3, 7, MapColor.COLOR_RED));
+	public static GemMaterial RUBY = register(new GemMaterial("ruby", 3, 7, MapColor.COLOR_RED));
 }

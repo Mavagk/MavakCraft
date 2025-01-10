@@ -10,8 +10,11 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.BiomeFilter;
+import net.minecraft.world.level.levelgen.placement.CountPlacement;
+import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
 import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.placement.PlacementModifier;
@@ -20,8 +23,9 @@ import net.minecraft.world.level.levelgen.placement.RarityFilter;
 /**
  * Sets where features should be placed in the biomes it can generate in.
  */
-public class PlacedFeatures {
+public class ModPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> ROSES_PLACED = registerKey("roses_placed");
+	public static final ResourceKey<PlacedFeature> RUBY_ORE_PLACED = registerKey("ruby_ore_placed");
 
 	public static void bootstrap(BootstrapContext<PlacedFeature> context) {
 		HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -29,8 +33,14 @@ public class PlacedFeatures {
 		register(
 			context,
 			ROSES_PLACED,
-			configuredFeatures.getOrThrow(ConfiguredFeatures.ROSES_PLACED),
+			configuredFeatures.getOrThrow(ModConfiguredFeatures.ROSES_PLACED),
 			List.of(RarityFilter.onAverageOnceEvery(32), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())
+		);
+		register(
+			context,
+			RUBY_ORE_PLACED,
+			configuredFeatures.getOrThrow(ModConfiguredFeatures.RUBY_ORE_PLACED),
+			List.of(CountPlacement.of(100), InSquarePlacement.spread(), HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(480)), BiomeFilter.biome())
 		);
 	}
 
