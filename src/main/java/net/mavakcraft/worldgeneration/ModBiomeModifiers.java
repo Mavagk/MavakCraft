@@ -26,6 +26,7 @@ public class ModBiomeModifiers {
 	public static final ResourceKey<BiomeModifier> ADD_ROSES = registerKey("add_roses");
 	public static final ResourceKey<BiomeModifier> ADD_RUBY_ORE = registerKey("add_ruby_ore");
 	public static final ResourceKey<BiomeModifier> ADD_SAPPHIRE_ORE = registerKey("add_sapphire_ore");
+	public static final ResourceKey<BiomeModifier> ADD_TOPAZ_ORE = registerKey("add_topaz_ore");
 
 	public static void bootstrap(BootstrapContext<BiomeModifier> contextIn) {
 		context = contextIn;
@@ -45,6 +46,11 @@ public class ModBiomeModifiers {
 		register(ADD_SAPPHIRE_ORE, new BiomeModifiers.AddFeaturesBiomeModifier(
 			biomes.getOrThrow(Tags.Biomes.IS_OVERWORLD),
 			HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.SAPPHIRE_ORE_PLACED)),
+			GenerationStep.Decoration.UNDERGROUND_ORES
+		));
+		register(ADD_TOPAZ_ORE, new BiomeModifiers.AddFeaturesBiomeModifier(
+			biomes.getOrThrow(Tags.Biomes.IS_OVERWORLD),
+			HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.TOPAZ_ORE_PLACED)),
 			GenerationStep.Decoration.UNDERGROUND_ORES
 		));
 	}

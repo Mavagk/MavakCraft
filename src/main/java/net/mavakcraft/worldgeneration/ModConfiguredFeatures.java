@@ -32,6 +32,7 @@ public class ModConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ROSES_PLACED = registerKey("roses_placed");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> RUBY_ORE_PLACED = registerKey("ruby_ore_placed");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SAPPHIRE_ORE_PLACED = registerKey("sapphire_ore_placed");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> TOPAZ_ORE_PLACED = registerKey("topaz_ore_placed");
 
 	public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> contextIn) {
 		context = contextIn;
@@ -46,6 +47,7 @@ public class ModConfiguredFeatures {
 		// Ores
 		registerSimpleOverworldOre(RUBY_ORE_PLACED, Materials.RUBY.ore.get(), Materials.RUBY.deepslateOre.get(), 5);
 		registerSimpleOverworldOre(SAPPHIRE_ORE_PLACED, Materials.SAPPHIRE.ore.get(), Materials.SAPPHIRE.deepslateOre.get(), 10);
+		registerSimpleOverworldOre(TOPAZ_ORE_PLACED, Materials.TOPAZ.ore.get(), Materials.TOPAZ.deepslateOre.get(), 3);
 	}
 
 	public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {

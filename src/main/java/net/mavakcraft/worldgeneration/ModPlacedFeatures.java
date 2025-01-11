@@ -29,6 +29,7 @@ public class ModPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> ROSES_PLACED = registerKey("roses_placed");
 	public static final ResourceKey<PlacedFeature> RUBY_ORE_PLACED = registerKey("ruby_ore_placed");
 	public static final ResourceKey<PlacedFeature> SAPPHIRE_ORE_PLACED = registerKey("sapphire_ore_placed");
+	public static final ResourceKey<PlacedFeature> TOPAZ_ORE_PLACED = registerKey("topaz_ore_placed");
 
 	public static void bootstrap(BootstrapContext<PlacedFeature> contextIn) {
 		context = contextIn;
@@ -53,6 +54,14 @@ public class ModPlacedFeatures {
 			List.of(
 				CountPlacement.of(5), InSquarePlacement.spread(),
 				HeightRangePlacement.uniform(VerticalAnchor.absolute(-63), VerticalAnchor.absolute(30)), BiomeFilter.biome()
+			)
+		);
+		register(
+			TOPAZ_ORE_PLACED,
+			configuredFeatures.getOrThrow(ModConfiguredFeatures.TOPAZ_ORE_PLACED),
+			List.of(
+				CountPlacement.of(30), InSquarePlacement.spread(),
+				HeightRangePlacement.uniform(VerticalAnchor.absolute(-63), VerticalAnchor.absolute(20)), BiomeFilter.biome()
 			)
 		);
 	}
