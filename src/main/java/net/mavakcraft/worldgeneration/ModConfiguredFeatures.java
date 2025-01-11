@@ -13,6 +13,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.random.SimpleWeightedRandomList;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -26,12 +27,16 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
  * Sets how features are shaped and what blocks they should consist of once they have been placed.
  */
 public class ModConfiguredFeatures {
+	static BootstrapContext<ConfiguredFeature<?, ?>> context;
+
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ROSES_PLACED = registerKey("roses_placed");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> RUBY_ORE_PLACED = registerKey("ruby_ore_placed");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> SAPPHIRE_ORE_PLACED = registerKey("sapphire_ore_placed");
 
-	public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
+	public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> contextIn) {
+		context = contextIn;
 		// Flowers
-		register(context, ROSES_PLACED, Feature.FLOWER, FeatureUtils.simpleRandomPatchConfiguration(
+		register(ROSES_PLACED, Feature.FLOWER, FeatureUtils.simpleRandomPatchConfiguration(
 		64, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(
 			SimpleWeightedRandomList.<BlockState>builder()
 				.add(Blocks.ROSE.get().defaultBlockState(), 2)
@@ -39,19 +44,22 @@ public class ModConfiguredFeatures {
 			)))
 		));
 		// Ores
-		register(context, RUBY_ORE_PLACED, Feature.ORE, new OreConfiguration(List.of(
-			OreConfiguration.target(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), Materials.RUBY.ore.get().defaultBlockState()),
-			OreConfiguration.target(new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES), Materials.RUBY.deepslateOre.get().defaultBlockState())
-		), 5));
+		registerSimpleOverworldOre(RUBY_ORE_PLACED, Materials.RUBY.ore.get(), Materials.RUBY.deepslateOre.get(), 5);
+		registerSimpleOverworldOre(SAPPHIRE_ORE_PLACED, Materials.SAPPHIRE.ore.get(), Materials.SAPPHIRE.deepslateOre.get(), 10);
 	}
 
 	public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
 		return ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(MavakCraft.MODID, name));
 	}
 
-	private static <FC extends FeatureConfiguration, F extends Feature<FC>> void register(
-		BootstrapContext<ConfiguredFeature<?, ?>> context, ResourceKey<ConfiguredFeature<?, ?>> key, F feature, FC configuration
-	) {
+	public static <FC extends FeatureConfiguration, F extends Feature<FC>> void register(ResourceKey<ConfiguredFeature<?, ?>> key, F feature, FC configuration) {
 		context.register(key, new ConfiguredFeature<>(feature, configuration));
+	}
+
+	public static void registerSimpleOverworldOre(ResourceKey<ConfiguredFeature<?, ?>> key, Block stoneOre, Block deepslateOre, int size) {
+		register(key, Feature.ORE, new OreConfiguration(List.of(
+			OreConfiguration.target(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), stoneOre.defaultBlockState()),
+			OreConfiguration.target(new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES), deepslateOre.defaultBlockState())
+		), size));
 	}
 }

@@ -24,33 +24,44 @@ import net.minecraft.world.level.levelgen.placement.RarityFilter;
  * Sets where features should be placed in the biomes it can generate in.
  */
 public class ModPlacedFeatures {
+	static BootstrapContext<PlacedFeature> context;
+
 	public static final ResourceKey<PlacedFeature> ROSES_PLACED = registerKey("roses_placed");
 	public static final ResourceKey<PlacedFeature> RUBY_ORE_PLACED = registerKey("ruby_ore_placed");
+	public static final ResourceKey<PlacedFeature> SAPPHIRE_ORE_PLACED = registerKey("sapphire_ore_placed");
 
-	public static void bootstrap(BootstrapContext<PlacedFeature> context) {
+	public static void bootstrap(BootstrapContext<PlacedFeature> contextIn) {
+		context = contextIn;
 		HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
 		register(
-			context,
 			ROSES_PLACED,
 			configuredFeatures.getOrThrow(ModConfiguredFeatures.ROSES_PLACED),
 			List.of(RarityFilter.onAverageOnceEvery(32), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())
 		);
 		register(
-			context,
 			RUBY_ORE_PLACED,
 			configuredFeatures.getOrThrow(ModConfiguredFeatures.RUBY_ORE_PLACED),
-			List.of(CountPlacement.of(100), InSquarePlacement.spread(), HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(480)), BiomeFilter.biome())
+			List.of(
+				CountPlacement.of(100), InSquarePlacement.spread(),
+				HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(480)), BiomeFilter.biome()
+			)
+		);
+		register(
+			SAPPHIRE_ORE_PLACED,
+			configuredFeatures.getOrThrow(ModConfiguredFeatures.SAPPHIRE_ORE_PLACED),
+			List.of(
+				CountPlacement.of(5), InSquarePlacement.spread(),
+				HeightRangePlacement.uniform(VerticalAnchor.absolute(-63), VerticalAnchor.absolute(30)), BiomeFilter.biome()
+			)
 		);
 	}
 
-	private static ResourceKey<PlacedFeature> registerKey(String name) {
+	public static ResourceKey<PlacedFeature> registerKey(String name) {
 		return ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(MavakCraft.MODID, name));
 	}
 
-	private static void register(
-		BootstrapContext<PlacedFeature> context, ResourceKey<PlacedFeature> key, Holder<ConfiguredFeature<?, ?>> configuration, List<PlacementModifier> modifiers
-	) {
+	public static void register(ResourceKey<PlacedFeature> key, Holder<ConfiguredFeature<?, ?>> configuration, List<PlacementModifier> modifiers) {
 		context.register(key, new PlacedFeature(configuration, List.copyOf(modifiers)));
 	}
 }
