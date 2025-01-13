@@ -14,6 +14,7 @@ import net.mavakcraft.registry.ModBlocksDeferredRegister;
 import net.mavakcraft.registry.ModItemsDeferredRegister;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -25,7 +26,7 @@ import net.neoforged.neoforge.registries.DeferredItem;
 public class GemMaterial extends Material {
 	public DeferredBlock<DropExperienceBlock> ore;
 	public DeferredBlock<DropExperienceBlock> deepslateOre;
-	public DeferredBlock<Block> materialBlock;
+	@Nonnull public MaterialBlockMaterial materialBlock;
 
 	public DeferredItem<Item> gem;
 
@@ -34,70 +35,67 @@ public class GemMaterial extends Material {
 	int xpMin;
 	int xpMax;
 	@Nonnull MapColor mapColor;
+	@Nonnull TagKey<Block> toolNeeded;
 
-	public GemMaterial(@Nonnull String name, int xpMin, int xpMax, @Nonnull MapColor mapColor) {
+	public GemMaterial(@Nonnull String name, int xpMin, int xpMax, @Nonnull MapColor mapColor, TagKey<Block> toolNeeded) {
 		this.name = name;
 		this.xpMin = xpMin;
 		this.xpMax = xpMax;
 		this.mapColor = mapColor;
 		this.englishName = StringUtils.capitalize(name).replace('_', ' ');
+		this.toolNeeded = toolNeeded;
+		materialBlock = addSubMaterial(new MaterialBlockMaterial(name, mapColor, toolNeeded));
 	}
 
 	@Override
-	public void registerBlocks(ModBlocksDeferredRegister register) {
+	public void onRegisterBlocks(ModBlocksDeferredRegister register) {
 		ore = register.registerSimpleOre(name, xpMin, xpMax);
 		deepslateOre = register.registerSimpleDeepslateOre(name, xpMin, xpMax);
-		materialBlock = register.registerSimpleMaterialBlock(name, mapColor);
 	}
 
 	@Override
-	public void registerItems(ModItemsDeferredRegister register) {
+	public void onRegisterItems(ModItemsDeferredRegister register) {
 		gem = register.registerSimpleItem(name, CreativeModeTabs.INGREDIENTS);
 	}
 
 	@Override
-	public void generateLoot(ModBlockLootProvider provider) {
-		provider.dropSelf(materialBlock.get());
+	public void onGenerateLoot(ModBlockLootProvider provider) {
 		provider.dropOreDrops(ore.get(), gem.get());
 		provider.dropOreDrops(deepslateOre.get(), gem.get());
 	}
 
 	@Override
-	public void generateBlockStates(ModBlockStateProvider provider) {
+	public void onGenerateBlockStates(ModBlockStateProvider provider) {
 		provider.simpleBlockWithItem(ore.get());
 		provider.simpleBlockWithItem(deepslateOre.get());
-		provider.simpleBlockWithItem(materialBlock.get());
 	}
 
 	@Override
-	public void generateItemModels(ModItemModelProvider provider) {
+	public void onGenerateItemModels(ModItemModelProvider provider) {
 		provider.basicItem(gem.get());
 	}
 
 	@Override
-	public void generateRecipes(ModRecipeProvider provider) {
-		provider.recipesForItemStorageBlock(gem.get(), materialBlock.asItem());
+	public void onGenerateRecipes(ModRecipeProvider provider) {
+		provider.recipesForItemStorageBlock(gem.get(), materialBlock.block.asItem());
 		provider.oreSmeltingRecipe(ore.asItem(), gem.get(), 1, 200, RecipeCategory.MISC);
 		provider.oreSmeltingRecipe(deepslateOre.asItem(), gem.get(), 1, 200, RecipeCategory.MISC);
 	}
 
 	@Override
-	public void generateBlockTags(ModBlockTagProvider provider) {
+	public void onGenerateBlockTags(ModBlockTagProvider provider) {
 		provider.tag(BlockTags.MINEABLE_WITH_PICKAXE)
 			.add(ore.get())
-			.add(deepslateOre.get())
-			.add(materialBlock.get());
-		provider.tag(BlockTags.NEEDS_IRON_TOOL)
+			.add(deepslateOre.get());
+		provider.tag(toolNeeded)
 			.add(ore.get())
-			.add(deepslateOre.get())
-			.add(materialBlock.get());
+			.add(deepslateOre.get());
 	}
 
 	@Override
-	public void generateEnglishName(ModEnglishLanguageProvider provider) {
+	public void onGenerateEnglishNames(ModEnglishLanguageProvider provider) {
 		provider.add(ore.get(), englishName + " Ore");
 		provider.add(deepslateOre.get(), "Deepslate " + englishName + " Ore");
-		provider.add(materialBlock.get(), "Block of " + englishName);
 		provider.add(gem.get(), englishName);
 	}
 }

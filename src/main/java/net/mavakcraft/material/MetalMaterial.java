@@ -26,8 +26,8 @@ import net.neoforged.neoforge.registries.DeferredItem;
 public class MetalMaterial extends Material {
 	public DeferredBlock<DropExperienceBlock> ore;
 	public DeferredBlock<DropExperienceBlock> deepslateOre;
-	public DeferredBlock<Block> materialBlock;
 	public DeferredBlock<Block> rawBlock;
+	@Nonnull public MaterialBlockMaterial materialBlock;
 
 	public DeferredItem<Item> rawMetal;
 	public DeferredItem<Item> ingot;
@@ -45,49 +45,47 @@ public class MetalMaterial extends Material {
 		this.rawColor = rawColor;
 		this.toolNeeded = toolNeeded;
 		this.englishName = StringUtils.capitalize(name).replace('_', ' ');
+		materialBlock = addSubMaterial(new MaterialBlockMaterial(name, mapColor, toolNeeded));
 	}
 
 	@Override
-	public void registerBlocks(ModBlocksDeferredRegister register) {
+	public void onRegisterBlocks(ModBlocksDeferredRegister register) {
 		ore = register.registerSimpleOre(name, 0, 0);
 		deepslateOre = register.registerSimpleDeepslateOre(name, 0, 0);
-		materialBlock = register.registerSimpleMaterialBlock(name, mapColor);
 		rawBlock = register.registerSimpleRawBlock(name, rawColor);
 	}
 
 	@Override
-	public void registerItems(ModItemsDeferredRegister register) {
+	public void onRegisterItems(ModItemsDeferredRegister register) {
 		ingot = register.registerSimpleItem(name + "_ingot", CreativeModeTabs.INGREDIENTS);
 		rawMetal = register.registerSimpleItem("raw_" + name, CreativeModeTabs.INGREDIENTS);
 		nugget = register.registerSimpleItem(name + "_nugget", CreativeModeTabs.INGREDIENTS);
 	}
 
 	@Override
-	public void generateLoot(ModBlockLootProvider provider) {
-		provider.dropSelf(materialBlock.get());
+	public void onGenerateLoot(ModBlockLootProvider provider) {
 		provider.dropSelf(rawBlock.get());
 		provider.dropOreDrops(ore.get(), rawMetal.get());
 		provider.dropOreDrops(deepslateOre.get(), rawMetal.get());
 	}
 
 	@Override
-	public void generateBlockStates(ModBlockStateProvider provider) {
+	public void onGenerateBlockStates(ModBlockStateProvider provider) {
 		provider.simpleBlockWithItem(ore.get());
 		provider.simpleBlockWithItem(deepslateOre.get());
-		provider.simpleBlockWithItem(materialBlock.get());
 		provider.simpleBlockWithItem(rawBlock.get());
 	}
 
 	@Override
-	public void generateItemModels(ModItemModelProvider provider) {
+	public void onGenerateItemModels(ModItemModelProvider provider) {
 		provider.basicItem(ingot.get());
 		provider.basicItem(nugget.get());
 		provider.basicItem(rawMetal.get());
 	}
 
 	@Override
-	public void generateRecipes(ModRecipeProvider provider) {
-		provider.recipesForItemStorageBlock(ingot.get(), materialBlock.asItem());
+	public void onGenerateRecipes(ModRecipeProvider provider) {
+		provider.recipesForItemStorageBlock(ingot.get(), materialBlock.block.asItem());
 		provider.recipesForItemStorageBlock(rawMetal.get(), rawBlock.asItem());
 		provider.recipesForNugget(nugget.get(), ingot.get());
 		provider.oreSmeltingRecipe(ore.asItem(), ingot.get(), 1, 200, RecipeCategory.MISC);
@@ -96,24 +94,21 @@ public class MetalMaterial extends Material {
 	}
 
 	@Override
-	public void generateBlockTags(ModBlockTagProvider provider) {
+	public void onGenerateBlockTags(ModBlockTagProvider provider) {
 		provider.tag(BlockTags.MINEABLE_WITH_PICKAXE)
 			.add(ore.get())
 			.add(deepslateOre.get())
-			.add(materialBlock.get())
 			.add(rawBlock.get());
 		provider.tag(toolNeeded)
 			.add(ore.get())
 			.add(deepslateOre.get())
-			.add(materialBlock.get())
 			.add(rawBlock.get());
 	}
 
 	@Override
-	public void generateEnglishName(ModEnglishLanguageProvider provider) {
+	public void onGenerateEnglishNames(ModEnglishLanguageProvider provider) {
 		provider.add(ore.get(), englishName + " Ore");
 		provider.add(deepslateOre.get(), "Deepslate " + englishName + " Ore");
-		provider.add(materialBlock.get(), "Block of " + englishName);
 		provider.add(rawBlock.get(), "Block of Raw " + englishName);
 		provider.add(ingot.get(), englishName + " Ingot");
 		provider.add(rawMetal.get(), "Raw " + englishName);
