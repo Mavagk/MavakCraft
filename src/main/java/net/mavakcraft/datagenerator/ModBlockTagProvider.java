@@ -44,9 +44,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 			.add(Blocks.FEATHER_BLOCK.get());
 		tag(BlockTags.NEEDS_DIAMOND_TOOL)
 			.add(Blocks.GLOWING_OBSIDIAN.get());
-		tag(BlockTags.SMALL_FLOWERS)
-			.add(Blocks.ROSE.get())
-			.add(Blocks.BLUE_ROSE.get());
 		Materials.generateBlockTags(this);
 	}
 

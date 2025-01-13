@@ -36,8 +36,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		simpleFacingWithItem(Blocks.SECONDARY_INPUT_BYTE_BLOCK.get());
 		simpleBlockWithItem(Blocks.WRAPPING_ADD_SUB_BYTE_BLOCK.get());
 		simpleBlockWithItem(Blocks.WRAPPING_MULT_DIV_BYTE_BLOCK.get());
-		simplePlant(Blocks.ROSE.get());
-		simplePlant(Blocks.BLUE_ROSE.get());
 		for (int dyeColorId = 0; dyeColorId < 16; dyeColorId++) {
 			simpleBlockWithItem(Blocks.DYE_BLOCKS[dyeColorId].get());
 		}

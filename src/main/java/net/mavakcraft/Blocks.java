@@ -6,11 +6,9 @@ import net.mavakcraft.block.byteblock.SecondaryInputByteBlock;
 import net.mavakcraft.block.byteblock.WrappingAddSubByteBlock;
 import net.mavakcraft.block.byteblock.WrappingMultDivByteBlock;
 import net.mavakcraft.registry.ModBlocksDeferredRegister;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
@@ -113,12 +111,6 @@ public class Blocks {
 	public static final DeferredBlock<SecondaryInputByteBlock> SECONDARY_INPUT_BYTE_BLOCK = BLOCKS.registerSimpleByteBlock(
 		"secondary_input_byte_block", SecondaryInputByteBlock::new, true, CreativeModeTabs.FUNCTIONAL_BLOCKS
 	);
-
-	// Flowers
-	public static final DeferredBlock<FlowerBlock> ROSE = BLOCKS
-		.registerSimpleFlower("rose", MobEffects.NIGHT_VISION, 5, true, CreativeModeTabs.NATURAL_BLOCKS);
-	public static final DeferredBlock<FlowerBlock> BLUE_ROSE = BLOCKS
-		.registerSimpleFlower("blue_rose", MobEffects.NIGHT_VISION, 5, true, CreativeModeTabs.NATURAL_BLOCKS);
 
 	// Materials
 	static {

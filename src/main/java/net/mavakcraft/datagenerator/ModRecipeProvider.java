@@ -33,8 +33,8 @@ public class ModRecipeProvider extends RecipeProvider {
 	@Override
 	protected void buildRecipes(@Nonnull RecipeOutput recipeOutput) {
 		this.recipeOutput = recipeOutput;
-		shapelessRecipeForItemToItem(Blocks.ROSE.get().asItem(), Items.RED_DYE, RecipeCategory.MISC);
-		shapelessRecipeForItemToItem(Blocks.BLUE_ROSE.get().asItem(), Items.BLUE_DYE, RecipeCategory.MISC);
+		shapelessRecipeForItemToItem(Materials.ROSE.flower.get().asItem(), Items.RED_DYE, RecipeCategory.MISC);
+		shapelessRecipeForItemToItem(Materials.BLUE_ROSE.flower.get().asItem(), Items.BLUE_DYE, RecipeCategory.MISC);
 		recipesForItemStorageBlock(Items.CHARCOAL, Blocks.CHARCOAL_BLOCK.get().asItem());
 		recipesForItemStorageBlock(Items.FLINT, Blocks.FLINT_BLOCK.get().asItem());
 		recipesForItemStorageBlock(Items.TURTLE_SCUTE, Blocks.TURTLE_SCUTE_BLOCK.get().asItem());

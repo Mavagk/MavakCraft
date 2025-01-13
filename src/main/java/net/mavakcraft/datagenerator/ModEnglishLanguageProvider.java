@@ -24,8 +24,6 @@ public class ModEnglishLanguageProvider extends LanguageProvider {
 		addItem(MavakCraft.SALT, "Salt");
 
 		addBlock(Blocks.GLOWING_OBSIDIAN, "Glowing Obsidian");
-		addBlock(Blocks.ROSE, "Rose");
-		addBlock(Blocks.BLUE_ROSE, "Blue Rose");
 		addBlock(Blocks.CHARCOAL_BLOCK, "Block of Charcoal");
 		addBlock(Blocks.FEATHER_BLOCK, "Feather Feathers");
 		addBlock(Blocks.FLINT_BLOCK, "Block of Flint");

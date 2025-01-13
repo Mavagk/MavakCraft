@@ -33,8 +33,6 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
 		dropSelf(Blocks.RABBIT_HIDE_BLOCK.get());
 		dropSelf(Blocks.NETHER_WART_BLOCK.get());
 		dropSelf(Blocks.FEATHER_BLOCK.get());
-		dropSelf(Blocks.ROSE.get());
-		dropSelf(Blocks.BLUE_ROSE.get());
 		dropSelf(Blocks.BYTE_BLOCK.get());
 		dropSelf(Blocks.PRIMARY_INPUT_BYTE_BLOCK.get());
 		dropSelf(Blocks.SECONDARY_INPUT_BYTE_BLOCK.get());

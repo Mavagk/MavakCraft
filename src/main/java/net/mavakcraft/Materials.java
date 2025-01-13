@@ -12,9 +12,11 @@ import net.mavakcraft.material.GemMaterial;
 import net.mavakcraft.material.Material;
 import net.mavakcraft.material.MetalMaterial;
 import net.mavakcraft.material.PowderBlockMaterial;
+import net.mavakcraft.material.SimpleFlowerMaterial;
 import net.mavakcraft.registry.ModBlocksDeferredRegister;
 import net.mavakcraft.registry.ModItemsDeferredRegister;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.material.MapColor;
 
 public class Materials {
@@ -68,4 +70,7 @@ public class Materials {
 	public static PowderBlockMaterial GUNPOWDER_BLOCK = register(new PowderBlockMaterial("gunpowder", 0x545454, MapColor.STONE, 0));
 	public static PowderBlockMaterial SUGAR_BLOCK = register(new PowderBlockMaterial("sugar", 0xEAEAEA, MapColor.SAND, 0));
 	public static PowderBlockMaterial SALT_BLOCK = register(new PowderBlockMaterial("salt", 0xEAEAEA, MapColor.SAND, 0));
+
+	public static SimpleFlowerMaterial ROSE = register(new SimpleFlowerMaterial("rose", MobEffects.NIGHT_VISION, 5));
+	public static SimpleFlowerMaterial BLUE_ROSE = register(new SimpleFlowerMaterial("blue_rose", MobEffects.NIGHT_VISION, 5));
 }

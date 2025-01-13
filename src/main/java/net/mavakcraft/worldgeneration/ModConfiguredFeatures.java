@@ -2,7 +2,6 @@ package net.mavakcraft.worldgeneration;
 
 import java.util.List;
 
-import net.mavakcraft.Blocks;
 import net.mavakcraft.Materials;
 import net.mavakcraft.MavakCraft;
 import net.minecraft.core.registries.Registries;
@@ -40,8 +39,8 @@ public class ModConfiguredFeatures {
 		register(ROSES_PLACED, Feature.FLOWER, FeatureUtils.simpleRandomPatchConfiguration(
 		64, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(
 			SimpleWeightedRandomList.<BlockState>builder()
-				.add(Blocks.ROSE.get().defaultBlockState(), 2)
-				.add(Blocks.BLUE_ROSE.get().defaultBlockState(), 2)
+				.add(Materials.ROSE.flower.get().defaultBlockState(), 2)
+				.add(Materials.BLUE_ROSE.flower.get().defaultBlockState(), 2)
 			)))
 		));
 		// Ores
