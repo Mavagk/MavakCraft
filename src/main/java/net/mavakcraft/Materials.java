@@ -11,6 +11,7 @@ import net.mavakcraft.datagenerator.ModRecipeProvider;
 import net.mavakcraft.material.GemMaterial;
 import net.mavakcraft.material.Material;
 import net.mavakcraft.material.MetalMaterial;
+import net.mavakcraft.material.PowderBlockMaterial;
 import net.mavakcraft.registry.ModBlocksDeferredRegister;
 import net.mavakcraft.registry.ModItemsDeferredRegister;
 import net.minecraft.tags.BlockTags;
@@ -61,4 +62,10 @@ public class Materials {
 	public static GemMaterial TOPAZ = register(new GemMaterial("topaz", 3, 7, MapColor.COLOR_BROWN, BlockTags.NEEDS_IRON_TOOL));
 
 	public static MetalMaterial TIN = register(new MetalMaterial("tin", MapColor.METAL, MapColor.METAL, BlockTags.NEEDS_STONE_TOOL));
+
+	public static PowderBlockMaterial GLOWSTONE_DUST_BLOCK = register(new PowderBlockMaterial("glowstone_dust", 0xB7966E, MapColor.SAND, 15));
+	public static PowderBlockMaterial BLAZE_POWDER_BLOCK = register(new PowderBlockMaterial("blaze_powder", 0xFFA300, MapColor.COLOR_ORANGE, 0));
+	public static PowderBlockMaterial GUNPOWDER_BLOCK = register(new PowderBlockMaterial("gunpowder", 0x545454, MapColor.STONE, 0));
+	public static PowderBlockMaterial SUGAR_BLOCK = register(new PowderBlockMaterial("sugar", 0xEAEAEA, MapColor.SAND, 0));
+	public static PowderBlockMaterial SALT_BLOCK = register(new PowderBlockMaterial("salt", 0xEAEAEA, MapColor.SAND, 0));
 }

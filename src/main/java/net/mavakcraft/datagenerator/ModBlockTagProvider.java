@@ -35,12 +35,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 			.add(Blocks.TURTLE_SCUTE_BLOCK.get())
 			.add(Blocks.NETHERITE_SCRAP_BLOCK.get())
 			.add(Blocks.NETHER_STAR_BLOCK.get());
-		tag(BlockTags.MINEABLE_WITH_SHOVEL)
-			.add(Blocks.GLOWSTONE_DUST_BLOCK.get())
-			.add(Blocks.GUNPOWDER_BLOCK.get())
-			.add(Blocks.SUGAR_BLOCK.get())
-			.add(Blocks.SALT_BLOCK.get())
-			.add(Blocks.BLAZE_POWDER_BLOCK.get());
 		tag(BlockTags.MINEABLE_WITH_AXE)
 			.add(Blocks.LEATHER_BLOCK.get())
 			.add(Blocks.RABBIT_HIDE_BLOCK.get());

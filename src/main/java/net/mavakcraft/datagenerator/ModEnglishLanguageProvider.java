@@ -27,10 +27,6 @@ public class ModEnglishLanguageProvider extends LanguageProvider {
 		addBlock(Blocks.ROSE, "Rose");
 		addBlock(Blocks.BLUE_ROSE, "Blue Rose");
 		addBlock(Blocks.CHARCOAL_BLOCK, "Block of Charcoal");
-		addBlock(Blocks.GLOWSTONE_DUST_BLOCK, "Block of Glowstone Dust");
-		addBlock(Blocks.GUNPOWDER_BLOCK, "Block of Gunpowder");
-		addBlock(Blocks.SUGAR_BLOCK, "Block of Sugar");
-		addBlock(Blocks.BLAZE_POWDER_BLOCK, "Block of Blaze Powder");
 		addBlock(Blocks.FEATHER_BLOCK, "Feather Feathers");
 		addBlock(Blocks.FLINT_BLOCK, "Block of Flint");
 		addBlock(Blocks.LEATHER_BLOCK, "Block of Leather");
@@ -39,7 +35,6 @@ public class ModEnglishLanguageProvider extends LanguageProvider {
 		addBlock(Blocks.NETHERITE_SCRAP_BLOCK, "Block of Netherite Scrap");
 		addBlock(Blocks.RABBIT_HIDE_BLOCK, "Block of Rabbit Hide");
 		addBlock(Blocks.TURTLE_SCUTE_BLOCK, "Block of Turtle Scutes");
-		addBlock(Blocks.SALT_BLOCK, "Block of Salt");
 		addBlock(Blocks.BYTE_BLOCK, "Byte Block");
 		addBlock(Blocks.PRIMARY_INPUT_BYTE_BLOCK, "Primary Input Byte Block");
 		addBlock(Blocks.SECONDARY_INPUT_BYTE_BLOCK, "Secondary Input Byte Block");

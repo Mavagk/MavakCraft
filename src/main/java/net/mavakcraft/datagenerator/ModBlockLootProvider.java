@@ -35,11 +35,6 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
 		dropSelf(Blocks.FEATHER_BLOCK.get());
 		dropSelf(Blocks.ROSE.get());
 		dropSelf(Blocks.BLUE_ROSE.get());
-		dropSelf(Blocks.GLOWSTONE_DUST_BLOCK.get());
-		dropSelf(Blocks.BLAZE_POWDER_BLOCK.get());
-		dropSelf(Blocks.GUNPOWDER_BLOCK.get());
-		dropSelf(Blocks.SUGAR_BLOCK.get());
-		dropSelf(Blocks.SALT_BLOCK.get());
 		dropSelf(Blocks.BYTE_BLOCK.get());
 		dropSelf(Blocks.PRIMARY_INPUT_BYTE_BLOCK.get());
 		dropSelf(Blocks.SECONDARY_INPUT_BYTE_BLOCK.get());

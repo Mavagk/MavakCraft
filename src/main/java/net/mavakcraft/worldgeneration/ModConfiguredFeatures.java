@@ -45,9 +45,9 @@ public class ModConfiguredFeatures {
 			)))
 		));
 		// Ores
-		registerSimpleOverworldOre(RUBY_ORE_PLACED, Materials.RUBY.ore.get(), Materials.RUBY.deepslateOre.get(), 5);
-		registerSimpleOverworldOre(SAPPHIRE_ORE_PLACED, Materials.SAPPHIRE.ore.get(), Materials.SAPPHIRE.deepslateOre.get(), 10);
-		registerSimpleOverworldOre(TOPAZ_ORE_PLACED, Materials.TOPAZ.ore.get(), Materials.TOPAZ.deepslateOre.get(), 3);
+		registerSimpleOverworldOre(RUBY_ORE_PLACED, Materials.RUBY.ores.ore.get(), Materials.RUBY.ores.deepslateOre.get(), 5);
+		registerSimpleOverworldOre(SAPPHIRE_ORE_PLACED, Materials.SAPPHIRE.ores.ore.get(), Materials.SAPPHIRE.ores.deepslateOre.get(), 10);
+		registerSimpleOverworldOre(TOPAZ_ORE_PLACED, Materials.TOPAZ.ores.ore.get(), Materials.TOPAZ.ores.deepslateOre.get(), 3);
 	}
 
 	public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {

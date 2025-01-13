@@ -44,11 +44,11 @@ public class ModRecipeProvider extends RecipeProvider {
 		recipesForItemStorageBlock(Items.RABBIT_HIDE, Blocks.RABBIT_HIDE_BLOCK.get().asItem());
 		recipesForItemStorageBlock(Items.FEATHER, Blocks.FEATHER_BLOCK.get().asItem());
 		recipesForItemStorageBlock(Items.NETHER_WART, Blocks.NETHER_WART_BLOCK.get().asItem());
-		recipesForItemStorageBlock(Items.GLOWSTONE_DUST, Blocks.GLOWSTONE_DUST_BLOCK.get().asItem());
-		recipesForItemStorageBlock(Items.GUNPOWDER, Blocks.GUNPOWDER_BLOCK.get().asItem());
-		recipesForItemStorageBlock(Items.BLAZE_POWDER, Blocks.BLAZE_POWDER_BLOCK.get().asItem());
-		recipesForItemStorageBlock(Items.SUGAR, Blocks.SUGAR_BLOCK.get().asItem());
-		recipesForItemStorageBlock(MavakCraft.SALT.get(), Blocks.SALT_BLOCK.get().asItem());
+		recipesForItemStorageBlock(Items.GLOWSTONE_DUST, Materials.GLOWSTONE_DUST_BLOCK.block.get().asItem());
+		recipesForItemStorageBlock(Items.GUNPOWDER, Materials.GUNPOWDER_BLOCK.block.get().asItem());
+		recipesForItemStorageBlock(Items.BLAZE_POWDER, Materials.BLAZE_POWDER_BLOCK.block.get().asItem());
+		recipesForItemStorageBlock(Items.SUGAR, Materials.SUGAR_BLOCK.block.get().asItem());
+		recipesForItemStorageBlock(MavakCraft.SALT.get(), Materials.SALT_BLOCK.block.get().asItem());
 		for (int dyeColorId = 0; dyeColorId < 16; dyeColorId++) {
 			recipesForItemStorageBlock(DyeItem.byColor(DyeColor.byId(dyeColorId)), Blocks.DYE_BLOCKS[dyeColorId].get().asItem());
 		}

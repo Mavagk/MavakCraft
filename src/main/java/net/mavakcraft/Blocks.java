@@ -10,7 +10,6 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.ColoredFallingBlock;
 import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
@@ -28,9 +27,6 @@ public class Blocks {
 		.strength(35.0F, 1200.0F)
 		.lightLevel(state -> 12),
 	true, CreativeModeTabs.BUILDING_BLOCKS);
-	
-	// Gems
-	//public static final DeferredBlock<Block>[] RUBY_BLOCKS = BLOCKS.registerSimpleGemBlocks("ruby", 3, 7, MapColor.COLOR_RED, (props) -> props);
 
 	// Item blocks
 	public static final DeferredBlock<Block> CHARCOAL_BLOCK = BLOCKS.registerSimpleBlock("charcoal_block", (props) -> props
@@ -100,26 +96,6 @@ public class Blocks {
 			);
 		}
 	}
-	public static final DeferredBlock<ColoredFallingBlock> GLOWSTONE_DUST_BLOCK = BLOCKS.registerSimpleFallingBlock(
-		"glowstone_dust_block", 0xB7966E,
-		(props) -> props.mapColor(MapColor.SAND).lightLevel(state -> 15), true, CreativeModeTabs.BUILDING_BLOCKS
-	);
-	public static final DeferredBlock<ColoredFallingBlock> BLAZE_POWDER_BLOCK = BLOCKS.registerSimpleFallingBlock(
-		"blaze_powder_block", 0xFFA300,
-		(props) -> props.mapColor(MapColor.COLOR_ORANGE).lightLevel(state -> 15), true, CreativeModeTabs.BUILDING_BLOCKS
-	);
-	public static final DeferredBlock<ColoredFallingBlock> GUNPOWDER_BLOCK = BLOCKS.registerSimpleFallingBlock(
-		"gunpowder_block", 0x545454,
-		(props) -> props.mapColor(MapColor.STONE), true, CreativeModeTabs.BUILDING_BLOCKS
-	);
-	public static final DeferredBlock<ColoredFallingBlock> SUGAR_BLOCK = BLOCKS.registerSimpleFallingBlock(
-		"sugar_block", 0xEAEAEA,
-		(props) -> props.mapColor(MapColor.SAND), true, CreativeModeTabs.BUILDING_BLOCKS
-	);
-	public static final DeferredBlock<ColoredFallingBlock> SALT_BLOCK = BLOCKS.registerSimpleFallingBlock(
-		"salt_block", 0xEAEAEA,
-		(props) -> props.mapColor(MapColor.SAND), true, CreativeModeTabs.BUILDING_BLOCKS
-	);
 
 	// Byte blocks
 	public static final DeferredBlock<ByteBlock> BYTE_BLOCK = BLOCKS.registerSimpleByteBlock(

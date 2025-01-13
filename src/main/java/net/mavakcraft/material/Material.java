@@ -18,42 +18,42 @@ public abstract class Material {
 
 	public final void registerBlocks(ModBlocksDeferredRegister register) {
 		onRegisterBlocks(register);
-		subMaterials.forEach(material -> material.onRegisterBlocks(register));
+		subMaterials.forEach(material -> material.registerBlocks(register));
 	}
 
 	public final void registerItems(ModItemsDeferredRegister register) {
 		onRegisterItems(register);
-		subMaterials.forEach(material -> material.onRegisterItems(register));
+		subMaterials.forEach(material -> material.registerItems(register));
 	}
 
 	public final void generateLoot(ModBlockLootProvider provider) {
 		onGenerateLoot(provider);
-		subMaterials.forEach(material -> material.onGenerateLoot(provider));
+		subMaterials.forEach(material -> material.generateLoot(provider));
 	}
 
 	public final void generateBlockStates(ModBlockStateProvider provider) {
 		onGenerateBlockStates(provider);
-		subMaterials.forEach(material -> material.onGenerateBlockStates(provider));
+		subMaterials.forEach(material -> material.generateBlockStates(provider));
 	}
 
 	public final void generateItemModels(ModItemModelProvider provider) {
 		onGenerateItemModels(provider);
-		subMaterials.forEach(material -> material.onGenerateItemModels(provider));
+		subMaterials.forEach(material -> material.generateItemModels(provider));
 	}
 
 	public final void generateRecipes(ModRecipeProvider provider) {
 		onGenerateRecipes(provider);
-		subMaterials.forEach(material -> material.onGenerateRecipes(provider));
+		subMaterials.forEach(material -> material.generateRecipes(provider));
 	}
 
 	public final void generateBlockTags(ModBlockTagProvider provider) {
 		onGenerateBlockTags(provider);
-		subMaterials.forEach(material -> material.onGenerateBlockTags(provider));
+		subMaterials.forEach(material -> material.generateBlockTags(provider));
 	}
 
 	public final void generateEnglishNames(ModEnglishLanguageProvider provider) {
 		onGenerateEnglishNames(provider);
-		subMaterials.forEach(material -> material.onGenerateEnglishNames(provider));
+		subMaterials.forEach(material -> material.generateEnglishNames(provider));
 	}
 
 	protected void onRegisterBlocks(ModBlocksDeferredRegister register) {

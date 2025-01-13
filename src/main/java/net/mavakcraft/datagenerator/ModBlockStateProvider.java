@@ -31,11 +31,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		simpleBlockWithItem(Blocks.RABBIT_HIDE_BLOCK.get());
 		simpleBlockWithItem(Blocks.NETHER_WART_BLOCK.get());
 		simpleBlockWithItem(Blocks.FEATHER_BLOCK.get());
-		simpleBlockWithItem(Blocks.GLOWSTONE_DUST_BLOCK.get());
-		simpleBlockWithItem(Blocks.GUNPOWDER_BLOCK.get());
-		simpleBlockWithItem(Blocks.BLAZE_POWDER_BLOCK.get());
-		simpleBlockWithItem(Blocks.SUGAR_BLOCK.get());
-		simpleBlockWithItem(Blocks.SALT_BLOCK.get());
 		simpleBlockWithItem(Blocks.BYTE_BLOCK.get());
 		simpleFacingWithItem(Blocks.PRIMARY_INPUT_BYTE_BLOCK.get());
 		simpleFacingWithItem(Blocks.SECONDARY_INPUT_BYTE_BLOCK.get());
