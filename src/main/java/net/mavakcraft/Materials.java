@@ -10,8 +10,10 @@ import net.mavakcraft.datagenerator.ModItemModelProvider;
 import net.mavakcraft.datagenerator.ModRecipeProvider;
 import net.mavakcraft.material.GemMaterial;
 import net.mavakcraft.material.Material;
+import net.mavakcraft.material.MetalMaterial;
 import net.mavakcraft.registry.ModBlocksDeferredRegister;
 import net.mavakcraft.registry.ModItemsDeferredRegister;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.material.MapColor;
 
 public class Materials {
@@ -57,4 +59,6 @@ public class Materials {
 	public static GemMaterial RUBY = register(new GemMaterial("ruby", 3, 7, MapColor.COLOR_RED));
 	public static GemMaterial SAPPHIRE = register(new GemMaterial("sapphire", 3, 7, MapColor.COLOR_BLUE));
 	public static GemMaterial TOPAZ = register(new GemMaterial("topaz", 3, 7, MapColor.COLOR_BROWN));
+
+	public static MetalMaterial TIN = register(new MetalMaterial("tin", MapColor.METAL, MapColor.METAL, BlockTags.NEEDS_STONE_TOOL));
 }

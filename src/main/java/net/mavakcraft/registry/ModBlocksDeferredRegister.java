@@ -114,7 +114,7 @@ public class ModBlocksDeferredRegister extends Blocks {
 	}
 
 	/**
-	 * Register a ore simple block.
+	 * Register a simple ore block.
 	 * @param doRegisterItem should a block item be registered for this block.
 	 * @param vanillaCreativeTabToPutIn If non-null, is the vanilla tab to put the block item into, the block item is also put into the mod creative mode tab.
 	 * If null, the block item is not put into any creative mode tabs.
@@ -126,6 +126,21 @@ public class ModBlocksDeferredRegister extends Blocks {
 			.strength(5.0F, 6.0F)
 			.sound(SoundType.METAL)
 		), true, CreativeModeTabs.BUILDING_BLOCKS);
+	}
+
+	/**
+	 * Register a simple raw block.
+	 * @param doRegisterItem should a block item be registered for this block.
+	 * @param vanillaCreativeTabToPutIn If non-null, is the vanilla tab to put the block item into, the block item is also put into the mod creative mode tab.
+	 * If null, the block item is not put into any creative mode tabs.
+	 */
+	public @Nonnull DeferredBlock<Block> registerSimpleRawBlock(@Nonnull String name, MapColor mapColor) {
+		return register("raw_" + name + "_block", () -> new Block(BlockBehaviour.Properties.of()
+			.mapColor(mapColor)
+			.instrument(NoteBlockInstrument.BASEDRUM)
+			.requiresCorrectToolForDrops()
+			.strength(5.0F, 6.0F)
+		), true, CreativeModeTabs.NATURAL_BLOCKS);
 	}
 
 	/**

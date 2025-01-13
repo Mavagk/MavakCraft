@@ -14,6 +14,7 @@ import net.mavakcraft.registry.ModBlocksDeferredRegister;
 import net.mavakcraft.registry.ModItemsDeferredRegister;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -22,44 +23,51 @@ import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 
-public class GemMaterial extends Material {
+public class MetalMaterial extends Material {
 	public DeferredBlock<DropExperienceBlock> ore;
 	public DeferredBlock<DropExperienceBlock> deepslateOre;
 	public DeferredBlock<Block> materialBlock;
+	public DeferredBlock<Block> rawBlock;
 
-	public DeferredItem<Item> gem;
+	public DeferredItem<Item> rawMetal;
+	public DeferredItem<Item> ingot;
+	public DeferredItem<Item> nugget;
 
 	@Nonnull String name;
 	@Nonnull String englishName;
-	int xpMin;
-	int xpMax;
 	@Nonnull MapColor mapColor;
+	@Nonnull MapColor rawColor;
+	@Nonnull TagKey<Block> toolNeeded;
 
-	public GemMaterial(@Nonnull String name, int xpMin, int xpMax, @Nonnull MapColor mapColor) {
+	public MetalMaterial(@Nonnull String name, @Nonnull MapColor mapColor, @Nonnull MapColor rawColor, TagKey<Block> toolNeeded) {
 		this.name = name;
-		this.xpMin = xpMin;
-		this.xpMax = xpMax;
 		this.mapColor = mapColor;
+		this.rawColor = rawColor;
+		this.toolNeeded = toolNeeded;
 		this.englishName = StringUtils.capitalize(name).replace('_', ' ');
 	}
 
 	@Override
 	public void registerBlocks(ModBlocksDeferredRegister register) {
-		ore = register.registerSimpleOre(name, xpMin, xpMax);
-		deepslateOre = register.registerSimpleDeepslateOre(name, xpMin, xpMax);
+		ore = register.registerSimpleOre(name, 0, 0);
+		deepslateOre = register.registerSimpleDeepslateOre(name, 0, 0);
 		materialBlock = register.registerSimpleMaterialBlock(name, mapColor);
+		rawBlock = register.registerSimpleRawBlock(name, rawColor);
 	}
 
 	@Override
 	public void registerItems(ModItemsDeferredRegister register) {
-		gem = register.registerSimpleItem(name, CreativeModeTabs.INGREDIENTS);
+		ingot = register.registerSimpleItem(name + "_ingot", CreativeModeTabs.INGREDIENTS);
+		rawMetal = register.registerSimpleItem("raw_" + name, CreativeModeTabs.INGREDIENTS);
+		nugget = register.registerSimpleItem(name + "_nugget", CreativeModeTabs.INGREDIENTS);
 	}
 
 	@Override
 	public void generateLoot(ModBlockLootProvider provider) {
 		provider.dropSelf(materialBlock.get());
-		provider.dropOreDrops(ore.get(), gem.get());
-		provider.dropOreDrops(deepslateOre.get(), gem.get());
+		provider.dropSelf(rawBlock.get());
+		provider.dropOreDrops(ore.get(), rawMetal.get());
+		provider.dropOreDrops(deepslateOre.get(), rawMetal.get());
 	}
 
 	@Override
@@ -67,18 +75,24 @@ public class GemMaterial extends Material {
 		provider.simpleBlockWithItem(ore.get());
 		provider.simpleBlockWithItem(deepslateOre.get());
 		provider.simpleBlockWithItem(materialBlock.get());
+		provider.simpleBlockWithItem(rawBlock.get());
 	}
 
 	@Override
 	public void generateItemModels(ModItemModelProvider provider) {
-		provider.basicItem(gem.get());
+		provider.basicItem(ingot.get());
+		provider.basicItem(nugget.get());
+		provider.basicItem(rawMetal.get());
 	}
 
 	@Override
 	public void generateRecipes(ModRecipeProvider provider) {
-		provider.recipesForItemStorageBlock(gem.get(), materialBlock.asItem());
-		provider.oreSmeltingRecipe(ore.asItem(), gem.get(), 1, 200, RecipeCategory.MISC);
-		provider.oreSmeltingRecipe(deepslateOre.asItem(), gem.get(), 1, 200, RecipeCategory.MISC);
+		provider.recipesForItemStorageBlock(ingot.get(), materialBlock.asItem());
+		provider.recipesForItemStorageBlock(rawMetal.get(), rawBlock.asItem());
+		provider.recipesForNugget(nugget.get(), ingot.get());
+		provider.oreSmeltingRecipe(ore.asItem(), ingot.get(), 1, 200, RecipeCategory.MISC);
+		provider.oreSmeltingRecipe(deepslateOre.asItem(), ingot.get(), 1, 200, RecipeCategory.MISC);
+		provider.oreSmeltingRecipe(rawMetal.asItem(), ingot.get(), 1, 200, RecipeCategory.MISC);
 	}
 
 	@Override
@@ -86,11 +100,13 @@ public class GemMaterial extends Material {
 		provider.tag(BlockTags.MINEABLE_WITH_PICKAXE)
 			.add(ore.get())
 			.add(deepslateOre.get())
-			.add(materialBlock.get());
-		provider.tag(BlockTags.NEEDS_IRON_TOOL)
+			.add(materialBlock.get())
+			.add(rawBlock.get());
+		provider.tag(toolNeeded)
 			.add(ore.get())
 			.add(deepslateOre.get())
-			.add(materialBlock.get());
+			.add(materialBlock.get())
+			.add(rawBlock.get());
 	}
 
 	@Override
@@ -98,6 +114,9 @@ public class GemMaterial extends Material {
 		provider.add(ore.get(), englishName + " Ore");
 		provider.add(deepslateOre.get(), "Deepslate " + englishName + " Ore");
 		provider.add(materialBlock.get(), "Block of " + englishName);
-		provider.add(gem.get(), englishName);
+		provider.add(rawBlock.get(), "Block of Raw " + englishName);
+		provider.add(ingot.get(), englishName + " Ingot");
+		provider.add(rawMetal.get(), "Raw " + englishName);
+		provider.add(nugget.get(), englishName + " Nugget");
 	}
 }

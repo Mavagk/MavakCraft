@@ -106,11 +106,21 @@ public class ModRecipeProvider extends RecipeProvider {
 
 	/**
 	 * Build a recipes for crafting an 9 of an item into it's storage block and vice versa.
-	 * @param storage_of The item we craft 9 of into the block and that the block can be crafted back into.
-	 * @param storage_block The block we craft and can uncraft.
+	 * @param storageOf The item we craft 9 of into the block and that the block can be crafted back into.
+	 * @param storageBlock The block we craft and can uncraft.
 	 */
-	public void recipesForItemStorageBlock(Item storage_of, Item storage_block) {
-		shapelessRecipeForItemToItem(storage_of, 9, storage_block, RecipeCategory.BUILDING_BLOCKS);
-		shapelessRecipeForItemToItem(storage_block, storage_of, 9, RecipeCategory.MISC);
+	public void recipesForItemStorageBlock(Item storageOf, Item storageBlock) {
+		shapelessRecipeForItemToItem(storageOf, 9, storageBlock, RecipeCategory.BUILDING_BLOCKS);
+		shapelessRecipeForItemToItem(storageBlock, storageOf, 9, RecipeCategory.MISC);
+	}
+
+	/**
+	 * Build a recipes for crafting an 9 of a nugget into it's ingot and vice versa.
+	 * @param nugget The nugget we craft 9 of into the ingot and that the ingot can be crafted back into.
+	 * @param ingot The ingot we craft and can uncraft.
+	 */
+	public void recipesForNugget(Item nugget, Item ingot) {
+		shapelessRecipeForItemToItem(nugget, 9, ingot, RecipeCategory.MISC);
+		shapelessRecipeForItemToItem(ingot, nugget, 9, RecipeCategory.MISC);
 	}
 }
