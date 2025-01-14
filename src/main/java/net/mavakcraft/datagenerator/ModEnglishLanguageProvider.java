@@ -24,15 +24,10 @@ public class ModEnglishLanguageProvider extends LanguageProvider {
 		addItem(MavakCraft.SALT, "Salt");
 
 		addBlock(Blocks.GLOWING_OBSIDIAN, "Glowing Obsidian");
-		addBlock(Blocks.CHARCOAL_BLOCK, "Block of Charcoal");
 		addBlock(Blocks.FEATHER_BLOCK, "Feather Feathers");
-		addBlock(Blocks.FLINT_BLOCK, "Block of Flint");
-		addBlock(Blocks.LEATHER_BLOCK, "Block of Leather");
-		addBlock(Blocks.NETHER_STAR_BLOCK, "Nether Star Block");
+		//addBlock(Blocks.LEATHER_BLOCK, "Block of Leather");
 		addBlock(Blocks.NETHER_WART_BLOCK, "Block of Nether Wart");
-		addBlock(Blocks.NETHERITE_SCRAP_BLOCK, "Block of Netherite Scrap");
-		addBlock(Blocks.RABBIT_HIDE_BLOCK, "Block of Rabbit Hide");
-		addBlock(Blocks.TURTLE_SCUTE_BLOCK, "Block of Turtle Scutes");
+		//addBlock(Blocks.RABBIT_HIDE_BLOCK, "Block of Rabbit Hide");
 		addBlock(Blocks.BYTE_BLOCK, "Byte Block");
 		addBlock(Blocks.PRIMARY_INPUT_BYTE_BLOCK, "Primary Input Byte Block");
 		addBlock(Blocks.SECONDARY_INPUT_BYTE_BLOCK, "Secondary Input Byte Block");

@@ -7,58 +7,58 @@ import net.mavakcraft.datagenerator.ModBlockLootProvider;
 import net.mavakcraft.datagenerator.ModBlockStateProvider;
 import net.mavakcraft.datagenerator.ModBlockTagProvider;
 import net.mavakcraft.datagenerator.ModEnglishLanguageProvider;
-import net.mavakcraft.datagenerator.ModItemModelProvider;
 import net.mavakcraft.registry.ModBlocksDeferredRegister;
-import net.minecraft.core.Holder;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.level.block.FlowerBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
-public class SimpleFlowerMaterial extends Material {
-	public DeferredBlock<FlowerBlock> flower;
+public class RockItemBlockMaterial extends Material {
+	public DeferredBlock<Block> block;
 
 	@Nonnull String name;
 	@Nonnull String englishName;
-	@Nonnull Holder<MobEffect> effect;
-	float seconds;
+	MapColor mapColor;
+	int lightLevel;
 
-	public SimpleFlowerMaterial(@Nonnull String name, @Nonnull Holder<MobEffect> effect, float seconds) {
+	public RockItemBlockMaterial(@Nonnull String name, @Nonnull MapColor mapColor, int lightLevel) {
 		this.name = name;
+		this.mapColor = mapColor;
 		this.englishName = MavakCraft.idToTitle(name);
-		this.effect = effect;
-		this.seconds = seconds;
+		this.lightLevel = lightLevel;
 	}
 
 	@Override
 	public void onRegisterBlocks(ModBlocksDeferredRegister register) {
-		flower = register.registerSimpleFlower(name, effect, seconds, true, CreativeModeTabs.NATURAL_BLOCKS);
+		block = register.registerSimpleBlock(name + "_block", (props) -> props
+			.mapColor(mapColor)
+			.instrument(NoteBlockInstrument.BASEDRUM)
+			.requiresCorrectToolForDrops()
+			.strength(5.0F, 6.0F)
+			.lightLevel(blockState -> lightLevel),
+		true, CreativeModeTabs.BUILDING_BLOCKS);
 	}
 
 	@Override
 	public void onGenerateLoot(ModBlockLootProvider provider) {
-		provider.dropSelf(flower.get());
+		provider.dropSelf(block.get());
 	}
 
 	@Override
 	public void onGenerateBlockStates(ModBlockStateProvider provider) {
-		provider.simplePlant(flower.get());
-	}
-
-	@Override
-	protected void onGenerateItemModels(ModItemModelProvider provider) {
-		provider.basicFlatBlockItem(flower.get());
+		provider.simpleBlockWithItem(block.get());
 	}
 
 	@Override
 	public void onGenerateEnglishNames(ModEnglishLanguageProvider provider) {
-		provider.add(flower.get(), englishName);
+		provider.add(block.get(), "Block of " + englishName);
 	}
 
 	@Override
 	protected void onGenerateBlockTags(ModBlockTagProvider provider) {
-		provider.tag(BlockTags.SMALL_FLOWERS)
-			.add(flower.get());
+		provider.tag(BlockTags.MINEABLE_WITH_PICKAXE)
+			.add(block.get());
 	}
 }

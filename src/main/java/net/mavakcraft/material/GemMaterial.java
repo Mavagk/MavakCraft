@@ -2,8 +2,7 @@ package net.mavakcraft.material;
 
 import javax.annotation.Nonnull;
 
-import org.apache.commons.lang3.StringUtils;
-
+import net.mavakcraft.MavakCraft;
 import net.mavakcraft.datagenerator.ModBlockLootProvider;
 import net.mavakcraft.datagenerator.ModEnglishLanguageProvider;
 import net.mavakcraft.datagenerator.ModItemModelProvider;
@@ -28,7 +27,7 @@ public class GemMaterial extends Material {
 
 	public GemMaterial(@Nonnull String name, int xpMin, int xpMax, @Nonnull MapColor mapColor, TagKey<Block> toolNeeded) {
 		this.name = name;
-		this.englishName = StringUtils.capitalize(name).replace('_', ' ');
+		this.englishName = MavakCraft.idToTitle(name);
 		materialBlock = addSubMaterial(new MaterialBlockMaterial(name, mapColor, toolNeeded));
 		ores = addSubMaterial(new OverworldOresMaterial(name, 0, 0, toolNeeded));
 	}

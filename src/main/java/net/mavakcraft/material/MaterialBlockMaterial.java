@@ -2,8 +2,7 @@ package net.mavakcraft.material;
 
 import javax.annotation.Nonnull;
 
-import org.apache.commons.lang3.StringUtils;
-
+import net.mavakcraft.MavakCraft;
 import net.mavakcraft.datagenerator.ModBlockLootProvider;
 import net.mavakcraft.datagenerator.ModBlockStateProvider;
 import net.mavakcraft.datagenerator.ModBlockTagProvider;
@@ -26,7 +25,7 @@ public class MaterialBlockMaterial extends Material {
 	public MaterialBlockMaterial(@Nonnull String name, @Nonnull MapColor mapColor, TagKey<Block> toolNeeded) {
 		this.name = name;
 		this.mapColor = mapColor;
-		this.englishName = StringUtils.capitalize(name).replace('_', ' ');
+		this.englishName = MavakCraft.idToTitle(name);
 		this.toolNeeded = toolNeeded;
 	}
 

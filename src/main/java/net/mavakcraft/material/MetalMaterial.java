@@ -2,8 +2,7 @@ package net.mavakcraft.material;
 
 import javax.annotation.Nonnull;
 
-import org.apache.commons.lang3.StringUtils;
-
+import net.mavakcraft.MavakCraft;
 import net.mavakcraft.datagenerator.ModBlockLootProvider;
 import net.mavakcraft.datagenerator.ModBlockStateProvider;
 import net.mavakcraft.datagenerator.ModBlockTagProvider;
@@ -40,7 +39,7 @@ public class MetalMaterial extends Material {
 		this.name = name;
 		this.rawColor = rawColor;
 		this.toolNeeded = toolNeeded;
-		this.englishName = StringUtils.capitalize(name).replace('_', ' ');
+		this.englishName = MavakCraft.idToTitle(name);
 		materialBlock = addSubMaterial(new MaterialBlockMaterial(name, mapColor, toolNeeded));
 		ores = addSubMaterial(new OverworldOresMaterial(name, 0, 0, toolNeeded));
 	}

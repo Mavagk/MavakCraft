@@ -12,7 +12,9 @@ import net.mavakcraft.material.GemMaterial;
 import net.mavakcraft.material.Material;
 import net.mavakcraft.material.MetalMaterial;
 import net.mavakcraft.material.PowderBlockMaterial;
+import net.mavakcraft.material.RockItemBlockMaterial;
 import net.mavakcraft.material.SimpleFlowerMaterial;
+import net.mavakcraft.material.WoodLikeItemBlockMaterial;
 import net.mavakcraft.registry.ModBlocksDeferredRegister;
 import net.mavakcraft.registry.ModItemsDeferredRegister;
 import net.minecraft.tags.BlockTags;
@@ -73,4 +75,12 @@ public class Materials {
 
 	public static SimpleFlowerMaterial ROSE = register(new SimpleFlowerMaterial("rose", MobEffects.NIGHT_VISION, 5));
 	public static SimpleFlowerMaterial BLUE_ROSE = register(new SimpleFlowerMaterial("blue_rose", MobEffects.NIGHT_VISION, 5));
+
+	public static RockItemBlockMaterial CHARCOAL_BLOCK = register(new RockItemBlockMaterial("charcoal", MapColor.COLOR_BLACK, 0));
+	public static RockItemBlockMaterial FLINT_BLOCK = register(new RockItemBlockMaterial("flint", MapColor.COLOR_BLACK, 0));
+	public static RockItemBlockMaterial TURTLE_SCUTE_BLOCK = register(new RockItemBlockMaterial("turtle_scute", MapColor.GRASS, 0));
+	public static RockItemBlockMaterial NETHERITE_SCRAP_BLOCK = register(new RockItemBlockMaterial("netherite_scrap", MapColor.COLOR_BLACK, 0));
+	public static RockItemBlockMaterial NETHER_STAR_BLOCK = register(new RockItemBlockMaterial("nether_star", MapColor.COLOR_YELLOW, 0));
+	public static WoodLikeItemBlockMaterial LEATHER_BLOCK = register(new WoodLikeItemBlockMaterial("leather", MapColor.DIRT, 0));
+	public static WoodLikeItemBlockMaterial RABBIT_HIDE_BLOCK = register(new WoodLikeItemBlockMaterial("rabbit_hide", MapColor.DIRT, 0));
 }

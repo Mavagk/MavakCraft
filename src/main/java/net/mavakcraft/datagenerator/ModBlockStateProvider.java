@@ -22,13 +22,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	@Override
 	protected void registerStatesAndModels() {
 		simpleBlockWithItem(Blocks.GLOWING_OBSIDIAN.get());
-		simpleBlockWithItem(Blocks.CHARCOAL_BLOCK.get());
-		simpleBlockWithItem(Blocks.FLINT_BLOCK.get());
-		simpleBlockWithItem(Blocks.TURTLE_SCUTE_BLOCK.get());
-		simpleBlockWithItem(Blocks.NETHERITE_SCRAP_BLOCK.get());
-		simpleBlockWithItem(Blocks.NETHER_STAR_BLOCK.get());
-		simpleBlockWithItem(Blocks.LEATHER_BLOCK.get());
-		simpleBlockWithItem(Blocks.RABBIT_HIDE_BLOCK.get());
+		//simpleBlockWithItem(Blocks.LEATHER_BLOCK.get());
+		//simpleBlockWithItem(Blocks.RABBIT_HIDE_BLOCK.get());
 		simpleBlockWithItem(Blocks.NETHER_WART_BLOCK.get());
 		simpleBlockWithItem(Blocks.FEATHER_BLOCK.get());
 		simpleBlockWithItem(Blocks.BYTE_BLOCK.get());

@@ -1,5 +1,6 @@
 package net.mavakcraft;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -77,5 +78,23 @@ public class MavakCraft
 	public static void buildContents(BuildCreativeModeTabContentsEvent event) {
 		if (!Config.MOD_ITEMS_IN_VANILLA_TABS.get()) return;
 		ITEMS.putItemsInVanillaTab(event);
+	}
+
+	/*
+	 * Converts a id string such as "my_block" to title case such as "My Block"
+	 */
+	public static String idToTitle(String string) {
+		string = StringUtils.capitalize(string.replace('_', ' '));
+		boolean doCapitalize = true;
+		for (int x = 0; x < string.length(); x++) {
+			char chr = string.charAt(x);
+			if (doCapitalize) {
+				char upper = Character.toTitleCase(chr);
+				string = string.replace(" " + chr, " " + upper);
+			}
+			doCapitalize = false;
+			if (chr == ' ') doCapitalize = true;
+		}
+		return string;
 	}
 }
