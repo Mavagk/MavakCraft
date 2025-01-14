@@ -1,6 +1,5 @@
 package net.mavakcraft.datagenerator;
 
-import net.mavakcraft.Blocks;
 import net.mavakcraft.Materials;
 import net.mavakcraft.MavakCraft;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -21,16 +20,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 	@Override
 	protected void registerStatesAndModels() {
-		simpleBlockWithItem(Blocks.GLOWING_OBSIDIAN.get());
-		simpleBlockWithItem(Blocks.NETHER_WART_BLOCK.get());
-		simpleBlockWithItem(Blocks.FEATHER_BLOCK.get());
-		simpleBlockWithItem(Blocks.BYTE_BLOCK.get());
-		simpleFacingWithItem(Blocks.PRIMARY_INPUT_BYTE_BLOCK.get());
-		simpleFacingWithItem(Blocks.SECONDARY_INPUT_BYTE_BLOCK.get());
-		simpleBlockWithItem(Blocks.WRAPPING_ADD_SUB_BYTE_BLOCK.get());
-		simpleBlockWithItem(Blocks.WRAPPING_MULT_DIV_BYTE_BLOCK.get());
+		simpleBlockWithItem(MavakCraft.GLOWING_OBSIDIAN.get());
+		simpleBlockWithItem(MavakCraft.NETHER_WART_BLOCK.get());
+		simpleBlockWithItem(MavakCraft.FEATHER_BLOCK.get());
+		simpleBlockWithItem(MavakCraft.BYTE_BLOCK.get());
+		simpleFacingWithItem(MavakCraft.PRIMARY_INPUT_BYTE_BLOCK.get());
+		simpleFacingWithItem(MavakCraft.SECONDARY_INPUT_BYTE_BLOCK.get());
+		simpleBlockWithItem(MavakCraft.WRAPPING_ADD_SUB_BYTE_BLOCK.get());
+		simpleBlockWithItem(MavakCraft.WRAPPING_MULT_DIV_BYTE_BLOCK.get());
 		for (int dyeColorId = 0; dyeColorId < 16; dyeColorId++) {
-			simpleBlockWithItem(Blocks.DYE_BLOCKS[dyeColorId].get());
+			simpleBlockWithItem(MavakCraft.DYE_BLOCKS[dyeColorId].get());
 		}
 		Materials.generateBlockStates(this);
 	}

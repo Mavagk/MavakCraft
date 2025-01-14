@@ -4,8 +4,8 @@ import java.util.Set;
 
 import javax.annotation.Nonnull;
 
-import net.mavakcraft.Blocks;
 import net.mavakcraft.Materials;
+import net.mavakcraft.MavakCraft;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -23,16 +23,16 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
 
 	@Override
 	protected void generate() {
-		dropSelf(Blocks.GLOWING_OBSIDIAN.get());
-		dropSelf(Blocks.NETHER_WART_BLOCK.get());
-		dropSelf(Blocks.FEATHER_BLOCK.get());
-		dropSelf(Blocks.BYTE_BLOCK.get());
-		dropSelf(Blocks.PRIMARY_INPUT_BYTE_BLOCK.get());
-		dropSelf(Blocks.SECONDARY_INPUT_BYTE_BLOCK.get());
-		dropSelf(Blocks.WRAPPING_ADD_SUB_BYTE_BLOCK.get());
-		dropSelf(Blocks.WRAPPING_MULT_DIV_BYTE_BLOCK.get());
+		dropSelf(MavakCraft.GLOWING_OBSIDIAN.get());
+		dropSelf(MavakCraft.NETHER_WART_BLOCK.get());
+		dropSelf(MavakCraft.FEATHER_BLOCK.get());
+		dropSelf(MavakCraft.BYTE_BLOCK.get());
+		dropSelf(MavakCraft.PRIMARY_INPUT_BYTE_BLOCK.get());
+		dropSelf(MavakCraft.SECONDARY_INPUT_BYTE_BLOCK.get());
+		dropSelf(MavakCraft.WRAPPING_ADD_SUB_BYTE_BLOCK.get());
+		dropSelf(MavakCraft.WRAPPING_MULT_DIV_BYTE_BLOCK.get());
 		for (int dyeColorId = 0; dyeColorId < 16; dyeColorId++) {
-			dropSelf(Blocks.DYE_BLOCKS[dyeColorId].get());
+			dropSelf(MavakCraft.DYE_BLOCKS[dyeColorId].get());
 		}
 		Materials.generateLoot(this);
 	}
@@ -48,6 +48,6 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
 
 	@Override
 	public Iterable<Block> getKnownBlocks() {
-		return Blocks.BLOCKS.getEntries().stream().map(Holder::value)::iterator;
+		return MavakCraft.BLOCKS.getEntries().stream().map(Holder::value)::iterator;
 	}
 }

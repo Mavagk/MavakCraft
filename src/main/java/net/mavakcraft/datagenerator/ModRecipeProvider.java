@@ -3,7 +3,6 @@ package net.mavakcraft.datagenerator;
 import java.util.concurrent.CompletableFuture;
 import javax.annotation.Nonnull;
 
-import net.mavakcraft.Blocks;
 import net.mavakcraft.Materials;
 import net.mavakcraft.MavakCraft;
 import net.minecraft.core.HolderLookup;
@@ -42,15 +41,15 @@ public class ModRecipeProvider extends RecipeProvider {
 		recipesForItemStorageBlock(Items.NETHER_STAR, Materials.NETHER_STAR_BLOCK.block.get().asItem());
 		recipesForItemStorageBlock(Items.LEATHER, Materials.LEATHER_BLOCK.block.get().asItem());
 		recipesForItemStorageBlock(Items.RABBIT_HIDE, Materials.RABBIT_HIDE_BLOCK.block.get().asItem());
-		recipesForItemStorageBlock(Items.FEATHER, Blocks.FEATHER_BLOCK.get().asItem());
-		recipesForItemStorageBlock(Items.NETHER_WART, Blocks.NETHER_WART_BLOCK.get().asItem());
+		recipesForItemStorageBlock(Items.FEATHER, MavakCraft.FEATHER_BLOCK.get().asItem());
+		recipesForItemStorageBlock(Items.NETHER_WART, MavakCraft.NETHER_WART_BLOCK.get().asItem());
 		recipesForItemStorageBlock(Items.GLOWSTONE_DUST, Materials.GLOWSTONE_DUST_BLOCK.block.get().asItem());
 		recipesForItemStorageBlock(Items.GUNPOWDER, Materials.GUNPOWDER_BLOCK.block.get().asItem());
 		recipesForItemStorageBlock(Items.BLAZE_POWDER, Materials.BLAZE_POWDER_BLOCK.block.get().asItem());
 		recipesForItemStorageBlock(Items.SUGAR, Materials.SUGAR_BLOCK.block.get().asItem());
 		recipesForItemStorageBlock(MavakCraft.SALT.get(), Materials.SALT_BLOCK.block.get().asItem());
 		for (int dyeColorId = 0; dyeColorId < 16; dyeColorId++) {
-			recipesForItemStorageBlock(DyeItem.byColor(DyeColor.byId(dyeColorId)), Blocks.DYE_BLOCKS[dyeColorId].get().asItem());
+			recipesForItemStorageBlock(DyeItem.byColor(DyeColor.byId(dyeColorId)), MavakCraft.DYE_BLOCKS[dyeColorId].get().asItem());
 		}
 		Materials.generateRecipes(this);
 	}

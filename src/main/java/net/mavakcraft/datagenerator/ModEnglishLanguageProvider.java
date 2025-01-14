@@ -2,7 +2,6 @@ package net.mavakcraft.datagenerator;
 
 import javax.annotation.Nonnull;
 
-import net.mavakcraft.Blocks;
 import net.mavakcraft.Materials;
 import net.mavakcraft.MavakCraft;
 import net.minecraft.data.PackOutput;
@@ -23,16 +22,16 @@ public class ModEnglishLanguageProvider extends LanguageProvider {
 	protected void addTranslations() {
 		addItem(MavakCraft.SALT, "Salt");
 
-		addBlock(Blocks.GLOWING_OBSIDIAN, "Glowing Obsidian");
-		addBlock(Blocks.FEATHER_BLOCK, "Feather Feathers");
-		addBlock(Blocks.NETHER_WART_BLOCK, "Block of Nether Wart");
-		addBlock(Blocks.BYTE_BLOCK, "Byte Block");
-		addBlock(Blocks.PRIMARY_INPUT_BYTE_BLOCK, "Primary Input Byte Block");
-		addBlock(Blocks.SECONDARY_INPUT_BYTE_BLOCK, "Secondary Input Byte Block");
-		addBlock(Blocks.WRAPPING_ADD_SUB_BYTE_BLOCK, "Wrapping Add/Subtract Byte Block");
-		addBlock(Blocks.WRAPPING_MULT_DIV_BYTE_BLOCK, "Wrapping Multiply/Divide Byte Block");
+		addBlock(MavakCraft.GLOWING_OBSIDIAN, "Glowing Obsidian");
+		addBlock(MavakCraft.FEATHER_BLOCK, "Feather Feathers");
+		addBlock(MavakCraft.NETHER_WART_BLOCK, "Block of Nether Wart");
+		addBlock(MavakCraft.BYTE_BLOCK, "Byte Block");
+		addBlock(MavakCraft.PRIMARY_INPUT_BYTE_BLOCK, "Primary Input Byte Block");
+		addBlock(MavakCraft.SECONDARY_INPUT_BYTE_BLOCK, "Secondary Input Byte Block");
+		addBlock(MavakCraft.WRAPPING_ADD_SUB_BYTE_BLOCK, "Wrapping Add/Subtract Byte Block");
+		addBlock(MavakCraft.WRAPPING_MULT_DIV_BYTE_BLOCK, "Wrapping Multiply/Divide Byte Block");
 		for (int dyeColorId = 0; dyeColorId < 16; dyeColorId++) {
-			addBlock(Blocks.DYE_BLOCKS[dyeColorId], getDyeColorName(DyeColor.byId(dyeColorId), dialect) + " Dye Block");
+			addBlock(MavakCraft.DYE_BLOCKS[dyeColorId], getDyeColorName(DyeColor.byId(dyeColorId), dialect) + " Dye Block");
 		}
 		Materials.generateEnglishName(this);
 

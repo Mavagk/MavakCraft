@@ -6,7 +6,6 @@ import javax.annotation.Nonnull;
 
 import org.jetbrains.annotations.Nullable;
 
-import net.mavakcraft.Blocks;
 import net.mavakcraft.Materials;
 import net.mavakcraft.MavakCraft;
 import net.minecraft.core.HolderLookup;
@@ -29,13 +28,13 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 	@Override
 	protected void addTags(@Nonnull HolderLookup.Provider provider) {
 		tag(BlockTags.MINEABLE_WITH_PICKAXE)
-			.add(Blocks.GLOWING_OBSIDIAN.get());
+			.add(MavakCraft.GLOWING_OBSIDIAN.get());
 		tag(BlockTags.MINEABLE_WITH_HOE)
-			.add(Blocks.NETHER_WART_BLOCK.get());
+			.add(MavakCraft.NETHER_WART_BLOCK.get());
 		tag(BlockTags.WOOL)
-			.add(Blocks.FEATHER_BLOCK.get());
+			.add(MavakCraft.FEATHER_BLOCK.get());
 		tag(BlockTags.NEEDS_DIAMOND_TOOL)
-			.add(Blocks.GLOWING_OBSIDIAN.get());
+			.add(MavakCraft.GLOWING_OBSIDIAN.get());
 		Materials.generateBlockTags(this);
 	}
 

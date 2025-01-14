@@ -9,7 +9,12 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -19,9 +24,16 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.mavakcraft.block.byteblock.ByteBlock;
+import net.mavakcraft.block.byteblock.PrimaryInputByteBlock;
+import net.mavakcraft.block.byteblock.SecondaryInputByteBlock;
+import net.mavakcraft.block.byteblock.WrappingAddSubByteBlock;
+import net.mavakcraft.block.byteblock.WrappingMultDivByteBlock;
+import net.mavakcraft.registry.ModBlocksDeferredRegister;
 import net.mavakcraft.registry.ModItemsDeferredRegister;
 
 @Mod(MavakCraft.MODID)
@@ -35,8 +47,64 @@ public class MavakCraft
 	// The logger to log debug messages to
 	public static final Logger LOGGER = LogUtils.getLogger();
 	// Deferred registers containing game elements that will be registered when the mod entrypoint is executed
+	public static final ModBlocksDeferredRegister BLOCKS = new ModBlocksDeferredRegister(MavakCraft.MODID);
 	public static final ModItemsDeferredRegister ITEMS = new ModItemsDeferredRegister(MODID);
 	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
+
+	// Mod blocks
+	public static final DeferredBlock<Block> GLOWING_OBSIDIAN = BLOCKS.registerSimpleBlock("glowing_obsidian", (props) -> props
+		.mapColor(MapColor.STONE)
+		.instrument(NoteBlockInstrument.BASEDRUM)
+		.requiresCorrectToolForDrops()
+		.strength(35.0F, 1200.0F)
+		.lightLevel(state -> 12),
+	true, CreativeModeTabs.BUILDING_BLOCKS);
+
+	public static final DeferredBlock<Block> NETHER_WART_BLOCK = BLOCKS.registerSimpleBlock("nether_wart_block", (props) -> props
+		.mapColor(MapColor.COLOR_RED)
+		.instrument(NoteBlockInstrument.BASS)
+		.strength(2.0F, 3.0F),
+		true, CreativeModeTabs.BUILDING_BLOCKS);
+	public static final DeferredBlock<Block> FEATHER_BLOCK = BLOCKS.registerSimpleBlock("feather_block", (props) -> props
+		.mapColor(MapColor.SNOW)
+		.instrument(NoteBlockInstrument.GUITAR)
+		.strength(0.8F)
+		.sound(SoundType.WOOL)
+		.ignitedByLava(),
+		true, CreativeModeTabs.BUILDING_BLOCKS);
+	@SuppressWarnings("unchecked")
+	public static DeferredBlock<Block>[] DYE_BLOCKS = new DeferredBlock[16];
+	static {
+		for (int dyeColorId = 0; dyeColorId < 16; dyeColorId++) {
+			DyeColor color = DyeColor.byId(dyeColorId);
+			DYE_BLOCKS[dyeColorId] = BLOCKS.registerSimpleBlock(color.getName() + "_dye_block", (props) -> props
+				.mapColor(color.getMapColor())
+				.instrument(NoteBlockInstrument.BASS)
+				.strength(2.0F, 3.0F),
+				true, CreativeModeTabs.BUILDING_BLOCKS
+			);
+		}
+	}
+	public static final DeferredBlock<ByteBlock> BYTE_BLOCK = BLOCKS.registerSimpleByteBlock(
+		"byte_block", ByteBlock::new, true, CreativeModeTabs.FUNCTIONAL_BLOCKS
+	);
+	public static final DeferredBlock<WrappingAddSubByteBlock> WRAPPING_ADD_SUB_BYTE_BLOCK = BLOCKS.registerSimpleByteBlock(
+		"wrapping_add_sub_byte_block", WrappingAddSubByteBlock::new, true, CreativeModeTabs.FUNCTIONAL_BLOCKS
+	);
+	public static final DeferredBlock<WrappingMultDivByteBlock> WRAPPING_MULT_DIV_BYTE_BLOCK = BLOCKS.registerSimpleByteBlock(
+		"wrapping_mult_div_byte_block", WrappingMultDivByteBlock::new, true, CreativeModeTabs.FUNCTIONAL_BLOCKS
+	);
+	public static final DeferredBlock<PrimaryInputByteBlock> PRIMARY_INPUT_BYTE_BLOCK = BLOCKS.registerSimpleByteBlock(
+		"primary_input_byte_block", PrimaryInputByteBlock::new, true, CreativeModeTabs.FUNCTIONAL_BLOCKS
+	);
+	public static final DeferredBlock<SecondaryInputByteBlock> SECONDARY_INPUT_BYTE_BLOCK = BLOCKS.registerSimpleByteBlock(
+		"secondary_input_byte_block", SecondaryInputByteBlock::new, true, CreativeModeTabs.FUNCTIONAL_BLOCKS
+	);
+
+	// Materials
+	static {
+		Materials.registerBlocks(BLOCKS);
+	}
 
 	// Mod items
 	public static final DeferredItem<Item> SALT = ITEMS.registerSimpleItem("salt", CreativeModeTabs.INGREDIENTS);
@@ -46,7 +114,7 @@ public class MavakCraft
 	}
 	// Register block items for all blocks that are set to have block items generated for them.
 	{
-		Blocks.BLOCKS.registerBlockItems(ITEMS);
+		BLOCKS.registerBlockItems(ITEMS);
 	}
 
 	// Mod creative mode tabs
@@ -54,7 +122,7 @@ public class MavakCraft
 		() -> CreativeModeTab.builder()
 		.title(Component.translatable("itemGroup.mavakcraft"))
 		.withTabsBefore(CreativeModeTabs.COMBAT)
-		.icon(() -> Blocks.GLOWING_OBSIDIAN.get().asItem().getDefaultInstance())
+		.icon(() -> GLOWING_OBSIDIAN.get().asItem().getDefaultInstance())
 		.displayItems((parameters, output) -> ITEMS.putItemsInModCreativeTab(output))
 		.build()
 	);
@@ -68,7 +136,7 @@ public class MavakCraft
 		// The mod should have an auto generated config menu
 		modContainer.registerExtensionPoint(IConfigScreenFactory.class, (mc, parent) -> new ConfigurationScreen(modContainer, parent));
 		// Register the deferred registers
-		Blocks.BLOCKS.register(modEventBus);
+		BLOCKS.register(modEventBus);
 		ITEMS.register(modEventBus);
 		if (Config.MOD_ITEMS_IN_MOD_CREATIVE_TAB.get()) CREATIVE_MODE_TABS.register(modEventBus);
 	}
