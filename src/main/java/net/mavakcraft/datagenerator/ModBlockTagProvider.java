@@ -30,9 +30,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 	protected void addTags(@Nonnull HolderLookup.Provider provider) {
 		tag(BlockTags.MINEABLE_WITH_PICKAXE)
 			.add(Blocks.GLOWING_OBSIDIAN.get());
-		//tag(BlockTags.MINEABLE_WITH_AXE)
-		//	.add(Blocks.LEATHER_BLOCK.get())
-		//	.add(Blocks.RABBIT_HIDE_BLOCK.get());
 		tag(BlockTags.MINEABLE_WITH_HOE)
 			.add(Blocks.NETHER_WART_BLOCK.get());
 		tag(BlockTags.WOOL)

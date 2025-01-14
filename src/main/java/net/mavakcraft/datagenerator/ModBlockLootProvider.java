@@ -24,8 +24,6 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
 	@Override
 	protected void generate() {
 		dropSelf(Blocks.GLOWING_OBSIDIAN.get());
-		//dropSelf(Blocks.LEATHER_BLOCK.get());
-		//dropSelf(Blocks.RABBIT_HIDE_BLOCK.get());
 		dropSelf(Blocks.NETHER_WART_BLOCK.get());
 		dropSelf(Blocks.FEATHER_BLOCK.get());
 		dropSelf(Blocks.BYTE_BLOCK.get());

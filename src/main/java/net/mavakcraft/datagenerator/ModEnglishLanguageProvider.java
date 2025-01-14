@@ -25,9 +25,7 @@ public class ModEnglishLanguageProvider extends LanguageProvider {
 
 		addBlock(Blocks.GLOWING_OBSIDIAN, "Glowing Obsidian");
 		addBlock(Blocks.FEATHER_BLOCK, "Feather Feathers");
-		//addBlock(Blocks.LEATHER_BLOCK, "Block of Leather");
 		addBlock(Blocks.NETHER_WART_BLOCK, "Block of Nether Wart");
-		//addBlock(Blocks.RABBIT_HIDE_BLOCK, "Block of Rabbit Hide");
 		addBlock(Blocks.BYTE_BLOCK, "Byte Block");
 		addBlock(Blocks.PRIMARY_INPUT_BYTE_BLOCK, "Primary Input Byte Block");
 		addBlock(Blocks.SECONDARY_INPUT_BYTE_BLOCK, "Secondary Input Byte Block");
