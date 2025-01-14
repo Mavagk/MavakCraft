@@ -2,7 +2,6 @@ package net.mavakcraft.material;
 
 import javax.annotation.Nonnull;
 
-import net.mavakcraft.MavakCraft;
 import net.mavakcraft.datagenerator.ModBlockStateProvider;
 import net.mavakcraft.datagenerator.ModBlockTagProvider;
 import net.mavakcraft.datagenerator.ModEnglishLanguageProvider;
@@ -18,7 +17,6 @@ public class OverworldOresMaterial extends Material {
 	public DeferredBlock<DropExperienceBlock> deepslateOre;
 
 	@Nonnull String name;
-	@Nonnull String englishName;
 	int xpMin;
 	int xpMax;
 	@Nonnull TagKey<Block> toolNeeded;
@@ -26,7 +24,6 @@ public class OverworldOresMaterial extends Material {
 	public OverworldOresMaterial(@Nonnull String name, int xpMin, int xpMax, TagKey<Block> toolNeeded) {
 		this.name = name;
 		this.toolNeeded = toolNeeded;
-		this.englishName = MavakCraft.idToTitle(name);
 		this.xpMin = xpMin;
 		this.xpMax = xpMax;
 	}
@@ -55,6 +52,7 @@ public class OverworldOresMaterial extends Material {
 
 	@Override
 	protected void onGenerateEnglishNames(ModEnglishLanguageProvider provider) {
+		String englishName = provider.idToTitle(name);
 		provider.add(ore.get(), englishName + " Ore");
 		provider.add(deepslateOre.get(), "Deepslate " + englishName + " Ore");
 	}

@@ -2,7 +2,6 @@ package net.mavakcraft.material;
 
 import javax.annotation.Nonnull;
 
-import net.mavakcraft.MavakCraft;
 import net.mavakcraft.datagenerator.ModBlockLootProvider;
 import net.mavakcraft.datagenerator.ModBlockStateProvider;
 import net.mavakcraft.datagenerator.ModBlockTagProvider;
@@ -20,13 +19,11 @@ public class SimpleFlowerMaterial extends Material {
 	public DeferredBlock<FlowerBlock> flower;
 
 	@Nonnull String name;
-	@Nonnull String englishName;
 	@Nonnull Holder<MobEffect> effect;
 	float seconds;
 
 	public SimpleFlowerMaterial(@Nonnull String name, @Nonnull Holder<MobEffect> effect, float seconds) {
 		this.name = name;
-		this.englishName = MavakCraft.idToTitle(name);
 		this.effect = effect;
 		this.seconds = seconds;
 	}
@@ -53,6 +50,7 @@ public class SimpleFlowerMaterial extends Material {
 
 	@Override
 	public void onGenerateEnglishNames(ModEnglishLanguageProvider provider) {
+		String englishName = provider.idToTitle(name);
 		provider.add(flower.get(), englishName);
 	}
 

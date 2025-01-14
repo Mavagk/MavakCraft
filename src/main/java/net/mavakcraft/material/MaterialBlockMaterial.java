@@ -2,7 +2,6 @@ package net.mavakcraft.material;
 
 import javax.annotation.Nonnull;
 
-import net.mavakcraft.MavakCraft;
 import net.mavakcraft.datagenerator.ModBlockLootProvider;
 import net.mavakcraft.datagenerator.ModBlockStateProvider;
 import net.mavakcraft.datagenerator.ModBlockTagProvider;
@@ -18,14 +17,12 @@ public class MaterialBlockMaterial extends Material {
 	public DeferredBlock<Block> block;
 
 	@Nonnull String name;
-	@Nonnull String englishName;
 	@Nonnull MapColor mapColor;
 	@Nonnull TagKey<Block> toolNeeded;
 
 	public MaterialBlockMaterial(@Nonnull String name, @Nonnull MapColor mapColor, TagKey<Block> toolNeeded) {
 		this.name = name;
 		this.mapColor = mapColor;
-		this.englishName = MavakCraft.idToTitle(name);
 		this.toolNeeded = toolNeeded;
 	}
 
@@ -54,6 +51,7 @@ public class MaterialBlockMaterial extends Material {
 
 	@Override
 	public void onGenerateEnglishNames(ModEnglishLanguageProvider provider) {
+		String englishName = provider.idToTitle(name);
 		provider.add(block.get(), "Block of " + englishName);
 	}
 }

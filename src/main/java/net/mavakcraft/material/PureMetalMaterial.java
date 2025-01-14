@@ -1,8 +1,6 @@
 package net.mavakcraft.material;
 
 import javax.annotation.Nonnull;
-
-import net.mavakcraft.MavakCraft;
 import net.mavakcraft.datagenerator.ModBlockLootProvider;
 import net.mavakcraft.datagenerator.ModBlockStateProvider;
 import net.mavakcraft.datagenerator.ModBlockTagProvider;
@@ -21,7 +19,7 @@ import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 
-public class MetalMaterial extends Material {
+public class PureMetalMaterial extends Material {
 	public DeferredBlock<Block> rawBlock;
 	@Nonnull public MaterialBlockMaterial materialBlock;
 	@Nonnull public OverworldOresMaterial ores;
@@ -31,15 +29,13 @@ public class MetalMaterial extends Material {
 	public DeferredItem<Item> nugget;
 
 	@Nonnull String name;
-	@Nonnull String englishName;
 	@Nonnull MapColor rawColor;
 	@Nonnull TagKey<Block> toolNeeded;
 
-	public MetalMaterial(@Nonnull String name, @Nonnull MapColor mapColor, @Nonnull MapColor rawColor, TagKey<Block> toolNeeded) {
+	public PureMetalMaterial(@Nonnull String name, @Nonnull MapColor mapColor, @Nonnull MapColor rawColor, TagKey<Block> toolNeeded) {
 		this.name = name;
 		this.rawColor = rawColor;
 		this.toolNeeded = toolNeeded;
-		this.englishName = MavakCraft.idToTitle(name);
 		materialBlock = addSubMaterial(new MaterialBlockMaterial(name, mapColor, toolNeeded));
 		ores = addSubMaterial(new OverworldOresMaterial(name, 0, 0, toolNeeded));
 	}
@@ -95,6 +91,7 @@ public class MetalMaterial extends Material {
 
 	@Override
 	public void onGenerateEnglishNames(ModEnglishLanguageProvider provider) {
+		String englishName = provider.idToTitle(name);
 		provider.add(rawBlock.get(), "Block of Raw " + englishName);
 		provider.add(ingot.get(), englishName + " Ingot");
 		provider.add(rawMetal.get(), "Raw " + englishName);

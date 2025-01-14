@@ -10,7 +10,7 @@ import net.mavakcraft.datagenerator.ModItemModelProvider;
 import net.mavakcraft.datagenerator.ModRecipeProvider;
 import net.mavakcraft.material.GemMaterial;
 import net.mavakcraft.material.Material;
-import net.mavakcraft.material.MetalMaterial;
+import net.mavakcraft.material.PureMetalMaterial;
 import net.mavakcraft.material.PowderBlockMaterial;
 import net.mavakcraft.material.RockItemBlockMaterial;
 import net.mavakcraft.material.SimpleFlowerMaterial;
@@ -61,11 +61,14 @@ public class Materials {
 		MATERIALS.forEach(material -> material.generateEnglishNames(provider));
 	}
 
+	// Gems
 	public static GemMaterial RUBY = register(new GemMaterial("ruby", 3, 7, MapColor.COLOR_RED, BlockTags.NEEDS_IRON_TOOL));
 	public static GemMaterial SAPPHIRE = register(new GemMaterial("sapphire", 3, 7, MapColor.COLOR_BLUE, BlockTags.NEEDS_IRON_TOOL));
 	public static GemMaterial TOPAZ = register(new GemMaterial("topaz", 3, 7, MapColor.COLOR_BROWN, BlockTags.NEEDS_IRON_TOOL));
 
-	public static MetalMaterial TIN = register(new MetalMaterial("tin", MapColor.METAL, MapColor.METAL, BlockTags.NEEDS_STONE_TOOL));
+	// Pure metals
+	public static PureMetalMaterial TIN = register(new PureMetalMaterial("tin", MapColor.METAL, MapColor.METAL, BlockTags.NEEDS_STONE_TOOL));
+	//public static PureMetalMaterial ALUMINUM = register(new PureMetalMaterial("aluminum", MapColor.METAL, MapColor.METAL, BlockTags.NEEDS_STONE_TOOL));
 
 	public static PowderBlockMaterial GLOWSTONE_DUST_BLOCK = register(new PowderBlockMaterial("glowstone_dust", 0xB7966E, MapColor.SAND, 15));
 	public static PowderBlockMaterial BLAZE_POWDER_BLOCK = register(new PowderBlockMaterial("blaze_powder", 0xFFA300, MapColor.COLOR_ORANGE, 0));

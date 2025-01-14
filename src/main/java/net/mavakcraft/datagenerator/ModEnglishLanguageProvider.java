@@ -1,6 +1,10 @@
 package net.mavakcraft.datagenerator;
 
+import java.util.HashMap;
+
 import javax.annotation.Nonnull;
+
+import org.apache.commons.lang3.StringUtils;
 
 import net.mavakcraft.Materials;
 import net.mavakcraft.MavakCraft;
@@ -55,11 +59,11 @@ public class ModEnglishLanguageProvider extends LanguageProvider {
 		}
 	}
 
-	String[] AMERICAN_DYE_COLOR_NAMES = {
+	static String[] AMERICAN_DYE_COLOR_NAMES = {
 		"White", "Orange", "Magenta", "Light Blue", "Yellow", "Lime", "Pink", "Gray",
 		"Light Gray", "Cyan", "Purple", "Blue", "Brown", "Green", "Red", "Black"
 	};
-	String[] COMMONWEALTH_DYE_COLOR_NAMES = {
+	static String[] COMMONWEALTH_DYE_COLOR_NAMES = {
 		"White", "Orange", "Magenta", "Light Blue", "Yellow", "Lime", "Pink", "Grey",
 		"Light Grey", "Cyan", "Purple", "Blue", "Brown", "Green", "Red", "Black"
 	};
@@ -74,5 +78,37 @@ public class ModEnglishLanguageProvider extends LanguageProvider {
 			default:
 				return null;
 		}
+	}
+
+	static HashMap<String, String> AMERICAN_TO_COMMONWEALTH_WORDS = new HashMap<>();//"aluminum": "aluminium"
+	static {
+		AMERICAN_TO_COMMONWEALTH_WORDS.put("aluminum", "aluminium");
+	}
+
+	/*
+	 * Converts a id string such as "my_block" to title case such as "My Block"
+	 */
+	public String idToTitle(String string) {
+		string = StringUtils.capitalize(string.replace('_', ' '));
+		String[] words = string.split(" ");
+		for (int x = 0; x < words.length; x++) {
+			String word = words[x];
+			word = StringUtils.capitalize(word);
+			switch (dialect) {
+				case American:
+					break;
+				case Commonwealth:
+					String commonwealthName = AMERICAN_TO_COMMONWEALTH_WORDS.get(word);
+					if (commonwealthName == null) break;
+					word = commonwealthName;
+					break;
+				default:
+					break;
+			}
+			if (x != words.length - 1)
+			word = word + " ";
+			words[x] = word;
+		}
+		return StringUtils.join(words);
 	}
 }

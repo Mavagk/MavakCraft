@@ -2,7 +2,6 @@ package net.mavakcraft.material;
 
 import javax.annotation.Nonnull;
 
-import net.mavakcraft.MavakCraft;
 import net.mavakcraft.datagenerator.ModBlockLootProvider;
 import net.mavakcraft.datagenerator.ModBlockStateProvider;
 import net.mavakcraft.datagenerator.ModBlockTagProvider;
@@ -18,7 +17,6 @@ public class PowderBlockMaterial extends Material {
 	public DeferredBlock<ColoredFallingBlock> block;
 
 	@Nonnull String name;
-	@Nonnull String englishName;
 	int color;
 	MapColor mapColor;
 	int lightLevel;
@@ -26,7 +24,6 @@ public class PowderBlockMaterial extends Material {
 	public PowderBlockMaterial(@Nonnull String name, int color, @Nonnull MapColor mapColor, int lightLevel) {
 		this.name = name;
 		this.mapColor = mapColor;
-		this.englishName = MavakCraft.idToTitle(name);
 		this.color = color;
 		this.lightLevel = lightLevel;
 	}
@@ -51,6 +48,7 @@ public class PowderBlockMaterial extends Material {
 
 	@Override
 	public void onGenerateEnglishNames(ModEnglishLanguageProvider provider) {
+		String englishName = provider.idToTitle(name);
 		provider.add(block.get(), "Block of " + englishName);
 	}
 
