@@ -56,6 +56,21 @@ public abstract class Material {
 		subMaterials.forEach(material -> material.generateEnglishNames(provider));
 	}
 
+	public final void generateConfiguredFeatures() {
+		onGenerateConfiguredFeatures();
+		subMaterials.forEach(material -> material.generateConfiguredFeatures());
+	}
+
+	public final void generatePlacedFeatures() {
+		onGeneratePlacedFeatures();
+		subMaterials.forEach(material -> material.generatePlacedFeatures());
+	}
+
+	public final void generateBiomeModifiers() {
+		onGenerateBiomeModifiers();
+		subMaterials.forEach(material -> material.generateBiomeModifiers());
+	}
+
 	protected void onRegisterBlocks(ModBlocksDeferredRegister register) {
 
 	}
@@ -85,6 +100,18 @@ public abstract class Material {
 	}
 
 	protected void onGenerateEnglishNames(ModEnglishLanguageProvider provider) {
+		
+	}
+
+	protected void onGenerateConfiguredFeatures() {
+		
+	}
+
+	protected void onGeneratePlacedFeatures() {
+		
+	}
+
+	protected void onGenerateBiomeModifiers() {
 		
 	}
 

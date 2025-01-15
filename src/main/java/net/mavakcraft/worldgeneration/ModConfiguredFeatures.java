@@ -29,7 +29,7 @@ public class ModConfiguredFeatures {
 	static BootstrapContext<ConfiguredFeature<?, ?>> context;
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ROSES_PLACED = registerKey("roses_placed");
-	public static final ResourceKey<ConfiguredFeature<?, ?>> RUBY_ORE_PLACED = registerKey("ruby_ore_placed");
+	//public static final ResourceKey<ConfiguredFeature<?, ?>> RUBY_ORE_PLACED = registerKey("ruby_ore_placed");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SAPPHIRE_ORE_PLACED = registerKey("sapphire_ore_placed");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> TOPAZ_ORE_PLACED = registerKey("topaz_ore_placed");
 
@@ -47,12 +47,14 @@ public class ModConfiguredFeatures {
 			)))
 		));
 		// Ores
-		registerSimpleOverworldOre(RUBY_ORE_PLACED, Materials.RUBY.ores.ore.get(), Materials.RUBY.ores.deepslateOre.get(), 5);
+		//registerSimpleOverworldOre(RUBY_ORE_PLACED, Materials.RUBY.ores.ore.get(), Materials.RUBY.ores.deepslateOre.get(), 5);
 		registerSimpleOverworldOre(SAPPHIRE_ORE_PLACED, Materials.SAPPHIRE.ores.ore.get(), Materials.SAPPHIRE.ores.deepslateOre.get(), 10);
 		registerSimpleOverworldOre(TOPAZ_ORE_PLACED, Materials.TOPAZ.ores.ore.get(), Materials.TOPAZ.ores.deepslateOre.get(), 3);
 
 		registerSimpleOverworldOre(TIN_ORE_PLACED, Materials.TIN.ores.ore.get(), Materials.TIN.ores.deepslateOre.get(), 5);
 		registerSimpleOverworldOre(ALUMINUM_ORE_PLACED, Materials.ALUMINUM.ores.ore.get(), Materials.ALUMINUM.ores.deepslateOre.get(), 7);
+
+		Materials.generateConfiguredFeatures();
 	}
 
 	public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {

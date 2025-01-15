@@ -1,5 +1,6 @@
 package net.mavakcraft;
 
+import java.util.List;
 import java.util.Vector;
 
 import net.mavakcraft.datagenerator.ModBlockLootProvider;
@@ -10,6 +11,7 @@ import net.mavakcraft.datagenerator.ModItemModelProvider;
 import net.mavakcraft.datagenerator.ModRecipeProvider;
 import net.mavakcraft.material.GemMaterial;
 import net.mavakcraft.material.Material;
+import net.mavakcraft.material.OverworldOreGenMaterial;
 import net.mavakcraft.material.PureMetalMaterial;
 import net.mavakcraft.material.PowderBlockMaterial;
 import net.mavakcraft.material.RockItemBlockMaterial;
@@ -19,6 +21,8 @@ import net.mavakcraft.registry.ModBlocksDeferredRegister;
 import net.mavakcraft.registry.ModItemsDeferredRegister;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.level.levelgen.VerticalAnchor;
+import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
 import net.minecraft.world.level.material.MapColor;
 
 public class Materials {
@@ -61,6 +65,18 @@ public class Materials {
 		MATERIALS.forEach(material -> material.generateEnglishNames(provider));
 	}
 
+	public static void generateConfiguredFeatures() {
+		MATERIALS.forEach(material -> material.generateConfiguredFeatures());
+	}
+
+	public static void generatePlacedFeatures() {
+		MATERIALS.forEach(material -> material.generatePlacedFeatures());
+	}
+
+	public static void generateBiomeModifiers() {
+		MATERIALS.forEach(material -> material.generateBiomeModifiers());
+	}
+
 	// Gems
 	public static GemMaterial RUBY = register(new GemMaterial("ruby", 3, 7, MapColor.COLOR_RED, BlockTags.NEEDS_IRON_TOOL));
 	public static GemMaterial SAPPHIRE = register(new GemMaterial("sapphire", 3, 7, MapColor.COLOR_BLUE, BlockTags.NEEDS_IRON_TOOL));
@@ -70,15 +86,24 @@ public class Materials {
 	public static PureMetalMaterial TIN = register(new PureMetalMaterial("tin", MapColor.METAL, MapColor.METAL, BlockTags.NEEDS_STONE_TOOL));
 	public static PureMetalMaterial ALUMINUM = register(new PureMetalMaterial("aluminum", MapColor.METAL, MapColor.METAL, BlockTags.NEEDS_STONE_TOOL));
 
+	// Ore gens
+	public static OverworldOreGenMaterial RUBY_GEN = register(new OverworldOreGenMaterial(
+		"ruby", RUBY.ores, 5, 100,
+		null//List.of(HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(480)))
+	));
+
+	// Simple flowers
+	public static SimpleFlowerMaterial ROSE = register(new SimpleFlowerMaterial("rose", MobEffects.NIGHT_VISION, 5));
+	public static SimpleFlowerMaterial BLUE_ROSE = register(new SimpleFlowerMaterial("blue_rose", MobEffects.NIGHT_VISION, 5));
+
+	// Powder item blocks
 	public static PowderBlockMaterial GLOWSTONE_DUST_BLOCK = register(new PowderBlockMaterial("glowstone_dust", 0xB7966E, MapColor.SAND, 15));
 	public static PowderBlockMaterial BLAZE_POWDER_BLOCK = register(new PowderBlockMaterial("blaze_powder", 0xFFA300, MapColor.COLOR_ORANGE, 0));
 	public static PowderBlockMaterial GUNPOWDER_BLOCK = register(new PowderBlockMaterial("gunpowder", 0x545454, MapColor.STONE, 0));
 	public static PowderBlockMaterial SUGAR_BLOCK = register(new PowderBlockMaterial("sugar", 0xEAEAEA, MapColor.SAND, 0));
 	public static PowderBlockMaterial SALT_BLOCK = register(new PowderBlockMaterial("salt", 0xEAEAEA, MapColor.SAND, 0));
 
-	public static SimpleFlowerMaterial ROSE = register(new SimpleFlowerMaterial("rose", MobEffects.NIGHT_VISION, 5));
-	public static SimpleFlowerMaterial BLUE_ROSE = register(new SimpleFlowerMaterial("blue_rose", MobEffects.NIGHT_VISION, 5));
-
+	// Item blocks
 	public static RockItemBlockMaterial CHARCOAL_BLOCK = register(new RockItemBlockMaterial("charcoal", MapColor.COLOR_BLACK, 0));
 	public static RockItemBlockMaterial FLINT_BLOCK = register(new RockItemBlockMaterial("flint", MapColor.COLOR_BLACK, 0));
 	public static RockItemBlockMaterial TURTLE_SCUTE_BLOCK = register(new RockItemBlockMaterial("turtle_scute", MapColor.GRASS, 0));

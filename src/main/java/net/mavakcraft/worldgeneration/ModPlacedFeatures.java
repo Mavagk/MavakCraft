@@ -2,6 +2,7 @@ package net.mavakcraft.worldgeneration;
 
 import java.util.List;
 
+import net.mavakcraft.Materials;
 import net.mavakcraft.MavakCraft;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
@@ -25,9 +26,10 @@ import net.minecraft.world.level.levelgen.placement.RarityFilter;
  */
 public class ModPlacedFeatures {
 	static BootstrapContext<PlacedFeature> context;
+	static HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures;
 
 	public static final ResourceKey<PlacedFeature> ROSES_PLACED = registerKey("roses_placed");
-	public static final ResourceKey<PlacedFeature> RUBY_ORE_PLACED = registerKey("ruby_ore_placed");
+	//public static final ResourceKey<PlacedFeature> RUBY_ORE_PLACED = registerKey("ruby_ore_placed");
 	public static final ResourceKey<PlacedFeature> SAPPHIRE_ORE_PLACED = registerKey("sapphire_ore_placed");
 	public static final ResourceKey<PlacedFeature> TOPAZ_ORE_PLACED = registerKey("topaz_ore_placed");
 
@@ -36,24 +38,24 @@ public class ModPlacedFeatures {
 
 	public static void bootstrap(BootstrapContext<PlacedFeature> contextIn) {
 		context = contextIn;
-		HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
+		configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
 		register(
 			ROSES_PLACED,
-			configuredFeatures.getOrThrow(ModConfiguredFeatures.ROSES_PLACED),
+			ModConfiguredFeatures.ROSES_PLACED,
 			List.of(RarityFilter.onAverageOnceEvery(32), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())
 		);
-		register(
-			RUBY_ORE_PLACED,
-			configuredFeatures.getOrThrow(ModConfiguredFeatures.RUBY_ORE_PLACED),
-			List.of(
-				CountPlacement.of(100), InSquarePlacement.spread(),
-				HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(480)), BiomeFilter.biome()
-			)
-		);
+		//register(
+		//	RUBY_ORE_PLACED,
+		//	ModConfiguredFeatures.RUBY_ORE_PLACED,
+		//	List.of(
+		//		CountPlacement.of(100), InSquarePlacement.spread(),
+		//		HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(480)), BiomeFilter.biome()
+		//	)
+		//);
 		register(
 			SAPPHIRE_ORE_PLACED,
-			configuredFeatures.getOrThrow(ModConfiguredFeatures.SAPPHIRE_ORE_PLACED),
+			ModConfiguredFeatures.SAPPHIRE_ORE_PLACED,
 			List.of(
 				CountPlacement.of(5), InSquarePlacement.spread(),
 				HeightRangePlacement.uniform(VerticalAnchor.absolute(-63), VerticalAnchor.absolute(30)), BiomeFilter.biome()
@@ -61,7 +63,7 @@ public class ModPlacedFeatures {
 		);
 		register(
 			TOPAZ_ORE_PLACED,
-			configuredFeatures.getOrThrow(ModConfiguredFeatures.TOPAZ_ORE_PLACED),
+			ModConfiguredFeatures.TOPAZ_ORE_PLACED,
 			List.of(
 				CountPlacement.of(30), InSquarePlacement.spread(),
 				HeightRangePlacement.uniform(VerticalAnchor.absolute(-63), VerticalAnchor.absolute(20)), BiomeFilter.biome()
@@ -70,7 +72,7 @@ public class ModPlacedFeatures {
 
 		register(
 			TIN_ORE_PLACED,
-			configuredFeatures.getOrThrow(ModConfiguredFeatures.TIN_ORE_PLACED),
+			ModConfiguredFeatures.TIN_ORE_PLACED,
 			List.of(
 				CountPlacement.of(70), InSquarePlacement.spread(),
 				HeightRangePlacement.uniform(VerticalAnchor.absolute(-63), VerticalAnchor.absolute(64)), BiomeFilter.biome()
@@ -78,12 +80,14 @@ public class ModPlacedFeatures {
 		);
 		register(
 			ALUMINUM_ORE_PLACED,
-			configuredFeatures.getOrThrow(ModConfiguredFeatures.ALUMINUM_ORE_PLACED),
+			ModConfiguredFeatures.ALUMINUM_ORE_PLACED,
 			List.of(
 				CountPlacement.of(50), InSquarePlacement.spread(),
 				HeightRangePlacement.triangle(VerticalAnchor.absolute(30), VerticalAnchor.absolute(80)), BiomeFilter.biome()
 			)
 		);
+
+		Materials.generatePlacedFeatures();
 	}
 
 	public static ResourceKey<PlacedFeature> registerKey(String name) {
@@ -92,5 +96,9 @@ public class ModPlacedFeatures {
 
 	public static void register(ResourceKey<PlacedFeature> key, Holder<ConfiguredFeature<?, ?>> configuration, List<PlacementModifier> modifiers) {
 		context.register(key, new PlacedFeature(configuration, List.copyOf(modifiers)));
+	}
+
+	public static void register(ResourceKey<PlacedFeature> key, ResourceKey<ConfiguredFeature<?, ?>> configuration, List<PlacementModifier> modifiers) {
+		register(key, configuredFeatures.getOrThrow(configuration), modifiers);
 	}
 }
