@@ -27,6 +27,7 @@ import net.minecraft.world.level.levelgen.placement.CountPlacement;
 import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
 import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
 import net.minecraft.world.level.material.MapColor;
+import net.neoforged.neoforge.common.Tags.Biomes;
 
 public class Materials {
 	public static Vector<Material> MATERIALS = new Vector<>();
@@ -95,21 +96,21 @@ public class Materials {
 		List.of(
 			CountPlacement.of(100), InSquarePlacement.spread(),
 			HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(480)), BiomeFilter.biome()
-		)
+		), Biomes.IS_OVERWORLD
 	));
 	public static OverworldOreGenMaterial SAPPHIRE_ORE_GEN = register(new OverworldOreGenMaterial(
 		"sapphire", SAPPHIRE.ores, 10,
 		List.of(
 			CountPlacement.of(5), InSquarePlacement.spread(),
 			HeightRangePlacement.uniform(VerticalAnchor.absolute(-63), VerticalAnchor.absolute(30)), BiomeFilter.biome()
-		)
+		), Biomes.IS_OVERWORLD
 	));
 	public static OverworldOreGenMaterial TOPAZ_ORE_GEN = register(new OverworldOreGenMaterial(
 		"topaz", TOPAZ.ores, 3,
 		List.of(
 			CountPlacement.of(30), InSquarePlacement.spread(),
 			HeightRangePlacement.uniform(VerticalAnchor.absolute(-63), VerticalAnchor.absolute(20)), BiomeFilter.biome()
-		)
+		), Biomes.IS_OVERWORLD
 	));
 
 	public static OverworldOreGenMaterial TIN_ORE_GEN = register(new OverworldOreGenMaterial(
@@ -117,14 +118,14 @@ public class Materials {
 		List.of(
 			CountPlacement.of(70), InSquarePlacement.spread(),
 			HeightRangePlacement.uniform(VerticalAnchor.absolute(-63), VerticalAnchor.absolute(64)), BiomeFilter.biome()
-		)
+		), Biomes.IS_OVERWORLD
 	));
 	public static OverworldOreGenMaterial ALUMINUM_ORE_GEN = register(new OverworldOreGenMaterial(
 		"aluminum", ALUMINUM.ores, 7,
 		List.of(
 			CountPlacement.of(50), InSquarePlacement.spread(),
 			HeightRangePlacement.triangle(VerticalAnchor.absolute(30), VerticalAnchor.absolute(80)), BiomeFilter.biome()
-		)
+		), Biomes.IS_OVERWORLD
 	));
 
 	// Simple flowers
