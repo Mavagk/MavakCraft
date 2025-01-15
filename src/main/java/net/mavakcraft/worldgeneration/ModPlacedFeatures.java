@@ -32,6 +32,7 @@ public class ModPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> TOPAZ_ORE_PLACED = registerKey("topaz_ore_placed");
 
 	public static final ResourceKey<PlacedFeature> TIN_ORE_PLACED = registerKey("tin_ore_placed");
+	public static final ResourceKey<PlacedFeature> ALUMINUM_ORE_PLACED = registerKey("aluminum_ore_placed");
 
 	public static void bootstrap(BootstrapContext<PlacedFeature> contextIn) {
 		context = contextIn;
@@ -71,8 +72,16 @@ public class ModPlacedFeatures {
 			TIN_ORE_PLACED,
 			configuredFeatures.getOrThrow(ModConfiguredFeatures.TIN_ORE_PLACED),
 			List.of(
-				CountPlacement.of(100), InSquarePlacement.spread(),
+				CountPlacement.of(70), InSquarePlacement.spread(),
 				HeightRangePlacement.uniform(VerticalAnchor.absolute(-63), VerticalAnchor.absolute(64)), BiomeFilter.biome()
+			)
+		);
+		register(
+			ALUMINUM_ORE_PLACED,
+			configuredFeatures.getOrThrow(ModConfiguredFeatures.ALUMINUM_ORE_PLACED),
+			List.of(
+				CountPlacement.of(50), InSquarePlacement.spread(),
+				HeightRangePlacement.triangle(VerticalAnchor.absolute(30), VerticalAnchor.absolute(80)), BiomeFilter.biome()
 			)
 		);
 	}

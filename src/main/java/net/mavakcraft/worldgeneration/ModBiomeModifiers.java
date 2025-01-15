@@ -29,6 +29,7 @@ public class ModBiomeModifiers {
 	public static final ResourceKey<BiomeModifier> ADD_TOPAZ_ORE = registerKey("add_topaz_ore");
 
 	public static final ResourceKey<BiomeModifier> ADD_TIN_ORE = registerKey("add_tin_ore");
+	public static final ResourceKey<BiomeModifier> ADD_ALUMINUM_ORE = registerKey("add_aluminum_ore");
 
 	public static void bootstrap(BootstrapContext<BiomeModifier> contextIn) {
 		context = contextIn;
@@ -59,6 +60,11 @@ public class ModBiomeModifiers {
 		register(ADD_TIN_ORE, new BiomeModifiers.AddFeaturesBiomeModifier(
 			biomes.getOrThrow(Tags.Biomes.IS_OVERWORLD),
 			HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.TIN_ORE_PLACED)),
+			GenerationStep.Decoration.UNDERGROUND_ORES
+		));
+		register(ADD_ALUMINUM_ORE, new BiomeModifiers.AddFeaturesBiomeModifier(
+			biomes.getOrThrow(Tags.Biomes.IS_OVERWORLD),
+			HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.ALUMINUM_ORE_PLACED)),
 			GenerationStep.Decoration.UNDERGROUND_ORES
 		));
 	}

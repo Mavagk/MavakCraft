@@ -89,11 +89,9 @@ public class ModEnglishLanguageProvider extends LanguageProvider {
 	 * Converts a id string such as "my_block" to title case such as "My Block"
 	 */
 	public String idToTitle(String string) {
-		string = StringUtils.capitalize(string.replace('_', ' '));
-		String[] words = string.split(" ");
+		String[] words = string.split("_");
 		for (int x = 0; x < words.length; x++) {
 			String word = words[x];
-			word = StringUtils.capitalize(word);
 			switch (dialect) {
 				case American:
 					break;
@@ -105,8 +103,8 @@ public class ModEnglishLanguageProvider extends LanguageProvider {
 				default:
 					break;
 			}
-			if (x != words.length - 1)
-			word = word + " ";
+			word = StringUtils.capitalize(word);
+			if (x != words.length - 1) word = word + " ";
 			words[x] = word;
 		}
 		return StringUtils.join(words);
