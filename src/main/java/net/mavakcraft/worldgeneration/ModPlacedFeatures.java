@@ -29,7 +29,7 @@ public class ModPlacedFeatures {
 	static HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures;
 
 	public static final ResourceKey<PlacedFeature> ROSES_PLACED = registerKey("roses_placed");
-	//public static final ResourceKey<PlacedFeature> RUBY_ORE_PLACED = registerKey("ruby_ore_placed");
+	
 	public static final ResourceKey<PlacedFeature> SAPPHIRE_ORE_PLACED = registerKey("sapphire_ore_placed");
 	public static final ResourceKey<PlacedFeature> TOPAZ_ORE_PLACED = registerKey("topaz_ore_placed");
 
@@ -45,14 +45,6 @@ public class ModPlacedFeatures {
 			ModConfiguredFeatures.ROSES_PLACED,
 			List.of(RarityFilter.onAverageOnceEvery(32), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())
 		);
-		//register(
-		//	RUBY_ORE_PLACED,
-		//	ModConfiguredFeatures.RUBY_ORE_PLACED,
-		//	List.of(
-		//		CountPlacement.of(100), InSquarePlacement.spread(),
-		//		HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(480)), BiomeFilter.biome()
-		//	)
-		//);
 		register(
 			SAPPHIRE_ORE_PLACED,
 			ModConfiguredFeatures.SAPPHIRE_ORE_PLACED,

@@ -1,8 +1,6 @@
 package net.mavakcraft.material;
 
 import java.util.List;
-import java.util.Vector;
-
 import javax.annotation.Nonnull;
 
 import net.mavakcraft.worldgeneration.ModBiomeModifiers;
@@ -12,12 +10,7 @@ import net.minecraft.core.HolderSet;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.placement.BiomeFilter;
-import net.minecraft.world.level.levelgen.placement.CountPlacement;
-import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
-import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.placement.PlacementModifier;
 import net.neoforged.neoforge.common.Tags;
@@ -25,8 +18,6 @@ import net.neoforged.neoforge.common.world.BiomeModifier;
 
 public class OverworldOreGenMaterial extends Material {
 	@Nonnull String name;
-	//@Nonnull DeferredBlock<?> oreToGen;
-	//@Nonnull DeferredBlock<?> deepslateOreToGen;
 	@Nonnull OverworldOresMaterial ores;
 	@Nonnull List<PlacementModifier> placementModifiers;
 	int size;
@@ -39,17 +30,8 @@ public class OverworldOreGenMaterial extends Material {
 		String name, OverworldOresMaterial ores, int size, int count, List<PlacementModifier> placementModifiers
 	) {
 		this.name = name;
-		//this.oreToGen = oreToGen;
-		//this.deepslateOreToGen = deepslateOreToGen;
 		this.size = size;
-		//Vector<PlacementModifier> placementModifiersVec = new Vector<>();
-		//placementModifiers.forEach(modifier -> placementModifiersVec.add(modifier));
-		//placementModifiersVec.addAll(List.of(InSquarePlacement.spread(), CountPlacement.of(count), BiomeFilter.biome()));
-		//placementModifiersVec.add(InSquarePlacement.spread());
-		//placementModifiersVec.add(CountPlacement.of(count));
-		//placementModifiersVec.add(BiomeFilter.biome());
-		this.placementModifiers = List.of(CountPlacement.of(100), InSquarePlacement.spread(),
-		HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(480)), BiomeFilter.biome());//placementModifiersVec.stream().toList();
+		this.placementModifiers = placementModifiers;
 		this.ores = ores;
 	}
 

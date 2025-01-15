@@ -22,7 +22,10 @@ import net.mavakcraft.registry.ModItemsDeferredRegister;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
+import net.minecraft.world.level.levelgen.placement.BiomeFilter;
+import net.minecraft.world.level.levelgen.placement.CountPlacement;
 import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
+import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
 import net.minecraft.world.level.material.MapColor;
 
 public class Materials {
@@ -89,7 +92,10 @@ public class Materials {
 	// Ore gens
 	public static OverworldOreGenMaterial RUBY_GEN = register(new OverworldOreGenMaterial(
 		"ruby", RUBY.ores, 5, 100,
-		null//List.of(HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(480)))
+		List.of(
+			CountPlacement.of(100), InSquarePlacement.spread(),
+			HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(480)), BiomeFilter.biome()
+		)
 	));
 
 	// Simple flowers
