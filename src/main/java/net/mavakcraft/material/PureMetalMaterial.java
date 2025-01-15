@@ -61,14 +61,14 @@ public class PureMetalMaterial extends Material {
 
 	@Override
 	public void onGenerateBlockStates(ModBlockStateProvider provider) {
-		provider.simpleBlockWithItem(rawBlock.get());
+		provider.blockWithTextureWithItem(rawBlock.get(), name + "/raw_block");
 	}
 
 	@Override
 	public void onGenerateItemModels(ModItemModelProvider provider) {
-		provider.basicItem(ingot.get());
-		provider.basicItem(nugget.get());
-		provider.basicItem(rawMetal.get());
+		provider.ItemWithPath(ingot.get(), name + "/ingot");
+		provider.ItemWithPath(nugget.get(), name + "/nugget");
+		provider.ItemWithPath(rawMetal.get(), name + "/raw");
 	}
 
 	@Override

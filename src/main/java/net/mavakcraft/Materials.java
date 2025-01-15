@@ -89,6 +89,7 @@ public class Materials {
 	// Pure metals
 	public static PureMetalMaterial TIN = register(new PureMetalMaterial("tin", MapColor.METAL, MapColor.METAL, BlockTags.NEEDS_STONE_TOOL));
 	public static PureMetalMaterial ALUMINUM = register(new PureMetalMaterial("aluminum", MapColor.METAL, MapColor.METAL, BlockTags.NEEDS_STONE_TOOL));
+	//public static PureMetalMaterial SILVER = register(new PureMetalMaterial("silver", MapColor.METAL, MapColor.METAL, BlockTags.NEEDS_IRON_TOOL));
 
 	// Ore gens
 	public static OverworldOreGenMaterial RUBY_ORE_GEN = register(new OverworldOreGenMaterial(

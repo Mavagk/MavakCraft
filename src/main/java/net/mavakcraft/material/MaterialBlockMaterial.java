@@ -38,7 +38,7 @@ public class MaterialBlockMaterial extends Material {
 
 	@Override
 	public void onGenerateBlockStates(ModBlockStateProvider provider) {
-		provider.simpleBlockWithItem(block.get());
+		provider.blockWithTextureWithItem(block.get(), name + "/block");
 	}
 
 	@Override

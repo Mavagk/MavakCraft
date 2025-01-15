@@ -36,8 +36,8 @@ public class OverworldOresMaterial extends Material {
 
 	@Override
 	protected void onGenerateBlockStates(ModBlockStateProvider provider) {
-		provider.simpleBlockWithItem(ore.get());
-		provider.simpleBlockWithItem(deepslateOre.get());
+		provider.blockWithTextureWithItem(ore.get(), name + "/ore");
+		provider.blockWithTextureWithItem(deepslateOre.get(), name + "/deepslate_ore");
 	}
 
 	@Override

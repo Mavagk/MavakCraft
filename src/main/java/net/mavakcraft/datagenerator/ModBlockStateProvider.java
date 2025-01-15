@@ -48,6 +48,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		simpleBlock(block, models().cross(BuiltInRegistries.BLOCK.getKey(block).getPath(), blockTexture(block)).renderType("cutout"));
 	}
 
+	public void blockWithTextureWithItem(Block block, String pathInBlockFolder) {
+		ResourceLocation name = BuiltInRegistries.BLOCK.getKey(block);
+		ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(name.getNamespace(), ModelProvider.BLOCK_FOLDER + "/" + pathInBlockFolder);
+		simpleBlockWithItem(block, models().cubeAll(BuiltInRegistries.BLOCK.getKey(block).getPath(), texture));
+	}
+
 	public void simpleFacingWithItem(Block block) {
 		ResourceLocation name = BuiltInRegistries.BLOCK.getKey(block);
 		ResourceLocation side = ResourceLocation.fromNamespaceAndPath(name.getNamespace(), ModelProvider.BLOCK_FOLDER + "/" + name.getPath() + "_side");

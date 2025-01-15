@@ -5,9 +5,11 @@ import net.mavakcraft.MavakCraft;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.client.model.generators.ModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 /**
@@ -32,5 +34,11 @@ public class ModItemModelProvider extends ItemModelProvider {
 		getBuilder(BuiltInRegistries.BLOCK.getKey(block).getPath())
 			.parent(new ModelFile.UncheckedModelFile("item/generated"))
 			.texture("layer0", ResourceLocation.fromNamespaceAndPath(MavakCraft.MODID, "block/" + BuiltInRegistries.BLOCK.getKey(block).getPath()));
+	}
+
+	public void ItemWithPath(Item item, String pathInItemFolder) {
+		getBuilder(BuiltInRegistries.ITEM.getKey(item).getPath())
+			.parent(new ModelFile.UncheckedModelFile("item/generated"))
+			.texture("layer0", ResourceLocation.fromNamespaceAndPath(MavakCraft.MODID, ModelProvider.ITEM_FOLDER + "/" + pathInItemFolder));
 	}
 }
