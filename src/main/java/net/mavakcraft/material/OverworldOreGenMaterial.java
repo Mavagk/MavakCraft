@@ -27,7 +27,7 @@ public class OverworldOreGenMaterial extends Material {
 	ResourceKey<BiomeModifier> addOre;
 
 	public OverworldOreGenMaterial(
-		String name, OverworldOresMaterial ores, int size, int count, List<PlacementModifier> placementModifiers
+		String name, OverworldOresMaterial ores, int size, List<PlacementModifier> placementModifiers
 	) {
 		this.name = name;
 		this.size = size;

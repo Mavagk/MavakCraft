@@ -90,11 +90,40 @@ public class Materials {
 	public static PureMetalMaterial ALUMINUM = register(new PureMetalMaterial("aluminum", MapColor.METAL, MapColor.METAL, BlockTags.NEEDS_STONE_TOOL));
 
 	// Ore gens
-	public static OverworldOreGenMaterial RUBY_GEN = register(new OverworldOreGenMaterial(
-		"ruby", RUBY.ores, 5, 100,
+	public static OverworldOreGenMaterial RUBY_ORE_GEN = register(new OverworldOreGenMaterial(
+		"ruby", RUBY.ores, 5,
 		List.of(
 			CountPlacement.of(100), InSquarePlacement.spread(),
 			HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(480)), BiomeFilter.biome()
+		)
+	));
+	public static OverworldOreGenMaterial SAPPHIRE_ORE_GEN = register(new OverworldOreGenMaterial(
+		"sapphire", SAPPHIRE.ores, 10,
+		List.of(
+			CountPlacement.of(5), InSquarePlacement.spread(),
+			HeightRangePlacement.uniform(VerticalAnchor.absolute(-63), VerticalAnchor.absolute(30)), BiomeFilter.biome()
+		)
+	));
+	public static OverworldOreGenMaterial TOPAZ_ORE_GEN = register(new OverworldOreGenMaterial(
+		"topaz", TOPAZ.ores, 3,
+		List.of(
+			CountPlacement.of(30), InSquarePlacement.spread(),
+			HeightRangePlacement.uniform(VerticalAnchor.absolute(-63), VerticalAnchor.absolute(20)), BiomeFilter.biome()
+		)
+	));
+
+	public static OverworldOreGenMaterial TIN_ORE_GEN = register(new OverworldOreGenMaterial(
+		"tin", TIN.ores, 5,
+		List.of(
+			CountPlacement.of(70), InSquarePlacement.spread(),
+			HeightRangePlacement.uniform(VerticalAnchor.absolute(-63), VerticalAnchor.absolute(64)), BiomeFilter.biome()
+		)
+	));
+	public static OverworldOreGenMaterial ALUMINUM_ORE_GEN = register(new OverworldOreGenMaterial(
+		"aluminum", ALUMINUM.ores, 7,
+		List.of(
+			CountPlacement.of(50), InSquarePlacement.spread(),
+			HeightRangePlacement.triangle(VerticalAnchor.absolute(30), VerticalAnchor.absolute(80)), BiomeFilter.biome()
 		)
 	));
 
