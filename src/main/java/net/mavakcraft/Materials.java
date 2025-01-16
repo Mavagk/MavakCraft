@@ -90,6 +90,7 @@ public class Materials {
 	public static PureMetalMaterial TIN = register(new PureMetalMaterial("tin", MapColor.METAL, MapColor.METAL, BlockTags.NEEDS_STONE_TOOL));
 	public static PureMetalMaterial ALUMINUM = register(new PureMetalMaterial("aluminum", MapColor.METAL, MapColor.METAL, BlockTags.NEEDS_STONE_TOOL));
 	public static PureMetalMaterial SILVER = register(new PureMetalMaterial("silver", MapColor.METAL, MapColor.METAL, BlockTags.NEEDS_IRON_TOOL));
+	public static PureMetalMaterial LEAD = register(new PureMetalMaterial("lead", MapColor.COLOR_GRAY, MapColor.COLOR_GRAY, BlockTags.NEEDS_IRON_TOOL));
 
 	// Ore gens
 	public static OverworldOreGenMaterial RUBY_ORE_GEN = register(new OverworldOreGenMaterial(
@@ -133,6 +134,13 @@ public class Materials {
 		List.of(
 			CountPlacement.of(50), InSquarePlacement.spread(),
 			HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(28)), BiomeFilter.biome()
+		), Biomes.IS_OVERWORLD
+	));
+	public static OverworldOreGenMaterial LEAD_ORE_GEN = register(new OverworldOreGenMaterial(
+		"lead", LEAD.ores, 12,
+		List.of(
+			CountPlacement.of(40), InSquarePlacement.spread(),
+			HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(40)), BiomeFilter.biome()
 		), Biomes.IS_OVERWORLD
 	));
 
