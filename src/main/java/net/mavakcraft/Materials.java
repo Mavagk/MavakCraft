@@ -90,7 +90,14 @@ public class Materials {
 	public static PureMetalMaterial TIN = register(new PureMetalMaterial("tin", MapColor.METAL, MapColor.METAL, BlockTags.NEEDS_STONE_TOOL));
 	public static PureMetalMaterial ALUMINUM = register(new PureMetalMaterial("aluminum", MapColor.METAL, MapColor.METAL, BlockTags.NEEDS_STONE_TOOL));
 	public static PureMetalMaterial SILVER = register(new PureMetalMaterial("silver", MapColor.METAL, MapColor.METAL, BlockTags.NEEDS_IRON_TOOL));
-	public static PureMetalMaterial LEAD = register(new PureMetalMaterial("lead", MapColor.COLOR_GRAY, MapColor.COLOR_GRAY, BlockTags.NEEDS_IRON_TOOL));
+	public static PureMetalMaterial LEAD = register(new PureMetalMaterial("lead", MapColor.COLOR_BLACK, MapColor.COLOR_GRAY, BlockTags.NEEDS_IRON_TOOL));
+
+	public static PureMetalMaterial TITANIUM = register(new PureMetalMaterial("titanium", MapColor.COLOR_GRAY, MapColor.COLOR_GRAY, BlockTags.NEEDS_IRON_TOOL));
+	public static PureMetalMaterial COBALT = register(new PureMetalMaterial("cobalt", MapColor.COLOR_GRAY, MapColor.COLOR_GRAY, BlockTags.NEEDS_IRON_TOOL));
+	public static PureMetalMaterial NICKEL = register(new PureMetalMaterial("nickel", MapColor.COLOR_GRAY, MapColor.COLOR_GRAY, BlockTags.NEEDS_IRON_TOOL));
+	//public static PureMetalMaterial ZINC = register(new PureMetalMaterial("zinc", MapColor.COLOR_GRAY, MapColor.COLOR_GRAY, BlockTags.NEEDS_IRON_TOOL));
+	//public static PureMetalMaterial TUNGSTEN = register(new PureMetalMaterial("tungsten", MapColor.COLOR_GRAY, MapColor.COLOR_GRAY, BlockTags.NEEDS_IRON_TOOL));
+	//public static PureMetalMaterial PLATINUM = register(new PureMetalMaterial("platinum", MapColor.COLOR_GRAY, MapColor.COLOR_GRAY, BlockTags.NEEDS_IRON_TOOL));
 
 	// Ore gens
 	public static OverworldOreGenMaterial RUBY_ORE_GEN = register(new OverworldOreGenMaterial(
