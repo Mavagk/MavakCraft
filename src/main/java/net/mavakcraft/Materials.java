@@ -95,9 +95,9 @@ public class Materials {
 	public static PureMetalMaterial TITANIUM = register(new PureMetalMaterial("titanium", MapColor.COLOR_GRAY, MapColor.COLOR_GRAY, BlockTags.NEEDS_IRON_TOOL));
 	public static PureMetalMaterial COBALT = register(new PureMetalMaterial("cobalt", MapColor.COLOR_GRAY, MapColor.COLOR_GRAY, BlockTags.NEEDS_IRON_TOOL));
 	public static PureMetalMaterial NICKEL = register(new PureMetalMaterial("nickel", MapColor.COLOR_GRAY, MapColor.COLOR_GRAY, BlockTags.NEEDS_IRON_TOOL));
-	//public static PureMetalMaterial ZINC = register(new PureMetalMaterial("zinc", MapColor.COLOR_GRAY, MapColor.COLOR_GRAY, BlockTags.NEEDS_IRON_TOOL));
-	//public static PureMetalMaterial TUNGSTEN = register(new PureMetalMaterial("tungsten", MapColor.COLOR_GRAY, MapColor.COLOR_GRAY, BlockTags.NEEDS_IRON_TOOL));
-	//public static PureMetalMaterial PLATINUM = register(new PureMetalMaterial("platinum", MapColor.COLOR_GRAY, MapColor.COLOR_GRAY, BlockTags.NEEDS_IRON_TOOL));
+	public static PureMetalMaterial ZINC = register(new PureMetalMaterial("zinc", MapColor.COLOR_GRAY, MapColor.COLOR_GRAY, BlockTags.NEEDS_IRON_TOOL));
+	public static PureMetalMaterial TUNGSTEN = register(new PureMetalMaterial("tungsten", MapColor.COLOR_GRAY, MapColor.COLOR_GRAY, BlockTags.NEEDS_IRON_TOOL));
+	public static PureMetalMaterial PLATINUM = register(new PureMetalMaterial("platinum", MapColor.COLOR_GRAY, MapColor.COLOR_GRAY, BlockTags.NEEDS_IRON_TOOL));
 
 	// Ore gens
 	public static OverworldOreGenMaterial RUBY_ORE_GEN = register(new OverworldOreGenMaterial(
@@ -148,6 +148,49 @@ public class Materials {
 		List.of(
 			CountPlacement.of(40), InSquarePlacement.spread(),
 			HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(40)), BiomeFilter.biome()
+		), Biomes.IS_OVERWORLD
+	));
+
+	public static OverworldOreGenMaterial TITANIUM_ORE_GEN = register(new OverworldOreGenMaterial(
+		"titanium", TITANIUM.ores, 8,
+		List.of(
+			CountPlacement.of(30), InSquarePlacement.spread(),
+			HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(0)), BiomeFilter.biome()
+		), Biomes.IS_OVERWORLD
+	));
+	public static OverworldOreGenMaterial COBALT_ORE_GEN = register(new OverworldOreGenMaterial(
+		"cobalt", COBALT.ores, 8,
+		List.of(
+			CountPlacement.of(30), InSquarePlacement.spread(),
+			HeightRangePlacement.triangle(VerticalAnchor.absolute(0), VerticalAnchor.absolute(64)), BiomeFilter.biome()
+		), Biomes.IS_OVERWORLD
+	));
+	public static OverworldOreGenMaterial NICKEL_ORE_GEN = register(new OverworldOreGenMaterial(
+		"nickel", NICKEL.ores, 10,
+		List.of(
+			CountPlacement.of(60), InSquarePlacement.spread(),
+			HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(320)), BiomeFilter.biome()
+		), Biomes.IS_OVERWORLD
+	));
+	public static OverworldOreGenMaterial ZINC_ORE_GEN = register(new OverworldOreGenMaterial(
+		"zinc", ZINC.ores, 40,
+		List.of(
+			CountPlacement.of(15), InSquarePlacement.spread(),
+			HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(320)), BiomeFilter.biome()
+		), Biomes.IS_OVERWORLD
+	));
+	public static OverworldOreGenMaterial TUNGSTEN_ORE_GEN = register(new OverworldOreGenMaterial(
+		"tungsten", TUNGSTEN.ores, 10,
+		List.of(
+			CountPlacement.of(25), InSquarePlacement.spread(),
+			HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(-10)), BiomeFilter.biome()
+		), Biomes.IS_OVERWORLD
+	));
+	public static OverworldOreGenMaterial PLATINUM_ORE_GEN = register(new OverworldOreGenMaterial(
+		"platinum", PLATINUM.ores, 12,
+		List.of(
+			CountPlacement.of(15), InSquarePlacement.spread(),
+			HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(-32)), BiomeFilter.biome()
 		), Biomes.IS_OVERWORLD
 	));
 
