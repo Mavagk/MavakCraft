@@ -1,7 +1,7 @@
 package net.mavakcraft.registry;
 
 import java.util.HashMap;
-import java.util.Vector;
+import java.util.ArrayList;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -35,7 +35,7 @@ public class ModBlocksDeferredRegister extends Blocks {
 	/*
 	 * A list of blocks that block items should be registered for.
 	 */
-	@Nonnull Vector<DeferredBlock<?>> registerBlockItemsFor;
+	@Nonnull ArrayList<DeferredBlock<?>> registerBlockItemsFor;
 	/*
 	 * Maps each block to the vanilla creative mode tab it should be put in.
 	 * Blocks can be mapped it null, in which case they won't be put into any vanilla tab or the mod tab.
@@ -44,7 +44,7 @@ public class ModBlocksDeferredRegister extends Blocks {
 
 	public ModBlocksDeferredRegister(String namespace) {
 		super(namespace);
-		registerBlockItemsFor = new Vector<>();
+		registerBlockItemsFor = new ArrayList<>();
 		vanillaCreativeTabsForEachBlock = new HashMap<>();
 	}
 

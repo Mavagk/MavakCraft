@@ -1,12 +1,16 @@
 package net.mavakcraft;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+
 import net.mavakcraft.datagenerator.ModBlockLootProvider;
 import net.mavakcraft.datagenerator.ModBlockStateProvider;
 import net.mavakcraft.datagenerator.ModBlockTagProvider;
 import net.mavakcraft.datagenerator.ModDataMapProvider;
 import net.mavakcraft.datagenerator.ModDatapackProvider;
-import net.mavakcraft.datagenerator.ModItemModelProvider;
 import net.mavakcraft.datagenerator.ModEnglishLanguageProvider;
+import net.mavakcraft.datagenerator.ModItemModelProvider;
 import net.mavakcraft.datagenerator.ModRecipeProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -17,10 +21,6 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 /**
  * Generates data such as block drop loot tables, models and blockstates for us when `runData` is run.

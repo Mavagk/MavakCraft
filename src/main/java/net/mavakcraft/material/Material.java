@@ -1,6 +1,6 @@
 package net.mavakcraft.material;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import javax.annotation.Nonnull;
 
@@ -14,7 +14,7 @@ import net.mavakcraft.registry.ModBlocksDeferredRegister;
 import net.mavakcraft.registry.ModItemsDeferredRegister;
 
 public abstract class Material {
-	private @Nonnull Vector<Material> subMaterials = new Vector<>();
+	private final @Nonnull ArrayList<Material> subMaterials = new ArrayList<>();
 
 	public final void registerBlocks(ModBlocksDeferredRegister register) {
 		onRegisterBlocks(register);

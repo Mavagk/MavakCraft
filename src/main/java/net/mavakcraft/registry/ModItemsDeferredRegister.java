@@ -1,7 +1,7 @@
 package net.mavakcraft.registry;
 
 import java.util.HashMap;
-import java.util.Vector;
+import java.util.ArrayList;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -20,16 +20,16 @@ public class ModItemsDeferredRegister extends Items {
 	/**
 	 * A list of items that should be put in the mod creative mode tab.
 	 */
-	@Nonnull Vector<DeferredItem<?>> itemsToPutInModCreativeTab;
+	@Nonnull ArrayList<DeferredItem<?>> itemsToPutInModCreativeTab;
 	/**
 	 * Maps vanilla creative mode tabs to list of mod items that should be added to them.
 	 */
-	@Nonnull HashMap<ResourceKey<CreativeModeTab>, Vector<DeferredItem<?>>> itemsToPutInVanillaCreativeTabs;
+	@Nonnull HashMap<ResourceKey<CreativeModeTab>, ArrayList<DeferredItem<?>>> itemsToPutInVanillaCreativeTabs;
 	@Nonnull HashMap<Holder<Block>, DeferredItem<BlockItem>> blockItems;
 
 	public ModItemsDeferredRegister(String namespace) {
 		super(namespace);
-		itemsToPutInModCreativeTab = new Vector<>();
+		itemsToPutInModCreativeTab = new ArrayList<>();
 		itemsToPutInVanillaCreativeTabs = new HashMap<>();
 		blockItems = new HashMap<>();
 	}
@@ -69,7 +69,7 @@ public class ModItemsDeferredRegister extends Items {
 		itemsToPutInModCreativeTab.add(item);
 		// Set that the item should be put in the set vanilla tab.
 		if (!itemsToPutInVanillaCreativeTabs.containsKey(vanillaCreativeTabToPutIn))
-			itemsToPutInVanillaCreativeTabs.put(vanillaCreativeTabToPutIn, new Vector<>());
+			itemsToPutInVanillaCreativeTabs.put(vanillaCreativeTabToPutIn, new ArrayList<>());
 		itemsToPutInVanillaCreativeTabs.get(vanillaCreativeTabToPutIn).add(item);
 	}
 
@@ -85,7 +85,7 @@ public class ModItemsDeferredRegister extends Items {
 	 */
 	public void putItemsInVanillaTab(BuildCreativeModeTabContentsEvent event) {
 		ResourceKey<CreativeModeTab> tab = event.getTabKey();
-		Vector<DeferredItem<?>> itemsForTab = itemsToPutInVanillaCreativeTabs.get(tab);
+		ArrayList<DeferredItem<?>> itemsForTab = itemsToPutInVanillaCreativeTabs.get(tab);
 		if (itemsForTab == null) return;
 		itemsForTab.forEach(item -> event.accept(item));
 	}

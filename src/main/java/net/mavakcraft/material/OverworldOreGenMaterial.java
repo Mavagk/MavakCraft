@@ -1,6 +1,7 @@
 package net.mavakcraft.material;
 
 import java.util.List;
+
 import javax.annotation.Nonnull;
 
 import net.mavakcraft.worldgeneration.ModBiomeModifiers;
@@ -52,7 +53,7 @@ public class OverworldOreGenMaterial extends Material {
 	@Override
 	protected void onGenerateBiomeModifiers() {
 		addOre = ModBiomeModifiers.registerKey("add_" + name + "_ore");
-		HolderSet<Biome> biomes = ModBiomeModifiers.biomes.getOrThrow(this.biomes);
-		ModBiomeModifiers.register(addOre, biomes, orePlacedPlacedFeature, GenerationStep.Decoration.UNDERGROUND_ORES);
+		HolderSet<Biome> biomeModifiers = ModBiomeModifiers.biomes.getOrThrow(this.biomes);
+		ModBiomeModifiers.register(addOre, biomeModifiers, orePlacedPlacedFeature, GenerationStep.Decoration.UNDERGROUND_ORES);
 	}
 }

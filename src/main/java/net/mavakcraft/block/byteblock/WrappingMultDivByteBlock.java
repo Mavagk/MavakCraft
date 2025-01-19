@@ -25,13 +25,11 @@ public class WrappingMultDivByteBlock extends AbstractStorageByteBlock {
 			@Nullable Integer connectingValueInputType = getByteValueInputNumberOfConnectingBlock(level, pos, direction);
 			if (connectingValueInputType == null || connectingValue == null) continue;
 			switch (connectingValueInputType) {
-				case 0:
-					dividend *= connectingValue;
-					break;
-				case 1:
+				case 0 -> dividend *= connectingValue;
+				case 1 -> {
 					if (connectingValue == 0) return;
 					divisor *= connectingValue;
-					break;
+				}
 			}
 		}
 		setByteValue(level, state, pos, (int)(dividend / divisor % 256));

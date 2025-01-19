@@ -4,6 +4,13 @@ import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 
+import net.mavakcraft.block.byteblock.ByteBlock;
+import net.mavakcraft.block.byteblock.PrimaryInputByteBlock;
+import net.mavakcraft.block.byteblock.SecondaryInputByteBlock;
+import net.mavakcraft.block.byteblock.WrappingAddSubByteBlock;
+import net.mavakcraft.block.byteblock.WrappingMultDivByteBlock;
+import net.mavakcraft.registry.ModBlocksDeferredRegister;
+import net.mavakcraft.registry.ModItemsDeferredRegister;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -27,13 +34,6 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.mavakcraft.block.byteblock.ByteBlock;
-import net.mavakcraft.block.byteblock.PrimaryInputByteBlock;
-import net.mavakcraft.block.byteblock.SecondaryInputByteBlock;
-import net.mavakcraft.block.byteblock.WrappingAddSubByteBlock;
-import net.mavakcraft.block.byteblock.WrappingMultDivByteBlock;
-import net.mavakcraft.registry.ModBlocksDeferredRegister;
-import net.mavakcraft.registry.ModItemsDeferredRegister;
 
 @Mod(MavakCraft.MODID)
 @EventBusSubscriber(modid = MavakCraft.MODID, bus = EventBusSubscriber.Bus.MOD)
@@ -112,7 +112,7 @@ public class MavakCraft
 		Materials.registerItems(ITEMS);
 	}
 	// Register block items for all blocks that are set to have block items generated for them.
-	{
+	static {
 		BLOCKS.registerBlockItems(ITEMS);
 	}
 
