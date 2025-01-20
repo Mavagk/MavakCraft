@@ -1,6 +1,7 @@
 package net.mavakcraft.registry;
 
 import java.util.HashMap;
+import java.util.function.Function;
 import java.util.ArrayList;
 
 import javax.annotation.Nonnull;
@@ -11,6 +12,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Item.Properties;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -53,6 +55,14 @@ public class ModItemsDeferredRegister extends Items {
 	 */
 	public DeferredItem<Item> registerSimpleItem(String name, @Nullable ResourceKey<CreativeModeTab> vanillaCreativeTabToPutIn) {
 		DeferredItem<Item> item = super.registerSimpleItem(name);
+		setCreativeTab(item, vanillaCreativeTabToPutIn);
+		return item;
+	}
+
+	public <T extends Item> DeferredItem<T> registerItem(
+		String name, Function<Properties, T> func, Properties props, @Nullable ResourceKey<CreativeModeTab> vanillaCreativeTabToPutIn
+	) {
+		DeferredItem<T> item = super.registerItem(name, func, props);
 		setCreativeTab(item, vanillaCreativeTabToPutIn);
 		return item;
 	}

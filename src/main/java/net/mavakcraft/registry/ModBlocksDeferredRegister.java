@@ -16,6 +16,8 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ColoredFallingBlock;
 import net.minecraft.world.level.block.DropExperienceBlock;
@@ -27,6 +29,7 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister.Blocks;
 
 /**
@@ -163,16 +166,15 @@ public class ModBlocksDeferredRegister extends Blocks {
 		), true, vanillaCreativeTabToPutIn);
 	}
 
-	public DeferredBlock<BerryBushBlock> registerSimpleBerryBush(
-		String name, boolean doRegisterItem, @Nullable ResourceKey<CreativeModeTab> vanillaCreativeTabToPutIn
-	) {
+	public DeferredBlock<BerryBushBlock> registerSimpleBerryBush(String name, DeferredItem<ItemNameBlockItem> berryItem) {
 		return register(name + "_bush", () -> new BerryBushBlock(BlockBehaviour.Properties.of()
 			.mapColor(MapColor.PLANT)
 			.randomTicks()
 			.noCollission()
 			.sound(SoundType.SWEET_BERRY_BUSH)
-			.pushReaction(PushReaction.DESTROY)
-		), true, vanillaCreativeTabToPutIn);
+			.pushReaction(PushReaction.DESTROY),
+			berryItem
+		));
 	}
 
 	/**
