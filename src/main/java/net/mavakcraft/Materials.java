@@ -9,6 +9,7 @@ import net.mavakcraft.datagenerator.ModBlockTagProvider;
 import net.mavakcraft.datagenerator.ModEnglishLanguageProvider;
 import net.mavakcraft.datagenerator.ModItemModelProvider;
 import net.mavakcraft.datagenerator.ModRecipeProvider;
+import net.mavakcraft.material.BerryMaterial;
 import net.mavakcraft.material.GemMaterial;
 import net.mavakcraft.material.Material;
 import net.mavakcraft.material.OverworldOreGenMaterial;
@@ -213,4 +214,7 @@ public class Materials {
 	public static RockItemBlockMaterial NETHER_STAR_BLOCK = register(new RockItemBlockMaterial("nether_star", MapColor.COLOR_YELLOW, 0));
 	public static WoodLikeItemBlockMaterial LEATHER_BLOCK = register(new WoodLikeItemBlockMaterial("leather", MapColor.DIRT, 0));
 	public static WoodLikeItemBlockMaterial RABBIT_HIDE_BLOCK = register(new WoodLikeItemBlockMaterial("rabbit_hide", MapColor.DIRT, 0));
+
+	// Berries
+	public static BerryMaterial BLACKBERRY = register(new BerryMaterial("blackberry"));
 }

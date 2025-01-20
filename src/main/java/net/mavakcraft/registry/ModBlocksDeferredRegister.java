@@ -8,6 +8,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import net.mavakcraft.block.BerryBushBlock;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.ColorRGBA;
@@ -158,6 +159,18 @@ public class ModBlocksDeferredRegister extends Blocks {
 			.instabreak()
 			.sound(SoundType.GRASS)
 			.offsetType(BlockBehaviour.OffsetType.XZ)
+			.pushReaction(PushReaction.DESTROY)
+		), true, vanillaCreativeTabToPutIn);
+	}
+
+	public DeferredBlock<BerryBushBlock> registerSimpleBerryBush(
+		String name, boolean doRegisterItem, @Nullable ResourceKey<CreativeModeTab> vanillaCreativeTabToPutIn
+	) {
+		return register(name + "_bush", () -> new BerryBushBlock(BlockBehaviour.Properties.of()
+			.mapColor(MapColor.PLANT)
+			.randomTicks()
+			.noCollission()
+			.sound(SoundType.SWEET_BERRY_BUSH)
 			.pushReaction(PushReaction.DESTROY)
 		), true, vanillaCreativeTabToPutIn);
 	}
