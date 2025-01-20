@@ -24,6 +24,7 @@ import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.VersionChecker;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
@@ -134,6 +135,8 @@ public class MavakCraft
 		modContainer.registerConfig(ModConfig.Type.STARTUP, Config.SPEC);
 		// The mod should have an auto generated config menu
 		modContainer.registerExtensionPoint(IConfigScreenFactory.class, (mc, parent) -> new ConfigurationScreen(modContainer, parent));
+
+		//VersionChecker.getResult(modContainer.getModInfo());
 		// Register the deferred registers
 		BLOCKS.register(modEventBus);
 		ITEMS.register(modEventBus);
