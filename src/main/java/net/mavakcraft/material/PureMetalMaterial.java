@@ -66,9 +66,9 @@ public class PureMetalMaterial extends Material {
 
 	@Override
 	public void onGenerateItemModels(ModItemModelProvider provider) {
-		provider.ItemWithPath(ingot.get(), name + "/ingot");
-		provider.ItemWithPath(nugget.get(), name + "/nugget");
-		provider.ItemWithPath(rawMetal.get(), name + "/raw");
+		provider.itemWithPath(ingot.get(), name + "/ingot");
+		provider.itemWithPath(nugget.get(), name + "/nugget");
+		provider.itemWithPath(rawMetal.get(), name + "/raw");
 	}
 
 	@Override

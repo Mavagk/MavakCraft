@@ -36,7 +36,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 			.texture("layer0", ResourceLocation.fromNamespaceAndPath(MavakCraft.MODID, "block/" + BuiltInRegistries.BLOCK.getKey(block).getPath()));
 	}
 
-	public void ItemWithPath(Item item, String pathInItemFolder) {
+	public void itemWithPath(Item item, String pathInItemFolder) {
 		getBuilder(BuiltInRegistries.ITEM.getKey(item).getPath())
 			.parent(new ModelFile.UncheckedModelFile("item/generated"))
 			.texture("layer0", ResourceLocation.fromNamespaceAndPath(MavakCraft.MODID, ModelProvider.ITEM_FOLDER + "/" + pathInItemFolder));
