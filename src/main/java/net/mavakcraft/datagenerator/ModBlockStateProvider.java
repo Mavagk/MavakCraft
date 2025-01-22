@@ -2,12 +2,14 @@ package net.mavakcraft.datagenerator;
 
 import net.mavakcraft.Materials;
 import net.mavakcraft.MavakCraft;
+import net.mavakcraft.block.BerryBushBlock;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ModelProvider;
+import net.neoforged.neoforge.client.model.generators.VariantBlockStateBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 /**
@@ -60,5 +62,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		ResourceLocation top = ResourceLocation.fromNamespaceAndPath(name.getNamespace(), ModelProvider.BLOCK_FOLDER + "/" + name.getPath() + "_top");
 		directionalBlock(block, models().orientable(BuiltInRegistries.BLOCK.getKey(block).getPath(), side, side, top));
 		simpleBlockItem(block, models().orientable(BuiltInRegistries.BLOCK.getKey(block).getPath(), side, side, top));
+	}
+
+	public void simpleBerryBush(Block bushBlock, String name) {
+		ResourceLocation resourceName = BuiltInRegistries.BLOCK.getKey(bushBlock);
+		String path = ModelProvider.BLOCK_FOLDER + "/" + name + "/";
+		VariantBlockStateBuilder variantBuilder = getVariantBuilder(bushBlock);
+		for (int age = 0; age < 4; age++) {
+			ResourceLocation resource = ResourceLocation.fromNamespaceAndPath(resourceName.getNamespace(), path + String.valueOf(age));
+			variantBuilder.partialState().with(BerryBushBlock.AGE, age)
+			.modelForState().modelFile(models().cross(resourceName + "_bush_stage" + String.valueOf(age), resource).renderType("cutout")).addModel();
+		}
 	}
 }

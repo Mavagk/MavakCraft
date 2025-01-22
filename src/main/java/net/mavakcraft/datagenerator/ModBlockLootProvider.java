@@ -6,12 +6,24 @@ import javax.annotation.Nonnull;
 
 import net.mavakcraft.Materials;
 import net.mavakcraft.MavakCraft;
+import net.mavakcraft.block.BerryBushBlock;
+import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 /**
  * Generates loot tables for blocks.
@@ -40,6 +52,31 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
 	@Override
 	public void dropSelf(@Nonnull Block block) {
 		super.dropSelf(block);
+	}
+
+	public void dropBerryBushDrops(@Nonnull BerryBushBlock bushBlock) {
+		HolderLookup.RegistryLookup<Enchantment> registrylookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
+		add(bushBlock, block -> this.applyExplosionDecay(
+			block,
+			LootTable.lootTable()
+				.withPool(LootPool.lootPool()
+					.when(
+						LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+							.setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BerryBushBlock.AGE, 3))
+					)
+					.add(LootItem.lootTableItem(block.asItem()))
+					.apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 3.0F)))
+					.apply(ApplyBonusCount.addUniformBonusCount(registrylookup.getOrThrow(Enchantments.FORTUNE)))
+				)
+				.withPool(LootPool.lootPool()
+					.when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+						.setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BerryBushBlock.AGE, 2))
+					)
+					.add(LootItem.lootTableItem(block.asItem()))
+					.apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))
+					.apply(ApplyBonusCount.addUniformBonusCount(registrylookup.getOrThrow(Enchantments.FORTUNE)))
+				)
+		));
 	}
 
 	public void dropOreDrops(@Nonnull Block block, @Nonnull Item item) {
