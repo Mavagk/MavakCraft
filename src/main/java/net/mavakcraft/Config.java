@@ -24,7 +24,6 @@ public class Config {
 	static final ModConfigSpec SPEC = BUILDER.build();
 
 	@SubscribeEvent
-	@SuppressWarnings("unused")
 	static void onLoad(final ModConfigEvent event) {
 		
 	}
