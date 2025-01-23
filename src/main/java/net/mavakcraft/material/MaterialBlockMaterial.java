@@ -11,6 +11,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.MapColor;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
 public class MaterialBlockMaterial extends Material {
@@ -41,8 +42,15 @@ public class MaterialBlockMaterial extends Material {
 		provider.blockWithTextureWithItem(block.get(), name + "/block");
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void onGenerateBlockTags(ModBlockTagProvider provider) {
+		TagKey<Block> materialStorageBlocks = createBlockTag("storage_blocks/" + name);
+		provider.tag(Tags.Blocks.STORAGE_BLOCKS)
+			.addTags(materialStorageBlocks);
+
+		provider.tag(materialStorageBlocks)
+			.add(block.get());
 		provider.tag(BlockTags.MINEABLE_WITH_PICKAXE)
 			.add(block.get());
 		provider.tag(toolNeeded)
