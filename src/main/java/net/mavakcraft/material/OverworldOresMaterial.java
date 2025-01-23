@@ -53,6 +53,9 @@ public class OverworldOresMaterial extends Material {
 		provider.tag(BlockTags.MINEABLE_WITH_PICKAXE)
 			.add(ore.get())
 			.add(deepslateOre.get());
+		provider.tag(BlockTags.OVERWORLD_CARVER_REPLACEABLES)
+			.add(ore.get())
+			.add(deepslateOre.get());
 		provider.tag(toolNeeded)
 			.add(ore.get())
 			.add(deepslateOre.get());
