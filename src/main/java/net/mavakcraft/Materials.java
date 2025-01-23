@@ -217,4 +217,5 @@ public class Materials {
 
 	// Berries
 	public static BerryMaterial BLACKBERRY = register(new BerryMaterial("blackberry"));
+	public static BerryMaterial RASPBERRY = register(new BerryMaterial("raspberry"));
 }
