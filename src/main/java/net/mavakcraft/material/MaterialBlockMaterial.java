@@ -42,12 +42,11 @@ public class MaterialBlockMaterial extends Material {
 		provider.blockWithTextureWithItem(block.get(), name + "/block");
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void onGenerateBlockTags(ModBlockTagProvider provider) {
 		TagKey<Block> materialStorageBlocks = createBlockTag("storage_blocks/" + name);
 		provider.tag(Tags.Blocks.STORAGE_BLOCKS)
-			.addTags(materialStorageBlocks);
+			.addTag(materialStorageBlocks);
 
 		provider.tag(materialStorageBlocks)
 			.add(block.get());

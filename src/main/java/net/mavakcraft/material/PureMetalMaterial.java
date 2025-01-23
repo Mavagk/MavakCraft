@@ -16,6 +16,7 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.MapColor;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 
@@ -83,6 +84,12 @@ public class PureMetalMaterial extends Material {
 
 	@Override
 	public void onGenerateBlockTags(ModBlockTagProvider provider) {
+		TagKey<Block> materialStorageBlocks = createBlockTag("storage_blocks/raw_" + name);
+		provider.tag(Tags.Blocks.STORAGE_BLOCKS)
+			.addTag(materialStorageBlocks);
+
+		provider.tag(materialStorageBlocks)
+			.add(rawBlock.get());
 		provider.tag(BlockTags.MINEABLE_WITH_PICKAXE)
 			.add(rawBlock.get());
 		provider.tag(toolNeeded)

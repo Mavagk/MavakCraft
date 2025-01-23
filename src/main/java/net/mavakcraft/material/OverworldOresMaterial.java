@@ -10,6 +10,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DropExperienceBlock;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
 public class OverworldOresMaterial extends Material {
@@ -42,11 +43,22 @@ public class OverworldOresMaterial extends Material {
 
 	@Override
 	protected void onGenerateBlockTags(ModBlockTagProvider provider) {
+		TagKey<Block> oreBlocks = createBlockTag("ores/" + name);
+		provider.tag(Tags.Blocks.ORES)
+			.addTag(oreBlocks);
+
+		provider.tag(oreBlocks)
+			.add(ore.get())
+			.add(deepslateOre.get());
 		provider.tag(BlockTags.MINEABLE_WITH_PICKAXE)
 			.add(ore.get())
 			.add(deepslateOre.get());
 		provider.tag(toolNeeded)
 			.add(ore.get())
+			.add(deepslateOre.get());
+		provider.tag(Tags.Blocks.ORES_IN_GROUND_STONE)
+			.add(ore.get());
+		provider.tag(Tags.Blocks.ORES_IN_GROUND_DEEPSLATE)
 			.add(deepslateOre.get());
 	}
 

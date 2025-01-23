@@ -8,9 +8,12 @@ import net.mavakcraft.datagenerator.ModBlockTagProvider;
 import net.mavakcraft.datagenerator.ModEnglishLanguageProvider;
 import net.mavakcraft.registry.ModBlocksDeferredRegister;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ColoredFallingBlock;
 import net.minecraft.world.level.material.MapColor;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
 public class PowderBlockMaterial extends Material {
@@ -54,6 +57,12 @@ public class PowderBlockMaterial extends Material {
 
 	@Override
 	protected void onGenerateBlockTags(ModBlockTagProvider provider) {
+		TagKey<Block> materialStorageBlocks = createBlockTag("storage_blocks/" + name);
+		provider.tag(Tags.Blocks.STORAGE_BLOCKS)
+			.addTag(materialStorageBlocks);
+
+		provider.tag(materialStorageBlocks)
+			.add(block.get());
 		provider.tag(BlockTags.MINEABLE_WITH_SHOVEL)
 			.add(block.get());
 	}
