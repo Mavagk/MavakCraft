@@ -8,6 +8,7 @@ import net.mavakcraft.datagenerator.ModBlockStateProvider;
 import net.mavakcraft.datagenerator.ModBlockTagProvider;
 import net.mavakcraft.datagenerator.ModEnglishLanguageProvider;
 import net.mavakcraft.datagenerator.ModItemModelProvider;
+import net.mavakcraft.datagenerator.ModItemTagProvider;
 import net.mavakcraft.datagenerator.ModRecipeProvider;
 import net.mavakcraft.material.BerryMaterial;
 import net.mavakcraft.material.GemMaterial;
@@ -64,6 +65,10 @@ public class Materials {
 
 	public static void generateBlockTags(ModBlockTagProvider provider) {
 		MATERIALS.forEach(material -> material.generateBlockTags(provider));
+	}
+
+	public static void generateItemTags(ModItemTagProvider provider) {
+		MATERIALS.forEach(material -> material.generateItemTags(provider));
 	}
 
 	public static void generateEnglishName(ModEnglishLanguageProvider provider) {
