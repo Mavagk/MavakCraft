@@ -5,6 +5,7 @@ import javax.annotation.Nonnull;
 import net.mavakcraft.datagenerator.ModBlockLootProvider;
 import net.mavakcraft.datagenerator.ModEnglishLanguageProvider;
 import net.mavakcraft.datagenerator.ModItemModelProvider;
+import net.mavakcraft.datagenerator.ModItemTagProvider;
 import net.mavakcraft.datagenerator.ModRecipeProvider;
 import net.mavakcraft.registry.ModItemsDeferredRegister;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -13,6 +14,7 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.MapColor;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredItem;
 
 public class GemMaterial extends Material {
@@ -56,5 +58,15 @@ public class GemMaterial extends Material {
 	public void onGenerateEnglishNames(ModEnglishLanguageProvider provider) {
 		String englishName = provider.idToTitle(name);
 		provider.add(gem.get(), englishName);
+	}
+
+	@Override
+	protected void onGenerateItemTags(ModItemTagProvider provider) {
+		TagKey<Item> gemTag = ModItemTagProvider.createItemTag("gems/" + name);
+		provider.tag(Tags.Items.GEMS)
+			.addTag(gemTag);
+
+		provider.tag(gemTag)
+			.add(gem.get());
 	}
 }

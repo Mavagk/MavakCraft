@@ -6,10 +6,12 @@ import net.mavakcraft.datagenerator.ModBlockLootProvider;
 import net.mavakcraft.datagenerator.ModBlockStateProvider;
 import net.mavakcraft.datagenerator.ModBlockTagProvider;
 import net.mavakcraft.datagenerator.ModEnglishLanguageProvider;
+import net.mavakcraft.datagenerator.ModItemTagProvider;
 import net.mavakcraft.registry.ModBlocksDeferredRegister;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ColoredFallingBlock;
 import net.minecraft.world.level.material.MapColor;
@@ -57,7 +59,7 @@ public class PowderBlockMaterial extends Material {
 
 	@Override
 	protected void onGenerateBlockTags(ModBlockTagProvider provider) {
-		TagKey<Block> materialStorageBlocks = createBlockTag("storage_blocks/" + name);
+		TagKey<Block> materialStorageBlocks = ModBlockTagProvider.createBlockTag("storage_blocks/" + name);
 		provider.tag(Tags.Blocks.STORAGE_BLOCKS)
 			.addTag(materialStorageBlocks);
 
@@ -65,5 +67,15 @@ public class PowderBlockMaterial extends Material {
 			.add(block.get());
 		provider.tag(BlockTags.MINEABLE_WITH_SHOVEL)
 			.add(block.get());
+	}
+
+	@Override
+	public void onGenerateItemTags(ModItemTagProvider provider) {
+		TagKey<Item> materialStorageBlocks = ModItemTagProvider.createItemTag("storage_blocks/" + name);
+		provider.tag(Tags.Items.STORAGE_BLOCKS)
+			.addTag(materialStorageBlocks);
+
+		provider.tag(materialStorageBlocks)
+			.add(block.asItem());
 	}
 }

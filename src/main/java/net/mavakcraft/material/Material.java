@@ -13,10 +13,6 @@ import net.mavakcraft.datagenerator.ModItemTagProvider;
 import net.mavakcraft.datagenerator.ModRecipeProvider;
 import net.mavakcraft.registry.ModBlocksDeferredRegister;
 import net.mavakcraft.registry.ModItemsDeferredRegister;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.level.block.Block;
 
 public abstract class Material {
 	private final @Nonnull ArrayList<Material> subMaterials = new ArrayList<>();
@@ -132,9 +128,5 @@ public abstract class Material {
 	protected <T extends Material> T addSubMaterial(T material) {
 		subMaterials.add(material);
 		return material;
-	}
-
-	protected static TagKey<Block> createBlockTag(String name) {
-		return BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", name));
 	}
 }

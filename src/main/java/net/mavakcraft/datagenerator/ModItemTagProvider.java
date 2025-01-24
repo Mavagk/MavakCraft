@@ -11,8 +11,11 @@ import net.mavakcraft.MavakCraft;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.data.tags.TagsProvider;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
@@ -46,5 +49,13 @@ public class ModItemTagProvider extends ItemTagsProvider {
 	@SuppressWarnings("unchecked")
 	public static TagKey<Item> dyeBlockTag(DyeColor dyeColor) {
 		return (TagKey<Item>)dyeItemTags[dyeColor.getId()];
+	}
+
+	public IntrinsicHolderTagsProvider.IntrinsicTagAppender<Item> tag(@Nonnull TagKey<Item> tag) {
+		return super.tag(tag);
+	}
+
+	public static TagKey<Item> createItemTag(String name) {
+		return ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", name));
 	}
 }

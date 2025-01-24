@@ -11,6 +11,7 @@ import net.mavakcraft.MavakCraft;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.DyeColor;
@@ -58,5 +59,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 	@Override
 	public IntrinsicHolderTagsProvider.IntrinsicTagAppender<Block> tag(@Nonnull TagKey<Block> tag) {
 		return super.tag(tag);
-    }
+	}
+
+	public static TagKey<Block> createBlockTag(String name) {
+		return BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", name));
+	}
 }

@@ -5,9 +5,11 @@ import javax.annotation.Nonnull;
 import net.mavakcraft.datagenerator.ModBlockStateProvider;
 import net.mavakcraft.datagenerator.ModBlockTagProvider;
 import net.mavakcraft.datagenerator.ModEnglishLanguageProvider;
+import net.mavakcraft.datagenerator.ModItemTagProvider;
 import net.mavakcraft.registry.ModBlocksDeferredRegister;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DropExperienceBlock;
 import net.neoforged.neoforge.common.Tags;
@@ -43,7 +45,7 @@ public class OverworldOresMaterial extends Material {
 
 	@Override
 	protected void onGenerateBlockTags(ModBlockTagProvider provider) {
-		TagKey<Block> oreBlocks = createBlockTag("ores/" + name);
+		TagKey<Block> oreBlocks = ModBlockTagProvider.createBlockTag("ores/" + name);
 		provider.tag(Tags.Blocks.ORES)
 			.addTag(oreBlocks);
 
@@ -63,6 +65,21 @@ public class OverworldOresMaterial extends Material {
 			.add(ore.get());
 		provider.tag(Tags.Blocks.ORES_IN_GROUND_DEEPSLATE)
 			.add(deepslateOre.get());
+	}
+
+	@Override
+	protected void onGenerateItemTags(ModItemTagProvider provider) {
+		TagKey<Item> oreBlocks = ModItemTagProvider.createItemTag("ores/" + name);
+		provider.tag(Tags.Items.ORES)
+			.addTag(oreBlocks);
+
+		provider.tag(oreBlocks)
+			.add(ore.asItem())
+			.add(deepslateOre.asItem());
+		provider.tag(Tags.Items.ORES_IN_GROUND_STONE)
+			.add(ore.asItem());
+		provider.tag(Tags.Items.ORES_IN_GROUND_DEEPSLATE)
+			.add(deepslateOre.asItem());
 	}
 
 	@Override
