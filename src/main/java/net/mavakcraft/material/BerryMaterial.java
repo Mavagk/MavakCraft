@@ -23,7 +23,7 @@ import net.mavakcraft.datagenerator.ModItemTagProvider;
 public class BerryMaterial extends Material {
 	@Nonnull String name;
 
-	DeferredBlock<BerryBushBlock> bush;
+	public DeferredBlock<BerryBushBlock> bush;
 
 	DeferredItem<ItemNameBlockItem> berry;
 

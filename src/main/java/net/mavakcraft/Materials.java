@@ -14,6 +14,7 @@ import net.mavakcraft.material.BerryMaterial;
 import net.mavakcraft.material.GemMaterial;
 import net.mavakcraft.material.Material;
 import net.mavakcraft.material.OverworldOreGenMaterial;
+import net.mavakcraft.material.SimpleBerryBushGenMaterial;
 import net.mavakcraft.material.PureMetalMaterial;
 import net.mavakcraft.material.PowderBlockMaterial;
 import net.mavakcraft.material.RockItemBlockMaterial;
@@ -223,4 +224,8 @@ public class Materials {
 	// Berries
 	public static BerryMaterial BLACKBERRY = register(new BerryMaterial("blackberry"));
 	public static BerryMaterial RASPBERRY = register(new BerryMaterial("raspberry"));
+
+	// Plant gen
+	public static SimpleBerryBushGenMaterial BLACKBERRY_GEN = register(new SimpleBerryBushGenMaterial("blackberry_bush", BLACKBERRY, 8, 32, 32, Biomes.IS_FOREST));
+	public static SimpleBerryBushGenMaterial RASPBERRY_GEN = register(new SimpleBerryBushGenMaterial("raspberry_bush", RASPBERRY, 5, 32, 64, Biomes.IS_FOREST));
 }
