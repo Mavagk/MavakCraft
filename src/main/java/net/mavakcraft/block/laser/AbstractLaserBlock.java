@@ -2,7 +2,7 @@ package net.mavakcraft.block.laser;
 
 import javax.annotation.Nullable;
 
-import net.mavakcraft.ColorHSV;
+import net.mavakcraft.ColorHSA;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.LevelReader;
@@ -23,6 +23,6 @@ public abstract class AbstractLaserBlock extends Block {
 		return getLaserBlockAt(level, pos.relative(direction));
 	}
 
-	public abstract ColorHSV colorSentInDirection(LevelReader level, BlockPos pos, Direction direction);
+	public abstract ColorHSA colorSentInDirection(LevelReader level, BlockPos pos, Direction direction);
 	public abstract void recalculateColors(LevelReader level, BlockPos pos);
 }
