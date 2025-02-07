@@ -6,19 +6,15 @@ public record ColorHSV(int hsv) {
 		if (hue > 0xFF || saturation > 0xFF || value > 0xFF) throw new IllegalArgumentException();
 	}
 
-	public int getHSV() {
-		return hsv;
-	}
-
-	public int getHue() {
+	public int hue() {
 		return hsv & 0xFF;
 	}
 
-	public int getSaturation() {
+	public int saturation() {
 		return (hsv >> 8) & 0xFF;
 	}
 
-	public int getValue() {
+	public int value() {
 		return (hsv >> 16) & 0xFF;
 	}
 }
