@@ -3,6 +3,7 @@ package net.mavakcraft;
 import java.util.List;
 import java.util.ArrayList;
 
+import net.mavakcraft.block.simblock.WaterSimBlock;
 import net.mavakcraft.datagenerator.ModBlockLootProvider;
 import net.mavakcraft.datagenerator.ModBlockStateProvider;
 import net.mavakcraft.datagenerator.ModBlockTagProvider;
@@ -18,6 +19,7 @@ import net.mavakcraft.material.SimpleBerryBushGenMaterial;
 import net.mavakcraft.material.PureMetalMaterial;
 import net.mavakcraft.material.PowderBlockMaterial;
 import net.mavakcraft.material.RockItemBlockMaterial;
+import net.mavakcraft.material.SimBlockMaterial;
 import net.mavakcraft.material.SimpleFlowerMaterial;
 import net.mavakcraft.material.WoodLikeItemBlockMaterial;
 import net.mavakcraft.registry.ModBlocksDeferredRegister;
@@ -228,4 +230,7 @@ public class Materials {
 	// Plant gen
 	public static SimpleBerryBushGenMaterial BLACKBERRY_GEN = register(new SimpleBerryBushGenMaterial("blackberry_bush", BLACKBERRY, 8, 32, 32, Biomes.IS_FOREST));
 	public static SimpleBerryBushGenMaterial RASPBERRY_GEN = register(new SimpleBerryBushGenMaterial("raspberry_bush", RASPBERRY, 5, 32, 64, Biomes.IS_FOREST));
+
+	// Sim blocks
+	public static SimBlockMaterial<WaterSimBlock> WATER_SIM_BLOCK = register(new SimBlockMaterial<WaterSimBlock>("water", WaterSimBlock::new, MapColor.WATER, 0));
 }
