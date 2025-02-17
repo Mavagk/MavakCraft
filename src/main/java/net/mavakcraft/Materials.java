@@ -232,5 +232,5 @@ public class Materials {
 	public static SimpleBerryBushGenMaterial RASPBERRY_GEN = register(new SimpleBerryBushGenMaterial("raspberry_bush", RASPBERRY, 5, 32, 64, Biomes.IS_FOREST));
 
 	// Sim blocks
-	public static SimBlockMaterial<WaterSimBlock> WATER_SIM_BLOCK = register(new SimBlockMaterial<WaterSimBlock>("water", WaterSimBlock::new, MapColor.WATER, 0));
+	public static SimBlockMaterial<WaterSimBlock> WATER_SIM_BLOCK = register(new SimBlockMaterial<WaterSimBlock>("water", WaterSimBlock::new, MapColor.WATER, 0, true));
 }

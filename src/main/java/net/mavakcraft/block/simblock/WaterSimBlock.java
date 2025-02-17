@@ -2,13 +2,15 @@ package net.mavakcraft.block.simblock;
 
 import javax.annotation.Nonnull;
 
+import com.mojang.serialization.MapCodec;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class WaterSimBlock extends AbstractSimBlock {
@@ -38,14 +40,12 @@ public class WaterSimBlock extends AbstractSimBlock {
 	}
 
 	@Override
-	protected void onPlace(@Nonnull BlockState state, @Nonnull Level level, @Nonnull BlockPos pos, @Nonnull BlockState oldState, boolean movedByPiston) {
-		super.onPlace(state, level, pos, oldState, movedByPiston);
-		level.scheduleTick(pos, state.getBlock(), 0);
+	protected boolean propagatesSkylightDown(BlockState p_309084_, BlockGetter p_309133_, BlockPos p_309097_) {
+		return true;
 	}
-	
+
 	@Override
-	protected void neighborChanged(@Nonnull BlockState state, @Nonnull Level level, @Nonnull BlockPos pos, @Nonnull Block neighborBlock, @Nonnull BlockPos neighborPos, boolean movedByPiston) {
-		super.neighborChanged(state, level, pos, neighborBlock, neighborPos, movedByPiston);
-		level.scheduleTick(pos, state.getBlock(), 0);
+	protected boolean skipRendering(BlockState state, BlockState adjacentBlockState, Direction side) {
+		return adjacentBlockState.is(this) ? true : super.skipRendering(state, adjacentBlockState, side);
 	}
 }

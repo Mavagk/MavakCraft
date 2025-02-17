@@ -44,6 +44,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	}
 
 	/**
+	 * Generates a block state and model for a simple full cube block, also generates the model for the block's block item.
+	 */
+	public void simpleTranslucentBlockWithItem(Block block) {
+		simpleBlockWithItem(block, models().cubeAll(BuiltInRegistries.BLOCK.getKey(block).getPath(), blockTexture(block)).renderType("translucent"));
+	}
+
+	/**
 	 * Generates a block state and model for a simple 1 block high plant such as a flower, this does NOT generate a item model.
 	 */
 	public void simplePlant(Block block) {
