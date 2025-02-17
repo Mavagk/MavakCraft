@@ -1,8 +1,7 @@
 package net.mavakcraft.block.simblock;
 
 import javax.annotation.Nonnull;
-
-import com.mojang.serialization.MapCodec;
+import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -10,13 +9,14 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class WaterSimBlock extends AbstractSimBlock {
 	public WaterSimBlock(Properties properties) {
 		super(properties);
 	}
+
+	public static @Nullable Integer DENSITY = 2;
 
 	@Override
 	protected void tick(@Nonnull BlockState state, @Nonnull ServerLevel level, @Nonnull BlockPos pos, @Nonnull RandomSource random) {
@@ -40,12 +40,12 @@ public class WaterSimBlock extends AbstractSimBlock {
 	}
 
 	@Override
-	protected boolean propagatesSkylightDown(BlockState p_309084_, BlockGetter p_309133_, BlockPos p_309097_) {
+	protected boolean propagatesSkylightDown(@Nonnull BlockState p_309084_, @Nonnull BlockGetter p_309133_, @Nonnull BlockPos p_309097_) {
 		return true;
 	}
 
 	@Override
-	protected boolean skipRendering(BlockState state, BlockState adjacentBlockState, Direction side) {
+	protected boolean skipRendering(@Nonnull BlockState state, @Nonnull BlockState adjacentBlockState, @Nonnull Direction side) {
 		return adjacentBlockState.is(this) ? true : super.skipRendering(state, adjacentBlockState, side);
 	}
 }

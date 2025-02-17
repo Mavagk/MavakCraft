@@ -1,6 +1,7 @@
 package net.mavakcraft.block.simblock;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
@@ -11,6 +12,8 @@ public abstract class AbstractSimBlock extends Block {
 	public AbstractSimBlock(Properties properties) {
 		super(properties);
 	}
+
+	public static @Nullable Integer DENSITY = null;
 
 	@Override
 	protected void onPlace(@Nonnull BlockState state, @Nonnull Level level, @Nonnull BlockPos pos, @Nonnull BlockState oldState, boolean movedByPiston) {
