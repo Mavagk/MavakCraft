@@ -16,7 +16,7 @@ public class WaterSimBlock extends AbstractSimBlock {
 		super(properties);
 	}
 
-	public static @Nullable Integer DENSITY = 2;
+	static final @Nullable Integer DENSITY = 2;
 
 	@Override
 	protected void tick(@Nonnull BlockState state, @Nonnull ServerLevel level, @Nonnull BlockPos pos, @Nonnull RandomSource random) {
