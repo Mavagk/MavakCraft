@@ -3,6 +3,7 @@ package net.mavakcraft;
 import java.util.List;
 import java.util.ArrayList;
 
+import net.mavakcraft.block.simblock.OilSimBlock;
 import net.mavakcraft.block.simblock.WaterSimBlock;
 import net.mavakcraft.datagenerator.ModBlockLootProvider;
 import net.mavakcraft.datagenerator.ModBlockStateProvider;
@@ -233,4 +234,5 @@ public class Materials {
 
 	// Sim blocks
 	public static SimBlockMaterial<WaterSimBlock> WATER_SIM_BLOCK = register(new SimBlockMaterial<WaterSimBlock>("water", WaterSimBlock::new, MapColor.WATER, 0, true));
+	public static SimBlockMaterial<OilSimBlock> OIL_SIM_BLOCK = register(new SimBlockMaterial<OilSimBlock>("oil", OilSimBlock::new, MapColor.COLOR_YELLOW, 0, true));
 }

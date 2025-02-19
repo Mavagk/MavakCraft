@@ -2,13 +2,13 @@ package net.mavakcraft.block.simblock;
 
 import javax.annotation.Nullable;
 
-public class WaterSimBlock extends AbstractLiquidSimBlock {
-	public WaterSimBlock(Properties properties) {
+public class OilSimBlock extends AbstractLiquidSimBlock {
+	public OilSimBlock(Properties properties) {
 		super(properties);
 	}
 
 	@Override
 	@Nullable Integer getDensity() {
-		return 2;
+		return 1;
 	}
 }
