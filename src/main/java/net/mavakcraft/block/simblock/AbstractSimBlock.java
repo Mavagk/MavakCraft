@@ -4,6 +4,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -13,10 +14,8 @@ public abstract class AbstractSimBlock extends Block {
 		super(properties);
 	}
 
-	static final @Nullable Integer DENSITY = null;
-
 	@Nullable Integer getDensity() {
-		return DENSITY;
+		return null;
 	}
 
 	@Override
@@ -40,10 +39,39 @@ public abstract class AbstractSimBlock extends Block {
 		return getSimBlockClass(level.getBlockState(pos));
 	}
 
-	static @Nullable Integer getDensity(@Nonnull Level level, @Nonnull BlockPos pos) {
-		BlockState state = level.getBlockState(pos);
+	/**
+	 * Get the density of a block state.
+	 * @return The density or null if the block cannot be displaced.
+	 */
+	static @Nullable Integer getDensity(@Nonnull BlockState state) {
 		if (state.isAir()) return 0;
 		AbstractSimBlock block = getSimBlockClass(state);
 		return block == null? null: block.getDensity();
+	}
+
+	/**
+	 * Will make a block try to displace (swap with) another block. The swap will succede if the displacee block is less dense than the displacer block.
+	 * @param displacerPos The pos of the block that will displace the other block.
+	 * @param direction The direction from the displacer block to the displacee block.
+	 * @return true if the blocks where swapped or else false.
+	 */
+	static boolean tryDisplace(@Nonnull Level level, @Nonnull BlockPos displacerPos, @Nonnull Direction direction) {
+		// Get the block displacing the other block
+		BlockState displacerBlockState = level.getBlockState(displacerPos);
+		@Nullable Integer displacerDensityOptional = getDensity(displacerBlockState);
+		if (displacerDensityOptional == null) return false;
+		int displacerDensity = displacerDensityOptional;
+		// Get the block being displaced
+		BlockPos displaceePos = displacerPos.offset(direction.getNormal());
+		BlockState displaceeBlockState = level.getBlockState(displaceePos);
+		@Nullable Integer displaceeDensityOptional = getDensity(displaceeBlockState);
+		if (displaceeDensityOptional == null) return false;
+		int displaceeDensity = displaceeDensityOptional;
+		// A block can only displace a less dense block
+		if (displaceeDensity >= displacerDensity) return false;
+		// Swap the blocks
+		level.setBlockAndUpdate(displaceePos, displacerBlockState);
+		level.setBlockAndUpdate(displacerPos, displaceeBlockState);
+		return true;
 	}
 }
