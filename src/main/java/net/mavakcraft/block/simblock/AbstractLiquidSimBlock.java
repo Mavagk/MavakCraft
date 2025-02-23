@@ -18,12 +18,12 @@ public abstract class AbstractLiquidSimBlock extends AbstractSimBlock {
 	@Override
 	protected void tick(@Nonnull BlockState state, @Nonnull ServerLevel level, @Nonnull BlockPos pos, @Nonnull RandomSource random) {
 		super.tick(state, level, pos, random);
-		if (tryDisplace(level, pos, Direction.DOWN)) return;
+		if (tryDisplace(level, pos, Direction.DOWN, false)) return;
 		int flowDirection = random.nextInt(4);
 		for (int x = 0; x < 4; x++) {
 			flowDirection = (flowDirection + 1) % 4;
 			Direction direction = Direction.BY_ID.apply(flowDirection + 2);
-			if (tryDisplace((Level)level, pos, direction)) return;
+			if (tryDisplace((Level)level, pos, direction, false)) return;
 		}
 	}
 

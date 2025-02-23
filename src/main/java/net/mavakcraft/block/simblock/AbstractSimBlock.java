@@ -18,6 +18,10 @@ public abstract class AbstractSimBlock extends Block {
 		return null;
 	}
 
+	boolean isSimFlammable() {
+		return false;
+	}
+
 	@Override
 	protected void onPlace(@Nonnull BlockState state, @Nonnull Level level, @Nonnull BlockPos pos, @Nonnull BlockState oldState, boolean movedByPiston) {
 		super.onPlace(state, level, pos, oldState, movedByPiston);
@@ -55,7 +59,7 @@ public abstract class AbstractSimBlock extends Block {
 	 * @param direction The direction from the displacer block to the displacee block.
 	 * @return true if the blocks where swapped or else false.
 	 */
-	static boolean tryDisplace(@Nonnull Level level, @Nonnull BlockPos displacerPos, @Nonnull Direction direction) {
+	static boolean tryDisplace(@Nonnull Level level, @Nonnull BlockPos displacerPos, @Nonnull Direction direction, boolean isUpwards) {
 		// Get the block displacing the other block
 		BlockState displacerBlockState = level.getBlockState(displacerPos);
 		@Nullable Integer displacerDensityOptional = getDensity(displacerBlockState);
@@ -68,7 +72,7 @@ public abstract class AbstractSimBlock extends Block {
 		if (displaceeDensityOptional == null) return false;
 		int displaceeDensity = displaceeDensityOptional;
 		// A block can only displace a less dense block
-		if (displaceeDensity >= displacerDensity) return false;
+		if ((displaceeDensity >= displacerDensity && !isUpwards) || (displaceeDensity <= displacerDensity && isUpwards)) return false;
 		// Swap the blocks
 		level.setBlockAndUpdate(displaceePos, displacerBlockState);
 		level.setBlockAndUpdate(displacerPos, displaceeBlockState);

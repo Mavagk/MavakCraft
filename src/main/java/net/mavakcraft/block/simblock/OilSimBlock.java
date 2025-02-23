@@ -11,4 +11,9 @@ public class OilSimBlock extends AbstractLiquidSimBlock {
 	@Nullable Integer getDensity() {
 		return 1;
 	}
+
+	@Override
+	boolean isSimFlammable() {
+		return true;
+	}
 }
