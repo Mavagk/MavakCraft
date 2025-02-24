@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import net.mavakcraft.block.simblock.FireSimBlock;
 import net.mavakcraft.block.simblock.OilSimBlock;
 import net.mavakcraft.block.simblock.SandSimBlock;
+import net.mavakcraft.block.simblock.SmokeSimBlock;
 import net.mavakcraft.block.simblock.WaterSimBlock;
 import net.mavakcraft.datagenerator.ModBlockLootProvider;
 import net.mavakcraft.datagenerator.ModBlockStateProvider;
@@ -239,4 +240,5 @@ public class Materials {
 	public static SimBlockMaterial<OilSimBlock> OIL_SIM_BLOCK = register(new SimBlockMaterial<OilSimBlock>("oil", OilSimBlock::new, MapColor.COLOR_YELLOW, 0, true));
 	public static SimBlockMaterial<SandSimBlock> SAND_SIM_BLOCK = register(new SimBlockMaterial<SandSimBlock>("sand", SandSimBlock::new, MapColor.SAND, 0, false));
 	public static SimBlockMaterial<FireSimBlock> FIRE_SIM_BLOCK = register(new SimBlockMaterial<FireSimBlock>("fire", FireSimBlock::new, MapColor.FIRE, 15, true));
+	public static SimBlockMaterial<SmokeSimBlock> SMOKE_SIM_BLOCK = register(new SimBlockMaterial<SmokeSimBlock>("smoke", SmokeSimBlock::new, MapColor.COLOR_BLACK, 0, true));
 }
